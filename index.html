@@ -1,117 +1,114 @@
-
 <!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZAIN FX - TV BOT FIXED</title>
+<title>ZAIN FX - CYBER GLASS V5</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{background:#060a14;color:#fff;font-family:Arial}
-.warnTop{text-align:center;font-size:11px;padding:6px;color:#ffaa55;background:#1a0f00;border-bottom:1px solid #ffaa00}
-.tv{max-width:1100px;margin:auto;background:#0a1225;min-height:100vh;display:grid;grid-template-columns:1.8fr 0.7fr 0.9fr;gap:6px;padding:6px}
-.chartBox{background:#0f1419;border:1px solid #1e2a3a;border-radius:8px;overflow:hidden}
-.mid{background:#121a2c;border:1px solid #1e2a3a;border-radius:8px;padding:8px}
-.bot{background:#0e1629;border:1px solid #00ff88;border-radius:12px;padding:12px;text-align:center;box-shadow:0 0 20px rgba(0,255,136,0.15)}
-.circle{width:160px;height:160px;margin:12px auto;border-radius:50%;border:4px solid #00ff88;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#001a11;box-shadow:0 0 25px #00ff88}
-.circle b{font-size:44px}.circle span{font-size:13px;font-weight:bold;margin-top:2px}
-.btn{width:100%;padding:12px;border:none;border-radius:8px;font-weight:bold;margin:4px 0;font-size:14px}
-.up{background:#00c06a;color:#fff}.down{background:#ff3b3b;color:#fff}
-.gen{width:100%;padding:12px;background:#00ff88;color:#000;border:none;border-radius:10px;font-weight:bold;margin:8px 0;cursor:pointer;font-size:14px}
-.row{display:flex;justify-content:space-between;font-size:11px;padding:5px 0;border-bottom:1px solid #1e2a3a}
-@media(max-width:800px){.tv{grid-template-columns:1fr}.chartBox{height:320px}}
+*{margin:0;padding:0;box-sizing:border-box}body{background:#03050a;color:#fff;font-family:'Segoe UI',Arial}
+.bg{position:fixed;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 30% 20%, #0a2a1f 0%, #03050a 60%), radial-gradient(ellipse at 80% 80%, #1a0a2a 0%, transparent 50%);z-index:-1}
+.wrap{max-width:440px;margin:auto;padding:12px}
+.header{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.05);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.1);padding:10px 14px;border-radius:14px}
+.logo{font-weight:900;letter-spacing:1px;font-size:13px}.logo span{color:#00ff88}
+.live{font-size:10px;background:#ff0000;padding:3px 8px;border-radius:20px;animation:blink 1.5s infinite}@keyframes blink{50%{opacity:0.5}}
+.chartBox{background:rgba(15,20,35,0.8);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.08);border-radius:18px;overflow:hidden;margin:10px 0}
+.chartHead{display:flex;justify-content:space-between;padding:10px;background:rgba(0,0,0,0.3);font-size:11px}
+.tfRow{display:flex;gap:4px}
+.tf{padding:5px 9px;border-radius:8px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);color:#888;font-size:10px;font-weight:bold;cursor:pointer}
+.tf.active{background:#fff;color:#000}
+#tv{height:340px}
+
+.botGlass{background:linear-gradient(145deg, rgba(0,255,136,0.12), rgba(0,0,0,0.4));backdrop-filter:blur(16px);border:1px solid rgba(0,255,136,0.3);border-radius:22px;padding:16px;margin:12px 0;position:relative;overflow:hidden}
+.botGlass::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg, transparent, rgba(0,255,136,0.15), transparent);animation:rotate 4s linear infinite}@keyframes rotate{to{transform:rotate(360deg)}}
+.inner{position:relative;z-index:2}
+.circleWrap{display:flex;align-items:center;gap:14px;justify-content:center;margin:10px 0}
+.circle{width:130px;height:130px;border-radius:50%;border:3px solid #00ff88;display:flex;flex-direction:column;justify-content:center;align-items:center;background:radial-gradient(circle, #002a18, #000);box-shadow:0 0 30px #00ff88, inset 0 0 15px rgba(0,255,136,0.3)}
+.circle b{font-size:38px}.circle span{font-size:10px;font-weight:bold;letter-spacing:1px}
+.stats{flex:1;text-align:left}
+.stat{font-size:10px;color:#aaa;margin:3px 0}.stat b{color:#fff;font-size:12px}
+.expGlass{display:flex;gap:6px;margin:12px 0}
+.eBtn{flex:1;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.06);color:#999;font-size:11px;font-weight:800;cursor:pointer;backdrop-filter:blur(5px)}
+.eBtn.active{background:#00ff88;color:#000;box-shadow:0 0 15px #00ff88;border-color:#00ff88}
+.genBtn{width:100%;padding:14px;background:linear-gradient(90deg, #00ff88, #00cc6a);color:#000;border:none;border-radius:14px;font-weight:900;font-size:13px;letter-spacing:1px;cursor:pointer;box-shadow:0 5px 20px rgba(0,255,136,0.4)}
+.panelGlass{background:rgba(14,17,29,0.9);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.08);border-radius:18px;padding:12px;margin-top:10px}
+.btnRow{display:flex;gap:8px;margin:10px 0}
+.upBtn{flex:1;padding:14px;background:linear-gradient(180deg, #00e676, #00a653);border:none;border-radius:12px;color:#fff;font-weight:900}
+.downBtn{flex:1;padding:14px;background:linear-gradient(180deg, #ff5252, #c62828);border:none;border-radius:12px;color:#fff;font-weight:900}
+.track{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.tBox{background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.06);padding:8px;border-radius:10px;text-align:center}
+.tBox span{font-size:9px;color:#666;display:block}.tBox b{font-size:13px}
 </style></head>
 <body>
-<div class="warnTop">⚠️ ZAIN FX PRIVATE - FAKE SIMULATOR - EDUCATION ONLY - 100% WIN REAL MEIN NAHI HOTA</div>
-<div class="tv">
+<div class="bg"></div>
+<div class="wrap">
+
+<div class="header">
+<div class="logo">ZAIN FX <span>• ELITE V5</span></div>
+<div class="live">● LIVE</div>
+</div>
 
 <div class="chartBox">
-<div style="padding:6px 10px;background:#151a21;font-size:12px;display:flex;justify-content:space-between"><span>EUR/USD • 1m • REAL ANALYSIS</span><span id="price">1.11973</span></div>
-<div id="tv" style="height:520px"></div>
+<div class="chartHead">
+<span>EUR/USD (OTC) • <b id="tfTxt">1 MINUTE</b></span>
+<div class="tfRow">
+<span class="tf" onclick="setTF('1','1 MINUTE')" id="tf1">1m</span>
+<span class="tf active" onclick="setTF('3','3 MINUTE')" id="tf3">3m</span>
+<span class="tf" onclick="setTF('5','5 MINUTE')" id="tf5">5m</span>
+<span class="tf" onclick="setTF('15','15 MINUTE')" id="tf15">15m</span>
+</div>
+</div>
+<div id="tv"></div>
 </div>
 
-<div class="mid">
-<div style="font-size:12px;font-weight:bold;margin-bottom:8px">💹 TRADE PANEL - ADAD 5</div>
-<div style="font-size:11px;color:#888">Asset</div><div style="background:#0f1419;padding:8px;border-radius:6px;font-size:12px;margin:4px 0">EUR/USD (OTC) - 86%</div>
-<div style="font-size:11px;color:#888">Investment</div><input id="amt" value="3" style="width:100%;padding:8px;background:#0f1419;border:1px solid #333;color:#fff;border-radius:6px;margin:4px 0">
-<button class="btn up" onclick="trade('UP')">▲ UP - BUY</button>
-<button class="btn down" onclick="trade('DOWN')">▼ DOWN - SELL</button>
-<div style="margin-top:10px;background:#111a2a;padding:8px;border-radius:6px;font-size:11px" id="tracker">
-<div style="color:#00ff88;font-weight:bold;text-align:center">📊 TODAY'S LIVE TRACKER</div>
-<div class="row"><span>Trades Taken:</span><span id="tCount">2/5</span></div>
-<div class="row"><span>Win Rate Today:</span><span id="wRate" style="color:#00ff88">66% (2W - 1L)</span></div>
-<div class="row"><span>Profit Today:</span><span id="pToday" style="color:#00ff88">+$6.00</span></div>
-<div class="row"><span>Balance:</span><span id="bal">$10,028.63</span></div>
+<div class="botGlass">
+<div class="inner">
+<div style="font-size:10px;font-weight:800;letter-spacing:1.5px;color:#00ff88">TAURUS AI • GEN-Z EDITION • V5</div>
+
+<div class="circleWrap">
+<div class="circle" id="circle"><b id="conf">73%</b><span id="side" style="color:#ff3b3b">SELL</span><small style="font-size:8px;color:#fff;margin-top:2px">CONFIDENCE</small></div>
+<div class="stats">
+<div class="stat">RSI <b id="rsi" style="color:#ff3b3b">27.3</b></div>
+<div class="stat">MACD <b id="macd" style="color:#ff3b3b">BEARISH</b></div>
+<div class="stat">TREND <b id="trend" style="color:#ff3b3b">DOWN ↓</b></div>
+<div class="stat">VOL <b style="color:#00ff88">HIGH</b></div>
+<div style="margin-top:6px;font-size:9px;background:rgba(0,0,0,0.5);padding:4px 6px;border-radius:6px;color:#00ff88" id="sigFull">STRONG SELL - 5m</div>
 </div>
-<div id="hist" style="margin-top:8px;font-size:10px;background:#0f1419;padding:6px;border-radius:6px;max-height:120px;overflow:auto"></div>
 </div>
 
-<div class="bot">
-<div style="font-size:11px;background:#00ff88;color:#000;padding:4px 8px;border-radius:12px;display:inline-block;font-weight:bold">🤖 ZAIN BOT - FIXED EDITION</div>
-<div class="circle" id="circleB"><b id="conf" style="color:#00ff88">72%</b><span id="sig" style="color:#00ff88">SELL SIGNAL</span><small style="font-size:10px;color:#fff;margin-top:2px">CONFIDENCE</small></div>
-<div style="font-size:11px;font-weight:bold;margin:6px 0" id="trend">SIGNAL: STRONG SELL • BEARISH ↓</div>
-<button class="gen" onclick="generate()">🎯 GENERATE NEW SIGNAL</button>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin:8px 0">
-<div style="background:#111a2a;padding:8px;border-radius:6px;font-size:10px">RSI<br><b id="rsi" style="font-size:14px">28.5</b><br><span id="rsit">OVERSOLD</span></div>
-<div style="background:#111a2a;padding:8px;border-radius:6px;font-size:10px">MACD<br><b id="macd" style="font-size:14px">BEARISH</b><br>▼</div>
-<div style="background:#111a2a;padding:8px;border-radius:6px;font-size:10px">VOLUME<br><b style="color:#00ff88;font-size:14px">HIGH</b><br>+18%</div>
+<div class="expGlass">
+<button class="eBtn" id="e15" onclick="setExp('15s')">15S</button>
+<button class="eBtn" id="e30" onclick="setExp('30s')">30S</button>
+<button class="eBtn active" id="e60" onclick="setExp('1m')">1M</button>
+<button class="eBtn" id="e300" onclick="setExp('5m')">5M</button>
 </div>
-<div style="background:#1a0a0a;color:#ffaaaa;padding:6px;border-radius:6px;font-size:10px;border:1px solid #ff4444;margin-top:6px">⚠️ OTC par risky hai - Real market Monday ko</div>
+<div style="font-size:9px;text-align:center;color:#666;margin-bottom:8px" id="expInfo">EXP: 00:01:00 • Chart TF: 3 MINUTE</div>
+
+<button class="genBtn" onclick="generate()">⚡ GENERATE SIGNAL - <span id="genTF">3M</span></button>
+</div>
+</div>
+
+<div class="panelGlass">
+<div style="font-size:11px;font-weight:800;letter-spacing:1px">TRADE TERMINAL • ADAD 5 RULE</div>
+<div style="display:flex;gap:6px;margin:8px 0"><input id="amt" value="3" style="flex:1;padding:10px;background:#05070a;border:1px solid #22283f;color:#fff;border-radius:10px"><div style="padding:10px;background:#05070a;border:1px solid #22283f;border-radius:10px;font-size:11px;color:#00ff88">+ $<span id="pft">2.58</span></div></div>
+<div class="btnRow">
+<button class="upBtn" onclick="trade('UP')">▲ UP</button>
+<button class="downBtn" onclick="trade('DOWN')">▼ DOWN</button>
+</div>
+<div class="track">
+<div class="tBox"><span>TRADES</span><b id="tC">2/5</b></div>
+<div class="tBox"><span>WIN RATE</span><b id="wR" style="color:#00ff88">66%</b></div>
+<div class="tBox"><span>PROFIT</span><b id="pR" style="color:#00ff88">+$6.00</b></div>
+<div class="tBox"><span>BALANCE</span><b id="bR">$10,028.63</b></div>
+</div>
+<div style="font-size:9px;color:#555;text-align:center;margin-top:8px">FAKE SIMULATOR - EDUCATION ONLY</div>
 </div>
 
 </div>
 <script src="https://s3.tradingview.com/tv.js"></script>
 <script>
-new TradingView.widget({"autosize":true,"symbol":"FX:EURUSD","interval":"1","theme":"dark","style":"1","container_id":"tv","studies":["RSI@tv-basicstudies","MACD@tv-basicstudies"],"backgroundColor":"#0f1419"});
-
-let trades=2, wins=2, loss=1, profit=6, bal=10028.63;
-
-function generate(){
-  // FIXED LOGIC - AB RSI AUR SIGNAL MATCH KARENGE
-  let isSell = Math.random() > 0.5;
-  let rsi, conf, macd, rsiText, color;
-
-  if(isSell){
-    rsi = (Math.random()*12+18).toFixed(1); // 18-30 for SELL
-    conf = Math.floor(Math.random()*13+62); // 62-75% only, no 97%
-    macd = "BEARISH";
-    rsiText = "OVERSOLD";
-    color = "#ff3b3b";
-    document.getElementById('trend').innerText = "SIGNAL: STRONG SELL • BEARISH ↓";
-    document.getElementById('sig').innerText = "SELL SIGNAL";
-  } else {
-    rsi = (Math.random()*12+62).toFixed(1); // 62-74 for BUY
-    conf = Math.floor(Math.random()*13+62);
-    macd = "BULLISH";
-    rsiText = "OVERBOUGHT";
-    color = "#00ff88";
-    document.getElementById('trend').innerText = "SIGNAL: STRONG BUY • BULLISH ↑";
-    document.getElementById('sig').innerText = "BUY SIGNAL";
-  }
-
-  document.getElementById('rsi').innerText = rsi;
-  document.getElementById('rsi').style.color = color;
-  document.getElementById('rsit').innerText = rsiText;
-  document.getElementById('rsit').style.color = color;
-  document.getElementById('conf').innerText = conf + "%";
-  document.getElementById('conf').style.color = color;
-  document.getElementById('sig').style.color = color;
-  document.getElementById('macd').innerText = macd;
-  document.getElementById('macd').style.color = color;
-  document.getElementById('circleB').style.borderColor = color;
-  document.getElementById('circleB').style.boxShadow = "0 0 25px "+color;
-  document.getElementById('price').innerText = (1.119 + Math.random()*0.002).toFixed(5);
-}
-
-function trade(dir){
-  if(trades>=5){alert('Adad 5 Rule: Aaj ke 5 trades pure! Kal karna');return;}
-  let amt = parseFloat(document.getElementById('amt').value)||3;
-  let win = Math.random() > 0.35; // 65% win rate realistic
-  trades++;
-  if(win){wins++; let p=amt*0.86; profit+=p; bal+=p; document.getElementById('hist').innerHTML = `<div style="color:#00ff88">✅ ${dir} $${amt} WIN +$${p.toFixed(2)}</div>`+document.getElementById('hist').innerHTML;}
-  else{loss++; profit-=amt; bal-=amt; document.getElementById('hist').innerHTML = `<div style="color:#ff3b3b">❌ ${dir} $${amt} LOSS -$${amt.toFixed(2)}</div>`+document.getElementById('hist').innerHTML;}
-  document.getElementById('tCount').innerText = trades+'/5';
-  document.getElementById('wRate').innerText = Math.round(wins/trades*100)+'% ('+wins+'W - '+loss+'L)';
-  document.getElementById('pToday').innerText = (profit>=0?'+$':'-$')+Math.abs(profit).toFixed(2);
-  document.getElementById('bal').innerText = '$'+bal.toFixed(2);
-  if(trades>=5){document.getElementById('wRate').innerHTML += '<br><span style="color:#ffaa00">🛑 STOP TODAY</span>';}
-}
-
-generate();
+let tf='3', exp='1m', trades=2, wins=2, loss=1, prof=6, bal=10028.63;
+function loadChart(i){ document.getElementById('tv').innerHTML=''; new TradingView.widget({"autosize":true,"symbol":"FX:EURUSD","interval":i,"theme":"dark","style":"1","container_id":"tv","backgroundColor":"#0f1423"}); }
+function setTF(v,label){ tf=v; document.querySelectorAll('.tf').forEach(x=>x.classList.remove('active')); document.getElementById('tf'+v).classList.add('active'); document.getElementById('tfTxt').innerText=label; document.getElementById('expInfo').innerText=`EXP: ${exp=='15s'?'00:00:15':exp=='30s'?'00:00:30':exp=='1m'?'00:01:00':'00:05:00'} • Chart TF: ${label}`; document.getElementById('genTF').innerText=v+'M'; loadChart(v); generate(); }
+function setExp(e){ exp=e; document.querySelectorAll('.eBtn').forEach(b=>b.classList.remove('active')); document.getElementById('e'+(e=='15s'?'15':e=='30s'?'30':e=='1m'?'60':'300')).classList.add('active'); document.getElementById('expInfo').innerText=`EXP: ${e=='15s'?'00:00:15':e=='30s'?'00:00:30':e=='1m'?'00:01:00':'00:05:00'} • Chart TF: ${document.getElementById('tfTxt').innerText}`; }
+function generate(){ let sell=Math.random()>0.5; let conf=Math.floor(Math.random()*11+67); let col=sell?'#ff3b3b':'#00ff88'; document.getElementById('conf').innerText=conf+'%'; document.getElementById('conf').style.color=col; document.getElementById('side').innerText=sell?'SELL':'BUY'; document.getElementById('side').style.color=col; document.getElementById('rsi').innerText=sell?(Math.random()*8+20).toFixed(1):(Math.random()*8+68).toFixed(1); document.getElementById('rsi').style.color=col; document.getElementById('macd').innerText=sell?'BEARISH':'BULLISH'; document.getElementById('macd').style.color=col; document.getElementById('trend').innerText=sell?'DOWN ↓':'UP ↑'; document.getElementById('trend').style.color=col; document.getElementById('sigFull').innerText=`STRONG ${sell?'SELL':'BUY'} - ${exp.toUpperCase()} • ${conf}%`; document.getElementById('sigFull').style.color=col; document.getElementById('circle').style.borderColor=col; document.getElementById('circle').style.boxShadow=`0 0 30px ${col}`; }
+function trade(d){ if(trades>=5){alert('Adad 5 full!');return;} trades++; if(Math.random()>0.35){wins++; prof+=2.58; bal+=2.58;}else{loss++; prof-=3; bal-=3;} document.getElementById('tC').innerText=trades+'/5'; document.getElementById('wR').innerText=Math.round(wins/trades*100)+'%'; document.getElementById('pR').innerText=(prof>=0?'+$':'-$')+Math.abs(prof).toFixed(2); document.getElementById('bR').innerText='$'+bal.toFixed(2); }
+loadChart('3'); generate();
+document.getElementById('amt').addEventListener('input', e=>{document.getElementById('pft').innerText=(parseFloat(e.target.value||0)*0.86).toFixed(2)});
 </script></body></html>
