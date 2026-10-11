@@ -1,130 +1,126 @@
 
 <!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZAIN FX - QUOTEX CLONE V6</title>
+<title>ZAIN FX - ELITE TRADING HUB</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{background:#131a2b;color:#fff;font-family:Arial}
-.topBar{background:#0a0f1f;display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-bottom:1px solid #1e2a44}
-.demo{display:flex;align-items:center;gap:6px;background:#1a2238;padding:6px 10px;border-radius:8px;font-size:13px;font-weight:bold}
-.dep{background:#00c06a;color:#fff;padding:7px 16px;border-radius:8px;font-size:12px;font-weight:bold;border:none}
-.bonus{background:#00a868;color:#fff;text-align:center;font-size:12px;padding:7px;border-radius:20px;margin:8px;display:flex;justify-content:center;align-items:center;gap:8px}
-.bonus span{background:#1a1a2a;padding:2px 8px;border-radius:10px;font-weight:bold}
-.main{display:grid;grid-template-columns:1fr 320px;height:calc(100vh - 90px)}
-.chartArea{background:#0f1419;position:relative;border-right:1px solid #1e2a44}
-#tv{height:100%}
-.resultPopup{position:absolute;top:20%;left:15%;background:#ff5252;color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;z-index:10;box-shadow:0 4px 20px rgba(0,0,0,0.6)}
-.resultPopup::after{content:'';position:absolute;right:-8px;top:50%;width:0;height:0;border-left:8px solid #ff5252;border-top:8px solid transparent;border-bottom:8px solid transparent;transform:translateY(-50%)}
-.rightPanel{background:#131a2b;display:flex;flex-direction:column;padding:10px}
-.botBox{background:linear-gradient(145deg,#0a1f14,#0f1419);border:1px solid #00ff88;border-radius:14px;padding:10px;text-align:center;margin-bottom:10px;box-shadow:0 0 15px rgba(0,255,136,0.15)}
-.circle{width:110px;height:110px;margin:8px auto;border-radius:50%;border:3px solid #00ff88;display:flex;flex-direction:column;justify-content:center;background:#00120a;box-shadow:0 0 20px #00ff88}
-.assetRow{display:flex;justify-content:space-between;align-items:center;background:#1a2238;padding:8px;border-radius:8px;font-size:12px;margin:6px 0}
-.inputRow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:6px 0}
-.inpBox{background:#0f1419;border:1px solid #2a3655;padding:8px;border-radius:8px;font-size:12px}
-.inpBox input{background:transparent;border:none;color:#fff;width:40px;text-align:center;font-size:13px;font-weight:bold}
-.timerBtns{display:flex;gap:4px;margin:4px 0}
-.tBtn{flex:1;padding:6px;border-radius:6px;border:1px solid #2a3655;background:#1a2238;color:#888;font-size:11px;font-weight:bold;cursor:pointer}
-.tBtn.active{background:#fff;color:#000}
-.buyBtn{background:#00c06a;color:#fff;padding:12px;border:none;border-radius:8px;font-weight:bold;font-size:14px;flex:1;cursor:pointer}
-.sellBtn{background:#ff3b3b;color:#fff;padding:12px;border:none;border-radius:8px;font-weight:bold;font-size:14px;flex:1;cursor:pointer}
-.genBtn{width:100%;padding:10px;background:#00ff88;color:#000;border:none;border-radius:10px;font-weight:bold;margin:6px 0;cursor:pointer}
-.track{background:#0a0f1f;border-radius:8px;padding:8px;margin-top:6px;font-size:11px}
-.r{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #1a2238}
-@media(max-width:700px){.main{grid-template-columns:1fr}.chartArea{height:400px}}
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}body{background:#000;color:#fff;font-family:'Outfit',Arial;overflow-x:hidden}
+.bg{position:fixed;top:0;left:0;right:0;bottom:0;background:
+linear-gradient(rgba(255,215,0,0.03) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,215,0,0.03) 1px, transparent 1px);
+background-size:50px 50px;z-index:-2}
+.glow{position:fixed;top:-20%;left:30%;width:500px;height:500px;background:radial-gradient(circle, rgba(255,215,0,0.12), transparent 70%);z-index:-1}
+.header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid rgba(255,215,0,0.1)}
+.logo{width:44px;height:44px;border-radius:50%;background:radial-gradient(circle, #ffd700, #8a6d00);display:flex;align-items:center;justify-content:center;font-weight:900;color:#000;font-size:12px;border:2px solid #ffd700}
+.teleBtn{background:linear-gradient(180deg,#ffd700,#b89600);color:#000;padding:10px 18px;border-radius:20px;font-size:11px;font-weight:800;text-decoration:none;display:inline-block;box-shadow:0 4px 15px rgba(255,215,0,0.3)}
+.hero{padding:40px 20px 20px;text-align:left;position:relative;overflow:hidden}
+.badge{font-size:9px;letter-spacing:2px;color:#ffd700;border:1px solid rgba(255,215,0,0.2);padding:5px 12px;border-radius:20px;background:rgba(255,215,0,0.05);display:inline-block;margin-bottom:12px}
+.title{font-size:42px;font-weight:900;line-height:0.9;letter-spacing:-1px}
+.title span{background:linear-gradient(180deg,#fff,#ffd700);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block}
+.chartLine{position:absolute;top:45%;left:0;right:0;height:2px;background:linear-gradient(90deg, transparent, #ffd700, #fff, #ffd700);opacity:0.8}
+.chartLine::before{content:'';position:absolute;left:20%;top:-40px;width:80%;height:80px;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 80"><path d="M0 60 L40 55 L80 50 L120 45 L160 20 L200 30 L240 10 L280 25 L320 5 L400 15" fill="none" stroke="%23ffd700" stroke-width="2"/></svg>');background-size:contain;background-repeat:no-repeat}
+.desc{color:#888;font-size:13px;line-height:1.5;margin:18px 0;max-width:320px}
+.btnGold{background:linear-gradient(180deg,#ffe680,#c9a000);color:#000;border:none;padding:12px 24px;border-radius:25px;font-weight:800;font-size:12px;cursor:pointer;box-shadow:0 5px 20px rgba(255,215,0,0.25)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:20px;background:linear-gradient(180deg,#0a0a0a,#000);border-top:1px solid rgba(255,215,0,0.1);border-bottom:1px solid rgba(255,215,0,0.1)}
+.sBox b{font-size:26px;color:#ffd700;display:block}.sBox span{font-size:9px;color:#666;letter-spacing:1px}
+.section{padding:28px 20px;text-align:center}
+.secTitle{font-size:22px;font-weight:900;color:#ffd700;line-height:1.1}.secTitle span{color:#fff}
+.review{background:#0f0f0f;border:1px solid rgba(255,215,0,0.12);border-radius:16px;padding:14px;margin:12px 0;text-align:left}
+.v{display:inline-block;background:#222;padding:2px 8px;border-radius:10px;font-size:9px;margin-bottom:6px}
+.ticker{display:flex;gap:30px;overflow:hidden;white-space:nowrap;background:#080808;border:1px solid rgba(255,215,0,0.08);padding:8px 0;font-size:11px}
+.feat{background:#0a0a0a;border:1px solid rgba(255,215,0,0.08);border-radius:16px;padding:16px;margin:10px 20px;text-align:left}
+.feat b{color:#ffd700;display:block;margin:8px 0 4px;font-size:13px}.feat p{color:#777;font-size:12px;line-height:1.4}
+.icon{width:36px;height:36px;background:rgba(255,215,0,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.chatBtn{position:fixed;bottom:18px;right:18px;width:48px;height:48px;background:linear-gradient(180deg,#ffe680,#c9a000);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 20px rgba(255,215,0,0.4);z-index:99}
 </style></head>
 <body>
+<div class="bg"></div><div class="glow"></div>
 
-<div class="topBar">
-<div class="demo">🎓 DEMO <b style="color:#fff">$10,010.71</b> ▼ <span style="background:#ff3b3b;color:#fff;padding:2px 6px;border-radius:10px;font-size:10px;margin-left:6px">49</span></div>
-<button class="dep">Deposit</button>
+<div class="header">
+<div class="logo">ZAIN FX</div>
+<div style="font-size:18px">☰</div>
 </div>
 
-<div class="bonus">🚀 Get a 50% bonus on your deposit! <span>50%</span> ✕</div>
+<div style="text-align:center;padding:8px"><a class="teleBtn" href="#">✈ JOIN ZAIN FX OFFICIAL TELEGRAM</a></div>
 
-<div class="main">
-
-<div class="chartArea">
-<div class="resultPopup" id="resPop" style="display:none"><b>RESULT (P/L)</b><br><span id="resAmt">0.00 $</span></div>
-<div id="tv"></div>
-<!-- Time markers like screenshot -->
-<div style="position:absolute;bottom:4px;left:0;right:0;display:flex;justify-content:space-around;font-size:11px;color:#666"><span>17:23</span><span>17:24</span><span>17:25</span><span>17:26</span></div>
+<div class="hero">
+<div class="badge">✦ ELITE TRADING AUTOMATION</div>
+<div class="title"><span>ZAIN</span><span>TRADING</span><span>HUB</span></div>
+<div class="chartLine"></div>
+<p class="desc">Zain FX ships autonomous trading engines engineered on the same infrastructure institutional desks use — deployed on your account, monitored by ours.</p>
+<button class="btnGold">EXPLORE BOTS →</button>
 </div>
 
-<div class="rightPanel">
-
-<div class="botBox">
-<div style="font-size:9px;background:#00ff88;color:#000;padding:2px 8px;border-radius:10px;display:inline-block;font-weight:bold">🤖 ZAIN BOT V6 - QUOTEX CLONE</div>
-<div class="circle" id="circle"><b id="conf" style="color:#ff3b3b;font-size:32px">0%</b><span id="side" style="color:#ff3b3b;font-size:11px;font-weight:bold">SELL SIGNAL<br><small style="color:#fff;font-size:8px">CONFIDENCE</small></span></div>
-<div style="font-size:10px;font-weight:bold;color:#ff3b3b" id="sigTxt">SIGNAL: STRONG SELL • BEARISH ↓</div>
-<div style="display:flex;gap:4px;margin:6px 0;font-size:9px">
-<div style="flex:1;background:#0f1419;padding:5px;border-radius:6px">RSI <b id="rsi" style="color:#ff3b3b">26.4</b></div>
-<div style="flex:1;background:#0f1419;padding:5px;border-radius:6px">MACD <b id="macd" style="color:#ff3b3b">BEAR</b></div>
-<div style="flex:1;background:#0f1419;padding:5px;border-radius:6px">TF <b id="tfLbl">1m</b></div>
-</div>
-<button class="genBtn" onclick="generate()">🎯 GENERATE NEW SIGNAL</button>
+<div class="stats">
+<div class="sBox"><b>$2.4B+</b><span>VOLUME TRADED</span></div>
+<div class="sBox"><b>94.7%</b><span>WIN RATE</span></div>
+<div class="sBox"><b>24/7</b><span>AUTO EXECUTION</span></div>
+<div class="sBox"><b>12ms</b><span>LATENCY</span></div>
 </div>
 
-<div class="assetRow"><span>🇪🇺🇺🇸 EUR/USD (OTC) <b style="color:#ff8800">84%</b> ▼</span><span style="color:#00aaff;font-size:10px">PENDING TRADE ●</span></div>
-
-<div class="inputRow">
-<div class="inpBox"><div style="font-size:9px;color:#777">Timer</div><div class="timerBtns"><button class="tBtn active" id="tb30" onclick="setT('30')">00:00:30</button><button class="tBtn" id="tb60" onclick="setT('60')">00:01:00</button></div><div style="font-size:9px;color:#888;margin-top:4px" id="timerShow">00:00:30 selected</div></div>
-<div class="inpBox"><div style="font-size:9px;color:#777">Investment</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:4px"><button style="background:#222;border:none;color:#fff;width:22px;height:22px;border-radius:50%">−</button><span><input id="amt" value="3"> $</span><button style="background:#222;border:none;color:#fff;width:22px;height:22px;border-radius:50%">+</button></div><div style="font-size:8px;color:#00aaff;text-align:center;margin-top:2px">SWITCH</div></div>
+<div class="ticker">
+<span>GBP/USD 1.2845 +0.23% </span><span>EUR/USD 1.0842 +0.13%</span><span>GOLD 2,415.38 +1.24%</span><span>BTC 67,234 +2.1%</span>
 </div>
 
-<div style="font-size:11px;display:flex;justify-content:space-between;margin:4px 0;color:#888"><span>Payout</span><span style="color:#fff;font-weight:bold">5.52 $</span></div>
-
-<div style="display:flex;gap:8px;margin:8px 0">
-<button class="buyBtn" onclick="trade('UP')">Buy <span style="float:right">↑</span></button>
-<button class="sellBtn" onclick="trade('DOWN')">Sell <span style="float:right">↓</span></button>
+<div class="section">
+<div style="font-size:8px;letter-spacing:2px;color:#ffd700">✈ TELEGRAM ANNOUNCEMENTS</div>
+<div class="secTitle" style="margin:8px 0">Latest From Our<br><span style="color:#ffd700">Channel</span></div>
+<p style="color:#666;font-size:11px">Fresh updates, voice notes, videos and signals from Zain FX Official.</p>
+<button class="btnGold" style="margin-top:14px">✈ JOIN TELEGRAM</button>
 </div>
 
-<div class="track">
-<div style="color:#00ff88;font-weight:bold;text-align:center;font-size:10px">📊 ADAD 5 TRACKER - SAME AS SCREENSHOT</div>
-<div class="r"><span>Trades:</span><span id="tC">0/5</span></div>
-<div class="r"><span>Win:</span><span id="wC" style="color:#00ff88">0</span></div>
-<div class="r"><span>Loss / Tie:</span><span id="lC" style="color:#ffaa00">0 (0.00$)</span></div>
-<div class="r"><span>Balance:</span><span id="bC">$10,010.71</span></div>
+<div class="section" style="text-align:left">
+<div style="font-size:8px;letter-spacing:2px;color:#ffd700;text-align:center">☆ CLIENT REVIEWS</div>
+<div class="secTitle" style="text-align:center;margin:8px 0">Traders Who Run<br><span style="color:#ffd700">Our Bots</span></div>
+
+<div class="review">
+<div style="display:flex;justify-content:space-between"><div class="v">V Verified Client</div><div style="color:#ffd700;font-size:11px">★★★★★</div></div>
+<p style="font-size:12px;color:#ccc;line-height:1.5">Alhamdulillah Zain bhai aapki wajah se Maine apni dream device 17 Pro Max PTA approve liya hai - yah sirf 500$ wali series ki wajah se possible hua hai. Love u so much Zain bhai.</p>
+<img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=300" style="width:100%;border-radius:12px;margin-top:8px">
 </div>
 
-<div style="font-size:9px;color:#555;text-align:center;margin-top:6px">⚠️ FAKE SIMULATOR - EDUCATION ONLY - 0.00$ = TIE PROTECTION</div>
+<div class="review">
+<div style="display:flex;justify-content:space-between"><div class="v">P Pocket Option Trader</div><div style="color:#ffd700;font-size:11px">★★★★★</div></div>
+<p style="font-size:12px;color:#ccc">Sir apka Bot use krke trading easy lagne lagi hai. Signals itne accurate hote hain ke profit automatically ho jata hai. Allah apko hamesha khush rakhe.</p>
+</div>
 
+<div style="text-align:center"><button class="btnGold">SEE MORE REVIEWS →</button></div>
+</div>
+
+<div style="padding:20px">
+<div style="font-size:8px;letter-spacing:2px;color:#ffd700">WHY ZAIN FX</div>
+<div class="secTitle" style="font-size:24px;margin:8px 0">Built for the<br>Serious Trader</div>
+<p style="color:#666;font-size:12px">Every component is engineered to remove emotion, capture edge, and compound gains.</p>
+
+<div class="feat"><div class="icon">🤖</div><b>Autonomous Bots</b><p>AI-driven expert advisors that execute strategies with millisecond precision, 24/7.</p></div>
+<div class="feat"><div class="icon">🛡️</div><b>Risk Managed</b><p>Every position is protected by adaptive stop-loss, hedging, and drawdown protection.</p></div>
+<div class="feat"><div class="icon">⚡</div><b>Lightning Execution</b><p>Ultra-low-latency VPS infrastructure ensures orders fire the moment signals trigger.</p></div>
+<div class="feat"><div class="icon">📈</div><b>Proven Edge</b><p>Backtested across a decade of market data and forward-tested on live capital.</p></div>
+</div>
+
+<div class="section" style="background:radial-gradient(ellipse at center, #1a1500, #000);padding:30px 20px">
+<div style="font-size:8px;letter-spacing:2px;color:#ffd700">THE ZAIN FX EDGE</div>
+<div class="secTitle" style="font-size:22px;margin:8px 0">Where Gold Meets<br>Algorithm</div>
+<p style="color:#777;font-size:11px;line-height:1.5">Every bot in the Zain FX arsenal is forged through thousands of hours of backtesting, live-market validation, and continuous refinement.</p>
+<div style="text-align:left;margin:14px 0;font-size:11px;color:#aaa;line-height:2">
+• Institutional-grade risk protocols<br>
+• Real-time performance dashboards<br>
+• Private mentorship & VIP community<br>
+• Lifetime updates & new strategies
+</div>
+<div style="background:#111;border-radius:12px;padding:12px;margin:12px 0;border:1px solid rgba(255,215,0,0.15)">
+<div style="display:flex;justify-content:space-between;font-size:10px"><span>TODAY</span><span style="color:#00ff88">+3.42%</span></div>
+<div style="height:60px;background:linear-gradient(90deg, transparent, #ffd700);opacity:0.6;margin:8px 0;border-radius:6px"></div>
+<div style="display:flex;justify-content:space-between;font-size:10px"><span>LIVE TRADES 17</span><span style="color:#ffd700">GOLD BOT ACTIVE</span></div>
 </div>
 </div>
 
-<script src="https://s3.tradingview.com/tv.js"></script>
-<script>
-let timer='30', trades=0, wins=0, ties=0, loss=0, bal=10010.71;
-new TradingView.widget({"autosize":true,"symbol":"FX:EURUSD","interval":"1","theme":"dark","style":"1","container_id":"tv","backgroundColor":"#0f1419","studies":["RSI@tv-basicstudies"]});
+<div class="section">
+<div class="secTitle">Ready to<br>Automate Your<br>Edge?</div>
+<p style="color:#666;font-size:12px;margin:8px 0">Join a private community of traders leveraging Zain FX systems.</p>
+<div style="display:flex;gap:10px;justify-content:center;margin-top:14px"><button class="btnGold">GET STARTED</button><button style="background:transparent;border:1px solid #333;color:#fff;padding:12px 20px;border-radius:25px;font-size:11px;font-weight:bold">VIEW BOTS</button></div>
+</div>
 
-function setT(s){ timer=s; document.querySelectorAll('.tBtn').forEach(b=>b.classList.remove('active')); document.getElementById('tb'+s).classList.add('active'); document.getElementById('timerShow').innerText = s=='30'?'00:00:30 selected - 30 Sec':'00:01:00 selected - 1 Min'; }
+<div class="chatBtn">💬</div>
 
-function generate(){
- let sell=Math.random()>0.5;
- let conf=sell?Math.floor(Math.random()*8+70):Math.floor(Math.random()*8+70);
- let rsiVal=sell?(Math.random()*7+20).toFixed(1):(Math.random()*7+68).toFixed(1);
- let col=sell?'#ff3b3b':'#00c06a';
- document.getElementById('conf').innerText=conf+'%'; document.getElementById('conf').style.color=col;
- document.getElementById('side').innerHTML=(sell?'SELL':'BUY')+' SIGNAL<br><small style="color:#fff;font-size:8px">CONFIDENCE</small>'; document.getElementById('side').style.color=col;
- document.getElementById('sigTxt').innerText=`SIGNAL: STRONG ${sell?'SELL':'BUY'} • ${sell?'BEARISH ↓':'BULLISH ↑'} • ${timer}s`;
- document.getElementById('sigTxt').style.color=col;
- document.getElementById('rsi').innerText=rsiVal; document.getElementById('rsi').style.color=col;
- document.getElementById('macd').innerText=sell?'BEAR':'BULL'; document.getElementById('macd').style.color=col;
- document.getElementById('circle').style.borderColor=col; document.getElementById('circle').style.boxShadow=`0 0 20px ${col}`;
-}
-
-function trade(dir){
- if(trades>=5){alert('Adad 5 full - Aaj band');return;}
- trades++;
- let outcome=Math.random();
- let resBox=document.getElementById('resPop');
- resBox.style.display='block';
- if(outcome<0.25){ // tie 25%
-   ties++; document.getElementById('resAmt').innerText='0.00 $'; resBox.style.background='#ffaa00';
-   setTimeout(()=>{resBox.style.display='none'}, 2500);
- } else if(outcome<0.75){ // win 50%
-   wins++; let winAmt=3*0.84; bal+=winAmt; document.getElementById('resAmt').innerText='+'+winAmt.toFixed(2)+' $'; resBox.style.background='#00c06a';
-   setTimeout(()=>{resBox.style.display='none'}, 2500);
- } else { loss++; bal-=3; document.getElementById('resAmt').innerText='-3.00 $'; resBox.style.background='#ff3b3b'; setTimeout(()=>{resBox.style.display='none'}, 2500); }
- document.getElementById('tC').innerText=trades+'/5'; document.getElementById('wC').innerText=wins; document.getElementById('lC').innerText=loss+' ('+ties+' Tie 0.00$)'; document.getElementById('bC').innerText='$'+bal.toFixed(2);
-}
-generate();
-</script></body></html>
+</body></html>
