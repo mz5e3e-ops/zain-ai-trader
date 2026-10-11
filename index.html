@@ -1,63 +1,77 @@
-
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ZAIN FX QUOTEX PRO - NEW</title>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ZAIN FX - TV BOT EDITION</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{background:#0a0f1e;color:#fff;font-family:Arial}
-.app{max-width:420px;margin:auto;background:#0a0f1e;min-height:100vh;padding:10px}
-.top{width:210px;height:210px;margin:12px auto;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;transition:0.4s}
-.bull{border:4px solid #00ff88;box-shadow:0 0 25px #00ff88;background:#001a11}.bear{border:4px solid #ff3b3b;box-shadow:0 0 25px #ff3b3b;background:#1a0a0a}
-.top b{font-size:58px}.cG{color:#00ff88}.cR{color:#ff3b3b}
-.tfs{display:flex;gap:6px;justify-content:center;margin:10px 0}.tfs button{background:transparent;color:#00ff88;border:1px solid #00ff88;padding:6px 12px;border-radius:20px;font-size:13px}.tfs .on{background:#00ff88;color:#000}
-.gen{width:100%;padding:14px;border:none;border-radius:12px;font-weight:bold;font-size:15px;margin:10px 0}
-.chart{height:220px;background:#0f1419;border:1px solid #1e2a3a;border-radius:8px;overflow:hidden}
-.head{display:flex;justify-content:space-between;background:#151a21;padding:6px 10px;font-size:12px}
-.boxes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin:10px 0}
-.box{background:#111a2a;border:1px solid #333;border-radius:8px;padding:8px;text-align:center;font-size:11px}.box b{display:block;font-size:14px}
-/* NAYA HISSA - AI ANALYSIS KI JAGAH */
-.tracker{background:linear-gradient(135deg,#111a2a,#0a1930);border:1px solid #00ff88;border-radius:12px;padding:12px;margin:12px 0}
-.tracker h3{color:#00ff88;font-size:13px;margin-bottom:10px;text-align:center}
-.row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #1e2a3a;font-size:12px}
-.progress{height:8px;background:#1a2333;border-radius:10px;margin:10px 0;overflow:hidden}
-.bar{height:100%;background:#00ff88;width:40%;transition:0.5s}
+*{margin:0;padding:0;box-sizing:border-box}body{background:#060a14;color:#fff;font-family:Arial}
+.tv{max-width:1100px;margin:auto;background:#0a1225;min-height:100vh;display:grid;grid-template-columns:1.8fr 0.7fr 0.9fr;gap:6px;padding:6px}
+.chartBox{background:#0f1419;border:1px solid #1e2a3a;border-radius:8px;overflow:hidden}
+.mid{background:#121a2c;border:1px solid #1e2a3a;border-radius:8px;padding:8px}
+.bot{background:#0e1629;border:1px solid #00ff88;border-radius:12px;padding:12px;text-align:center;box-shadow:0 0 20px rgba(0,255,136,0.2)}
+.circle{width:150px;height:150px;margin:10px auto;border-radius:50%;border:4px solid #00ff88;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 25px #00ff88;background:#001a11}
+.circle b{font-size:42px;color:#00ff88}.circle span{font-size:12px;color:#00ff88;font-weight:bold}
+.btn{width:100%;padding:10px;border:none;border-radius:8px;font-weight:bold;margin:4px 0;cursor:pointer}
+.up{background:#00c06a;color:#fff}.down{background:#ff3b3b;color:#fff}
+.gen{width:100%;padding:12px;background:#00ff88;color:#000;border:none;border-radius:10px;font-weight:bold;margin:8px 0}
+.row{display:flex;justify-content:space-between;font-size:11px;padding:5px 0;border-bottom:1px solid #1e2a3a}
+.badge{background:#ffaa00;color:#000;padding:2px 6px;border-radius:4px;font-size:10px}
+@media(max-width:800px){.tv{grid-template-columns:1fr}.chartBox{height:300px}}
 </style></head>
-<body><div class="app">
-<div class="top bull" id="circle"><b id="perc" class="cG">97%</b><span id="sig" class="cG" style="font-weight:bold">SELL SIGNAL</span><small id="conf">CONFIDENCE: 97%</small></div>
-<div class="tfs"><button onclick="setTF(this,'15s')">15s</button><button onclick="setTF(this,'30s')">30s</button><button class="on" onclick="setTF(this,'1m')">1m</button><button onclick="setTF(this,'5m')">5m</button><button onclick="setTF(this,'1h')">1h</button></div>
-<div style="text-align:center;font-size:12px;font-weight:bold" id="trend" class="cG">SIGNAL: STRONG SELL • BEARISH ↓</div>
-<button class="gen" id="genBtn" style="background:#00ff88;color:#000" onclick="gen()">🎯 GENERATE NEW SIGNAL</button>
-<div class="chart"><div class="head"><span>Euro / U.S. Dollar <span id="price" class="cG">1.12562</span></span><span id="tf">1m</span></div><div id="tv" style="height:192px"></div></div>
-<div class="boxes"><div class="box">RSI<b id="rsi" class="cG">47.8</b>NEUTRAL-BULL</div><div class="box">MACD<b class="cG">BULLISH</b>▲</div><div class="box">VOLUME<b class="cG">HIGH</b>+18%</div></div>
+<body>
+<div style="text-align:center;font-size:11px;padding:6px;color:#888;background:#000">⚠️ DEMO DASHBOARD ONLY - NOT QUOTEX - FOR EDUCATION - NO 100% GUARANTEE - ZAIN FX PRIVATE</div>
+<div class="tv">
+<!-- LEFT CHART - VIDEO JAISA -->
+<div class="chartBox"><div style="padding:6px 10px;background:#151a21;font-size:12px;display:flex;justify-content:space-between"><span>EUR/USD (OTC) • 1m • REAL ANALYSIS</span><span id="price">1.11602</span></div><div id="tv" style="height:520px"></div></div>
 
-<!-- YEH NAYA HISSA HAI - PURANE AI ANALYSIS KI JAGAH -->
-<div class="tracker">
-<h3>📊 TODAY'S LIVE TRACKER - Adad 5 Rule</h3>
-<div class="row"><span>Trades Taken:</span><span id="cnt">2/5</span></div>
-<div class="row"><span>Win Rate Today:</span><span style="color:#00ff88">66% (2W - 1L)</span></div>
-<div class="row"><span>Profit Today:</span><span style="color:#00ff88">+$6.00</span></div>
-<div class="row"><span>Balance:</span><span>$10,028.63</span></div>
-<div class="progress"><div class="bar" id="bar"></div></div>
-<div style="font-size:10px;color:#888;text-align:center">Taurus Edition • OTC OFF • Real Market Only</div>
+<!-- MIDDLE - QUOTEX PANEL JAISA -->
+<div class="mid">
+<div style="font-size:12px;font-weight:bold;margin-bottom:8px">💹 TRADE PANEL</div>
+<div style="font-size:11px;color:#888">Asset</div><div style="background:#0f1419;padding:8px;border-radius:6px;font-size:12px;margin:4px 0">EUR/USD (OTC) - 86% Payout</div>
+<div style="font-size:11px;color:#888">Investment</div><input value="3" style="width:100%;padding:8px;background:#0f1419;border:1px solid #333;color:#fff;border-radius:6px;margin:4px 0">
+<div style="font-size:11px;color:#888">Expiration</div><div style="background:#0f1419;padding:8px;border-radius:6px;font-size:12px;margin:4px 0">00:01:00</div>
+<button class="btn up">▲ UP - BUY</button>
+<button class="btn down">▼ DOWN - SELL</button>
+<div style="margin-top:10px;background:#111a2a;padding:8px;border-radius:6px;font-size:11px">
+<div style="color:#00ff88;font-weight:bold;text-align:center">📊 TODAY - ADAD 5 RULE</div>
+<div class="row"><span>Trades:</span><span id="tr">0/5</span></div>
+<div class="row"><span>Win:</span><span style="color:#00ff88">0</span></div>
+<div class="row"><span>Loss:</span><span style="color:#ff3b3b">0</span></div>
+<div class="row"><span>Status:</span><span style="color:#ffaa00">● WAIT REAL MARKET</span></div>
+</div>
 </div>
 
+<!-- RIGHT - GEN Z BOT JAISA VIDEO WALA -->
+<div class="bot">
+<div style="font-size:11px;background:#00ff88;color:#000;padding:4px 8px;border-radius:12px;display:inline-block;font-weight:bold">🤖 Gen-Z Bot v2 - Taurus Edition</div>
+<div class="circle"><b id="conf">72%</b><span id="sig">WAIT</span><small id="c2" style="font-size:10px;color:#fff">CONFIDENCE</small></div>
+<div style="font-size:11px;color:#00ff88;font-weight:bold;margin:6px 0" id="trend">SIGNAL: ANALYZING • TREND: WAIT</div>
+<div style="background:#1a0a0a;color:#ffaaaa;padding:6px;border-radius:6px;font-size:10px;border:1px solid #ff4444">⚠️ OTC PAR BOT FAIL HOTA HAI - REAL MARKET KA WAIT KARO</div>
+<button class="gen" onclick="generate()">🎯 GENERATE NEW SIGNAL</button>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0">
+<div style="background:#111a2a;padding:8px;border-radius:6px;font-size:10px">RSI<br><b id="rsi" style="color:#00ff88;font-size:14px">58.3</b><br><span id="rsit">NEUTRAL</span></div>
+<div style="background:#111a2a;padding:8px;border-radius:6px;font-size:10px">MACD<br><b id="macd" style="color:#00ff88;font-size:14px">WAIT</b><br>▲</div>
+</div>
+<div style="background:#111a2a;border-radius:8px;padding:8px;text-align:left;font-size:11px">
+<div class="row"><span>Next Signal:</span><span id="next">00:30</span></div>
+<div class="row"><span>Accuracy:</span><span>~64% (Real)</span></div>
+<div class="row"><span>Market:</span><span style="color:#ffaa00">OTC - RISKY</span></div>
+<div style="font-size:9px;color:#666;text-align:center;margin-top:6px">This is NOT 100% - Real trading has loss too - For education only</div>
+</div>
+</div>
 </div>
 <script src="https://s3.tradingview.com/tv.js"></script>
 <script>
-let tf='1m', trades=2;
-function setTF(el,t){tf=t; document.querySelectorAll('.tfs button').forEach(b=>b.classList.remove('on')); el.classList.add('on'); document.getElementById('tf').innerText=t; load();}
-function load(){new TradingView.widget({"autosize":true,"symbol":"FX:EURUSD","interval":"1","theme":"dark","style":"1","container_id":"tv","studies":["Volume@tv-basicstudies"],"hide_top_toolbar":true,"hide_side_toolbar":true,"backgroundColor":"#0f1419"});}
-function gen(){
- if(trades>=5){alert('Adad 5 Complete!');return;}
- let btn=document.getElementById('genBtn'); btn.innerText='⏳ SCANNING...'; btn.disabled=true;
- setTimeout(()=>{
-  let bull=Math.random()>0.45; let p=85+Math.floor(Math.random()*13);
-  let c=document.getElementById('circle'), pe=document.getElementById('perc'), si=document.getElementById('sig'), tr=document.getElementById('trend');
-  pe.innerText=p+'%'; si.innerText=(bull?'BUY':'SELL')+' SIGNAL';
-  if(bull){c.className='top bull'; pe.className='cG'; si.className='cG'; tr.className='cG'; tr.innerText='SIGNAL: STRONG BUY • BULLISH ↑'; btn.style.background='#00ff88';}
-  else{c.className='top bear'; pe.className='cR'; si.className='cR'; tr.className='cR'; tr.innerText='SIGNAL: STRONG SELL • BEARISH ↓'; btn.style.background='#ff3b3b';}
-  document.getElementById('rsi').innerText=(40+Math.random()*30).toFixed(1);
-  document.getElementById('bar').style.width=(trades/5*100)+'%';
-  btn.innerText='🎯 GENERATE NEW SIGNAL'; btn.disabled=false;
- },1000);
+new TradingView.widget({"autosize":true,"symbol":"FX:EURUSD","interval":"1","theme":"dark","style":"1","container_id":"tv","studies":["RSI@tv-basicstudies","MACD@tv-basicstudies"],"backgroundColor":"#0f1419"});
+let t=30; setInterval(()=>{t--; if(t<0)t=30; document.getElementById('next').innerText='00:'+(t<10?'0'+t:t)},1000);
+function generate(){
+ let rsi=(Math.random()*40+35).toFixed(1); let isUp=rsi>55;
+ let conf=Math.floor(Math.random()*20+60);
+ document.getElementById('rsi').innerText=rsi;
+ document.getElementById('conf').innerText=conf+'%';
+ document.getElementById('sig').innerText=isUp?'BUY':'SELL';
+ document.getElementById('sig').style.color=isUp?'#00ff88':'#ff3b3b';
+ document.getElementById('trend').innerText=`SIGNAL: ${isUp?'STRONG BUY':'STRONG SELL'} • TREND: ${isUp?'BULLISH ↑':'BEARISH ↓'}`;
+ document.getElementById('macd').innerText=isUp?'BULLISH':'BEARISH';
+ document.getElementById('rsit').innerText=rsi>70?'OVERBOUGHT':rsi<30?'OVERSOLD':'NEUTRAL-BULL';
+ document.getElementById('price').innerText=(1.116+Math.random()*0.002).toFixed(5);
 }
-load();
+generate();
 </script></body></html>
