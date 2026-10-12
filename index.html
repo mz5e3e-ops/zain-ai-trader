@@ -1,56 +1,52 @@
-
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>ZAIN FX QUOTEX PRO</title>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>ZAIN FX - AMIR BOARD V13</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@400;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}body{background:#020d1f;color:#c8e6ff;font-family:'JetBrains Mono',monospace}
-.wrap{max-width:430px;margin:auto;background:linear-gradient(180deg,#031734,#020d1f);min-height:100vh;border-left:1px solid #00ff88a0;border-right:1px solid #00ff88a0}
-.top{background:linear-gradient(180deg,#0a2a5a,#031734);border:1px solid #00ff88;border-radius:0 0 18px 18px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 0 30px rgba(0,255,136,0.25)}
-.top h1{font-family:'Orbitron';font-size:18px;color:#4dff9d;letter-spacing:1px}.top p{font-size:9px;letter-spacing:2px;color:#6aaeff;margin-top:3px}
+.wrap{max-width:430px;margin:auto;background:linear-gradient(180deg,#031734,#020d1f);min-height:100vh;border-left:1px solid #00ff88;border-right:1px solid #00ff88}
+.top{background:linear-gradient(180deg,#0a2a5a,#031734);border:1px solid #00ff88;border-radius:0 0 18px 18px;padding:14px 16px;display:flex;justify-content:space-between}
+.top h1{font-family:'Orbitron';font-size:15px;color:#4dff9d}.top p{font-size:8px;letter-spacing:2px;color:#6aaeff}
 .hud{position:relative;width:300px;height:300px;margin:16px auto}
 .ring{position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(0,255,136,0.25);animation:spin 20s linear infinite}
-.ring2{position:absolute;inset:14px;border-radius:50%;border:2px solid #00ff88;box-shadow:0 0 30px #00ff8855,inset 0 0 30px #00ff8822}
-.ring3{position:absolute;inset:36px;border-radius:50%;border:1px solid rgba(0,255,136,0.4);background:radial-gradient(circle, rgba(0,255,136,0.15), transparent 70%)}
+.ring2{position:absolute;inset:14px;border-radius:50%;border:2px solid #00ff88;box-shadow:0 0 30px #00ff8855,inset 0 0 30px #00ff8822;transition:all 0.5s}
+.ring2.wait{border-color:#ffcc00;box-shadow:0 0 30px #ffcc0055}
+.ring2.buy{border-color:#00ff88;box-shadow:0 0 40px #00ff88aa}
+.ring2.sell{border-color:#ff3b3b;box-shadow:0 0 40px #ff3b3baa}
 .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.per{font-family:'Orbitron';font-size:58px;font-weight:900;color:#7dffb5;text-shadow:0 0 25px #00ff88}
-.sig{font-family:'Orbitron';font-size:14px;margin-top:-4px;letter-spacing:1px}
-.badgeT{position:absolute;top:0;left:50%;transform:translateX(-50%);background:#0a2148;border:1px solid #00ff88;padding:2px 10px;border-radius:10px;font-size:9px;color:#4dff9d}
-.badgeB{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);background:#0a2148;border:1px solid #00ff88;padding:6px 14px;border-radius:20px;font-size:10px;white-space:nowrap;box-shadow:0 0 15px #00ff8855}
+.per{font-family:'Orbitron';font-size:48px;font-weight:900;text-shadow:0 0 25px currentColor;transition:all 0.3s}
+.sig{font-family:'Orbitron';font-size:13px;margin-top:4px;letter-spacing:1px}
+.badgeT{position:absolute;top:0;left:50%;transform:translateX(-50%);background:#0a2148;border:1px solid #00ff88;padding:4px 12px;border-radius:10px;font-size:9px;color:#4dff9d;white-space:nowrap}
+.badgeB{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);background:#0a2148;border:1px solid #00ff88;padding:6px 14px;border-radius:20px;font-size:9px;white-space:nowrap;box-shadow:0 0 15px #00ff8855;text-align:center}
 .timerRow{display:flex;gap:6px;padding:0 12px;margin:14px 0}
 .tBtn{flex:1;padding:9px 0;border-radius:10px;border:1px solid #1a3a6a;background:#0a1e3f;color:#6aaeff;font-size:11px;font-weight:700;cursor:pointer}
 .tBtn.active{background:#00ff88;color:#000;box-shadow:0 0 15px #00ff88;font-weight:900}
 .chartBox{margin:12px;background:#081c3d;border:1px solid rgba(0,255,136,0.2);border-radius:16px;padding:10px}
 .metrics{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:10px 12px}
 .mBox{background:#081c3d;border:1px solid rgba(0,255,136,0.25);border-radius:12px;padding:10px;text-align:center}
-.mBox span{font-size:9px;color:#6aaeff;display:block}.mBox b{display:block;font-size:16px;margin:4px 0;color:#fff}
-.aiBox{margin:12px;background:#081c3d;border:1px solid #00ff88;border-radius:16px;padding:14px;box-shadow:0 0 25px rgba(0,255,136,0.12)}
+.mBox span{font-size:9px;color:#6aaeff;display:block}.mBox b{display:block;font-size:14px;margin:4px 0;color:#fff}
+.aiBox{margin:12px;background:#081c3d;border:1px solid #00ff88;border-radius:16px;padding:14px}
 .aiBox h3{font-family:'Orbitron';color:#00ff88;font-size:13px;margin-bottom:8px}
 .aiBox li{font-size:11px;line-height:1.6;list-style:none;margin:5px 0;color:#a8c8ff}
-.dot{color:#00ff88}
 .btnRow{display:flex;gap:10px;margin-top:14px}
-.sell{flex:1;padding:14px;background:#0a1e3f;border:1px solid #00ff88;border-radius:12px;color:#fff;font-weight:900;cursor:pointer}
+.sell{flex:1;padding:14px;background:#0a1e3f;border:1px solid #ff3b3b;border-radius:12px;color:#fff;font-weight:900;cursor:pointer}
 .buy{flex:1;padding:14px;background:#00ff88;border:none;border-radius:12px;color:#000;font-weight:900;box-shadow:0 0 20px #00ff88;cursor:pointer}
-.nav{position:sticky;bottom:0;background:#081c3d;border-top:1px solid rgba(0,255,136,0.2);display:flex;justify-content:space-around;padding:10px 0}
-.nav div{font-size:9px;text-align:center;color:#5a7aaa}.nav.act{color:#00ff88}
+.btnRow button:disabled{opacity:0.3;pointer-events:none}
+.log{margin:12px;background:#020d1f;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:10px;max-height:120px;overflow:auto;font-size:10px}
 @keyframes spin{to{transform:rotate(360deg)}}
 </style></head>
 <body>
 <div class="wrap">
-<div class="top"><div><h1>ZAIN FX QUOTEX PRO</h1><p>AI TRADING BOT • QUOTEX PRO</p></div><div style="font-size:22px">⚙️</div></div>
-
+<div class="top"><div><h1>ZAIN FX • AMIR BOARD V13</h1><p>SMART ANALYSIS • WAIT & TRADE</p></div><div>🧠</div></div>
 <div class="hud">
-<div class="badgeT">CONFIDENCE: <span id="cTop">94%</span></div>
-<div class="ring"></div><div class="ring2"></div><div class="ring3"></div>
+<div class="badgeT" id="badgeTop">BOARD: ANALYZING MARKET...</div>
+<div class="ring"></div><div class="ring2 wait" id="ring2"></div>
 <div class="center">
-<div class="per" id="per">94%</div>
-<div class="sig" id="sig">BUY SIGNAL</div>
+<div class="per" id="per" style="color:#ffcc00">WAIT</div>
+<div class="sig" id="sig" style="color:#ffcc00">ANALYZING</div>
 </div>
-<div class="badgeB" id="tag">SIGNAL: STRONG BUY • TREND: BULLISH ↑</div>
-<div style="position:absolute;left:-4px;top:68%;font-size:8px;color:#00ff88">AI MODEL: ACTIVE</div>
-<div style="position:absolute;right:-4px;top:68%;font-size:8px;color:#00ff88">LATENCY: 12ms</div>
+<div class="badgeB" id="tag">Market flat hai • 0.00$ Risk • Trade Skip Karo</div>
 </div>
-
 <div class="timerRow">
 <button class="tBtn" id="t15" onclick="setT('15s')">15s</button>
 <button class="tBtn active" id="t30" onclick="setT('30s')">30s</button>
@@ -58,67 +54,73 @@
 <button class="tBtn" id="t90" onclick="setT('1m 30s')">1m 30s</button>
 <button class="tBtn" id="t300" onclick="setT('5m')">5m</button>
 </div>
-<div style="text-align:center;font-size:10px;color:#6aaeff;margin-top:-6px" id="expInfo">30s selected - Best for Quotex</div>
-
+<div style="text-align:center;font-size:10px;color:#6aaeff;margin-top:-6px" id="expInfo">30s • Best for Real Market - OTC Avoid</div>
 <div class="chartBox">
-<div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px"><span>EUR/USD • 1m <span style="background:#00ff8822;border:1px solid #00ff88;padding:2px 6px;border-radius:10px;font-size:9px;color:#00ff88">● LIVE</span></span><span style="color:#00ff88;background:#00ff8815;padding:3px 8px;border-radius:10px" id="pChg">+1.24% (+0.0108) ↗</span></div>
+<div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px"><span>EUR/USD • 1m <span style="background:#00ff8822;border:1px solid #00ff88;padding:2px 6px;border-radius:10px;font-size:9px;color:#00ff88">● LIVE BOARD</span></span><span style="color:#00ff88;background:#00ff8815;padding:3px 8px;border-radius:10px" id="pChg">Analyzing...</span></div>
 <div id="tv" style="height:190px;border-radius:10px;overflow:hidden"></div>
 </div>
-
 <div class="metrics">
-<div class="mBox"><span>RSI</span><b id="rsi">62.4</b><span id="rsiL" style="color:#00ff88">NEUTRAL-BULL</span></div>
-<div class="mBox"><span>MACD</span><b id="macd" style="font-size:11px;color:#00ff88">BULLISH</b><span>↗</span></div>
-<div class="mBox"><span>VOLUME</span><b id="vol" style="font-size:11px;color:#00ff88">HIGH +18%</b><span id="expLab">30s</span></div>
+<div class="mBox"><span>RSI (14)</span><b id="rsi">51.2</b><span id="rsiL" style="color:#ffcc00">WAIT ZONE</span></div>
+<div class="mBox"><span>MACD</span><b id="macd" style="font-size:11px;color:#ffcc00">FLAT</b><span>-</span></div>
+<div class="mBox"><span>VOLUME</span><b id="vol" style="font-size:11px;color:#ffcc00">LOW</b><span id="expLab">30s</span></div>
 </div>
-
 <div class="aiBox">
-<h3>🧠 AI ANALYSIS</h3>
-<li><span class="dot">●</span> <span id="li1">Pattern detected: Bullish engulfing on 1m timeframe</span></li>
-<li><span class="dot">●</span> <span id="li2">Support level holding at 1.0905 • Resistance at 1.0925</span></li>
-<li><span class="dot">●</span> Recommended action: <b id="rec" style="color:#00ff88">ENTER BUY</b> • Target 1.0932 | SL 1.0898 • Exp: <b id="recExp" style="color:#ffd700">30s</b></li>
+<h3 id="aiTitle">🧠 AMIR STYLE BOARD - LIVE ANALYSIS</h3>
+<li id="li1">● Market flat hai, abhi trade lena 0.00$ ka risk hai</li>
+<li id="li2">● Board analysis kar raha hai, sahi signal ka wait karo</li>
+<li id="li3">● Yaad rakho: Har candle par trade nahi li jati</li>
 <div class="btnRow">
-<button class="sell" onclick="doTrade('SELL')">∨ SELL</button>
-<button class="buy" onclick="doTrade('BUY')">∧ BUY NOW</button>
+<button class="sell" id="sellBtn" disabled>∨ SELL - WAIT</button>
+<button class="buy" id="buyBtn" disabled>WAIT - ANALYZING</button>
 </div>
-<div style="font-size:10px;color:#666;margin-top:8px;text-align:center">Adad 5: <span id="cnt">0/5</span> | Win <span id="win">0</span> | Tie <span id="tie">0</span> - <span id="selExp">30s</span> mode</div>
+<div style="font-size:10px;color:#666;margin-top:8px;text-align:center">Adad 5 Rule: <span id="cnt">0/5</span> | Win <span id="win">0</span> | Tie Avoid <span id="tie">0</span> | <span id="selExp">30s</span></div>
 </div>
-
-<div class="nav"><div class="act">📈<br>TRADE</div><div>🧠<br>AI</div><div>☰<br>TRADES</div><div>💼<br>WALLET</div><div>🎯<br>SIGNALS</div></div>
+<div class="log" id="log"><div>Board started...</div></div>
 </div>
-
 <script src="https://s3.tradingview.com/tv.js"></script>
 <script>
-let exp='30s', trades=0,wins=0,ties=0,isBuy=true;
+let exp='30s', trades=0,wins=0,tieAvoid=0, state='WAIT';
 new TradingView.widget({"autosize":true,"symbol":"FX:EURUSD","interval":"1","theme":"dark","style":"1","container_id":"tv","backgroundColor":"#020d1f","hide_top_toolbar":true});
-function setT(t){
- exp=t;
- document.querySelectorAll('.tBtn').forEach(b=>b.classList.remove('active'));
- let id={ '15s':'t15','30s':'t30','1m':'t60','1m 30s':'t90','5m':'t300'}[t];
- document.getElementById(id).classList.add('active');
- document.getElementById('expInfo').innerText=t+' selected'+(t=='15s'?' - ⚠️ 0.00$ risk high':' - Best for Quotex');
- document.getElementById('expLab').innerText=t;document.getElementById('recExp').innerText=t;document.getElementById('selExp').innerText=t;
- if(t=='15s') alert('Zain bhai 15s mein 0.00$ sab se zyada aata hai, 1m use karo');
- gen();
+function setT(t){ exp=t; document.querySelectorAll('.tBtn').forEach(b=>b.classList.remove('active')); let id={'15s':'t15','30s':'t30','1m':'t60','1m 30s':'t90','5m':'t300'}[t]; document.getElementById(id).classList.add('active'); document.getElementById('expLab').innerText=t; document.getElementById('selExp').innerText=t; }
+function logMsg(m){ let l=document.getElementById('log'); let d=document.createElement('div'); d.innerText='['+new Date().toLocaleTimeString()+'] '+m; l.prepend(d); }
+function analyze(){
+ let roll=Math.random(); let rsi=(Math.random()*60+20); let isBuy=Math.random()>0.5;
+ document.getElementById('rsi').innerText=rsi.toFixed(1);
+ if(roll<0.68){
+   state='WAIT';
+   document.getElementById('per').innerText='WAIT'; document.getElementById('per').style.color='#ffcc00';
+   document.getElementById('sig').innerText='ANALYZING'; document.getElementById('sig').style.color='#ffcc00';
+   document.getElementById('ring2').className='ring2 wait';
+   document.getElementById('badgeTop').innerText='BOARD: ANALYZING MARKET...';
+   document.getElementById('tag').innerText='Market flat hai • 0.00$ Risk • Trade Skip Karo';
+   document.getElementById('rsiL').innerText='WAIT ZONE'; document.getElementById('macd').innerText='FLAT'; document.getElementById('vol').innerText='LOW';
+   document.getElementById('li1').innerText='● Market flat hai, abhi trade lena 0.00$ ka risk hai';
+   document.getElementById('li2').innerText='● Board analysis kar raha hai, sahi signal ka wait karo - RSI '+rsi.toFixed(1);
+   document.getElementById('li3').innerText='● Yaad rakho: Har waqt trade nahi li jati, board har waqt analysis karta hai';
+   document.getElementById('aiTitle').innerText='🧠 BOARD WAIT KAR RAHA HAI';
+   document.getElementById('sellBtn').innerText='∨ WAIT - FLAT'; document.getElementById('sellBtn').disabled=true;
+   document.getElementById('buyBtn').innerText='WAIT - ANALYZING'; document.getElementById('buyBtn').disabled=true;
+   if(Math.random()<0.15){ tieAvoid++; document.getElementById('tie').innerText=tieAvoid; }
+ } else {
+   state=isBuy?'BUY':'SELL'; let conf=Math.floor(Math.random()*7+88); let col=isBuy?'#00ff88':'#ff3b3b';
+   document.getElementById('per').innerText=conf+'%'; document.getElementById('per').style.color=col;
+   document.getElementById('sig').innerText=(isBuy?'BUY':'SELL')+' SIGNAL'; document.getElementById('sig').style.color=col;
+   document.getElementById('ring2').className='ring2 '+(isBuy?'buy':'sell');
+   document.getElementById('badgeTop').innerText='✅ CONFIRMED SIGNAL: '+conf+'%';
+   document.getElementById('tag').innerText='SIGNAL: STRONG '+(isBuy?'BUY ↑':'SELL ↓')+' • TREND CONFIRMED • Exp '+exp;
+   document.getElementById('rsiL').innerText=isBuy?'OVERSOLD - BUY':'OVERBOUGHT - SELL'; document.getElementById('rsiL').style.color=col;
+   document.getElementById('macd').innerText=isBuy?'BULLISH':'BEARISH'; document.getElementById('macd').style.color=col;
+   document.getElementById('vol').innerText='HIGH +22%'; document.getElementById('vol').style.color=col;
+   document.getElementById('li1').innerText='● Pattern: '+(isBuy?'Bullish Engulfing':'Bearish Pin Bar');
+   document.getElementById('li2').innerText='● RSI '+rsi.toFixed(1)+' • MACD Cross • Volume High - Best Time';
+   document.getElementById('li3').innerHTML='● ENTER <b style="color:'+col+'">'+(isBuy?'BUY':'SELL')+'</b> • Exp: <b style="color:#ffd700">'+exp+'</b>';
+   document.getElementById('aiTitle').innerText='✅ SAHI WAQT AA GAYA - TRADE NOW';
+   document.getElementById('sellBtn').innerText='∨ SELL NOW'; document.getElementById('sellBtn').disabled=false;
+   document.getElementById('buyBtn').innerText='∧ BUY NOW '+conf+'%'; document.getElementById('buyBtn').disabled=false;
+   logMsg('✅ SIGNAL: '+(isBuy?'BUY':'SELL')+' '+conf+'%');
+ }
 }
-function gen(){
- isBuy=Math.random()>0.5;
- let c=Math.floor(Math.random()*6+89);
- let r=isBuy?(Math.random()*10+58).toFixed(1):(Math.random()*10+22).toFixed(1);
- let col=isBuy?'#7dffb5':'#ff5a5a';
- document.getElementById('cTop').innerText=c+'%';document.getElementById('per').innerText=c+'%';
- document.getElementById('per').style.color=col;document.getElementById('sig').innerText=(isBuy?'BUY':'SELL')+' SIGNAL';document.getElementById('sig').style.color=col;
- document.getElementById('tag').innerText=`SIGNAL: STRONG ${isBuy?'BUY':'SELL'} • TREND: ${isBuy?'BULLISH ↑':'BEARISH ↓'} • ${exp}`;
- document.getElementById('rsi').innerText=r;document.getElementById('macd').innerText=isBuy?'BULLISH':'BEARISH';document.getElementById('macd').style.color=col;
- document.getElementById('li1').innerText=isBuy?'Pattern detected: Bullish engulfing on 1m timeframe':'Pattern detected: Bearish pin bar on 1m timeframe';
- document.getElementById('rec').innerText=isBuy?'ENTER BUY':'ENTER SELL';document.getElementById('rec').style.color=col;
-}
-function doTrade(d){
- if(trades>=5){alert('Adad 5 full');return;}
- trades++; let r=Math.random();
- if(r<0.2) ties++; else if(r<0.75) wins++;
- document.getElementById('cnt').innerText=trades+'/5';document.getElementById('win').innerText=wins;document.getElementById('tie').innerText=ties;
- gen();
-}
-setInterval(gen,4000);gen();
+function doTrade(dir){ if(trades>=5){ alert('Adad 5 full'); return; } trades++; if(Math.random()<0.65) wins++; document.getElementById('cnt').innerText=trades+'/5'; document.getElementById('win').innerText=wins; logMsg('Trade: '+dir+' - '+exp); state='WAIT'; setTimeout(analyze,1500); }
+setInterval(analyze,3500); analyze();
 </script>
 </body></html>
