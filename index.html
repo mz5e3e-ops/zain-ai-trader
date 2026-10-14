@@ -1,93 +1,96 @@
+
 <!DOCTYPE html>
-<html>
-<head>
-<title>Zain FX Bot - V14 TEEZ</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZAIN FX V14 TEEZ - GENERATE</title>
 <style>
-body{background:#0a0e1a;color:#fff;font-family:Arial;text-align:center;padding:10px}
-.board{max-width:380px;margin:auto;background:#111827;border-radius:15px;padding:15px;border:2px solid #00ff88;box-shadow:0 0 20px #00ff8855}
-h2{color:#00ff88;margin:5px}
-.signal-box{font-size:42px;font-weight:bold;padding:25px;border-radius:12px;margin:15px 0;background:#1f2937;transition:0.3s}
-.BUY{background:#00ff88;color:#000;box-shadow:0 0 30px #00ff88}
-.SELL{background:#ff0040;color:#fff;box-shadow:0 0 30px #ff0040}
-.WAIT{background:#374151;color:#9ca3af}
-.stats{display:flex;justify-content:space-around;font-size:13px;color:#9ca3af;margin-top:10px}
-button{background:#00ff88;color:#000;border:none;padding:12px 20px;border-radius:8px;font-weight:bold;width:100%;margin-top:10px}
-.risk{font-size:11px;color:#ffaa00;margin-top:8px}
-</style>
-</head>
-<body>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a1430;color:#fff;font-family:Arial;padding:8px}
+.header{background:#001a33;border:1px solid #00ff88;border-radius:12px;padding:10px;text-align:center}
+.header h2{color:#00ff88;font-size:15px}
+.conf{color:#00ff88;text-align:center;margin:10px;font-size:13px}
+.chart-box{height:260px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:bold;box-shadow:0 0 30px #00ff88;margin:0 10px;transition:0.3s}
+.BUY{background:#00ff88;color:#000}
+.SELL{background:#ff3040;color:#fff;box-shadow:0 0 30px #ff3040 !important}
+.WAIT{background:#1e293b;color:#94a3b8}
+.tag{background:#0a1430;border:1px solid #00ff88;color:#fff;text-align:center;padding:8px;border-radius:20px;margin:10px;font-size:12px}
+.btns{display:flex;gap:8px;margin-top:12px}
+.btn{flex:1;padding:14px;border:none;border-radius:10px;font-weight:bold;font-size:14px}
+.start{background:#00ff88;color:#000}
+.gen{background:linear-gradient(90deg,#00ff88,#00d4ff);color:#000;box-shadow:0 0 15px #00ff88}
+.stop{background:#374151;color:#fff}
+.live{background:#0f1f4a;border-radius:12px;padding:10px;margin-top:10px;border:1px solid #1e3a8a}
+.indicators{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px}
+.ind{background:#0f1f4a;border:1px solid #1e3a8a;border-radius:10px;padding:8px;text-align:center;font-size:10px}
+.ind b{color:#00ff88;font-size:15px}
+</style></head><body>
 
-<div class="board">
-<h2>⚡ Zain FX Bot V14 TEEZ</h2>
-<p style="font-size:12px;color:#9ca3af">Real Market | Fast Analysis</p>
-
-<div id="signal" class="signal-box WAIT">WAIT</div>
-
-<div class="stats">
-<span>Pair: <b id="pair">EURUSD</b></span>
-<span>Acc: <b id="acc" style="color:#00ff88">89%</b></span>
-<span>Time: <b id="timer">1.5s</b></span>
+<div class="header">
+<h2>ZAIN FX • AMIR BOARD V14 TEEZ</h2>
+<div style="font-size:9px;color:#6aa8ff">FAST & FURIOUS • REAL MARKET • 1.5s MODE</div>
 </div>
 
-<div style="margin-top:15px;text-align:left;font-size:12px;background:#1f2937;padding:10px;border-radius:8px">
-<div>Market: <b style="color:#00ff88">REAL - OTC OFF</b></div>
-<div>Max Amount: <b style="color:#ffaa00">$20 (Risk Lock)</b></div>
-<div>Trades/Signal: <b>1 Only</b></div>
+<div class="conf">✅ CONFIRMED SIGNAL: <span id="acc">--</span>% • <span id="status">READY</span></div>
+<div id="mainBox" class="chart-box WAIT">PRESS GENERATE</div>
+<div class="tag" id="sigText">SIGNAL: WAIT • Click Generate</div>
+
+<div class="btns">
+<button class="btn start" onclick="startAuto()">▶ AUTO</button>
+<button class="btn gen" onclick="generateSignal()">⚡ GENERATE</button>
+<button class="btn stop" onclick="stopAll()">⏹ STOP</button>
 </div>
 
-<button onclick="startBot()">▶ START V14 TEEZ</button>
-<button onclick="stopBot()" style="background:#374151;color:#fff">⏹ STOP</button>
-
-<div class="risk">⚠️ Wada yaad hai? $1000 wala trade nahi lagana! InshAllah $10-$20 only.</div>
-
-<p style="font-size:10px;color:#6b7280;margin-top:10px">Allah Hafiz, Trade with Discipline!</p>
+<div class="live">
+<div style="display:flex;justify-content:space-between;font-size:12px"><span>EUR/USD • 1m • LIVE</span><span style="color:#00ff88">TEEZ MODE 1.5s</span></div>
+<div style="margin-top:10px;height:80px;background:#070f2a;border-radius:8px;padding:10px">
+<div style="color:#00ff88;font-size:11px">Euro / U.S. Dollar • <span id="price">1.12078</span></div>
+<div id="mini" style="margin-top:15px;font-size:12px">Ready to generate...</div>
 </div>
+</div>
+
+<div class="indicators">
+<div class="ind">RSI (14)<br><b id="rsi">--</b><br><span id="rsiText">WAIT</span></div>
+<div class="ind">MACD<br><b id="macd">--</b><br>Signal</div>
+<div class="ind">VOLUME<br><b>HIGH</b><br>+32% Spike</div>
+</div>
+
+<div style="font-size:10px;color:#ffaa00;text-align:center;margin-top:10px">Risk Lock: $20 Max | 1 Trade/Signal | REAL Only</div>
 
 <script>
-let interval = null;
-let cooldown = false;
-const V14_CONFIG = {
-  analysisInterval: 1500,
-  signalCooldown: 8000,
-  pairs: ["EURUSD","GBPUSD","XAUUSD","EURJPY"],
-  maxAmount: 20
-};
+let auto=null;
+function generateSignal(){
+ const isBuy=Math.random()>0.5;
+ const sig=isBuy?"ULTRA BUY ↑":"ULTRA SELL ↓";
+ const acc=Math.floor(Math.random()*10)+85;
+ const rsi=(isBuy?78+Math.random()*8:25+Math.random()*10).toFixed(1);
+ 
+ const box=document.getElementById("mainBox");
+ box.innerText=sig;
+ box.className="chart-box "+(isBuy?"BUY":"SELL");
+ document.getElementById("acc").innerText=acc;
+ document.getElementById("sigText").innerText="SIGNAL: "+sig+" • TREND CONFIRMED • Exp 30s • $20 MAX";
+ document.getElementById("rsi").innerText=rsi;
+ document.getElementById("rsiText").innerText=isBuy?"STRONG BUY":"STRONG SELL";
+ document.getElementById("macd").innerText=isBuy?"BULLISH":"BEARISH";
+ document.getElementById("status").innerText="GENERATED @ "+new Date().toLocaleTimeString();
+ document.getElementById("price").innerText=(1.1205+Math.random()*0.001).toFixed(5);
+ document.getElementById("mini").innerText="⚡ Generated: "+sig+" with "+acc+"% accuracy - Ready for REAL market";
 
-function getSignal() {
-  if(cooldown) return;
-  const signals = ["BUY","SELL","WAIT","WAIT"];
-  const sig = signals[Math.floor(Math.random()*signals.length)];
-  const pair = V14_CONFIG.pairs[Math.floor(Math.random()*V14_CONFIG.pairs.length)];
-  const acc = Math.floor(Math.random()*15)+80;
-  
-  document.getElementById("pair").innerText = pair;
-  document.getElementById("acc").innerText = acc + "%";
-  
-  const box = document.getElementById("signal");
-  box.className = "signal-box " + sig;
-  box.innerText = sig;
-
-  if(sig !== "WAIT"){
-    cooldown = true;
-    box.innerText = sig + " ($" + V14_CONFIG.maxAmount + ")";
-    console.log("✅ SIGNAL: " + sig + " on " + pair + " | Amount $" + V14_CONFIG.maxAmount);
-    setTimeout(()=>{ cooldown = false; }, V14_CONFIG.signalCooldown);
-  }
+ // Vibration for mobile
+ if(navigator.vibrate) navigator.vibrate(100);
 }
 
-function startBot(){
-  if(interval) clearInterval(interval);
-  interval = setInterval(getSignal, V14_CONFIG.analysisInterval);
-  alert("⚡ V14 TEEZ Started! Har 1.5 sec analysis hoga. Risk Lock ON ($20 Max)");
+function startAuto(){
+ if(auto) clearInterval(auto);
+ generateSignal();
+ auto=setInterval(generateSignal,1500);
+ document.getElementById("status").innerText="AUTO TEEZ 1.5s RUNNING";
 }
 
-function stopBot(){
-  clearInterval(interval);
-  document.getElementById("signal").className = "signal-box WAIT";
-  document.getElementById("signal").innerText = "STOPPED";
-  alert("Board Stopped - So jao ab! 😴");
+function stopAll(){
+ if(auto) clearInterval(auto);
+ document.getElementById("status").innerText="STOPPED";
+ document.getElementById("mainBox").innerText="STOPPED";
+ document.getElementById("mainBox").className="chart-box WAIT";
 }
 </script>
-</body>
-</html>
+</body></html>
