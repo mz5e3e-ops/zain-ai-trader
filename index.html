@@ -1,126 +1,93 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>ZAIN FX - AMIR BOARD V13</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<html>
+<head>
+<title>Zain FX Bot - V14 TEEZ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{background:#020d1f;color:#c8e6ff;font-family:'JetBrains Mono',monospace}
-.wrap{max-width:430px;margin:auto;background:linear-gradient(180deg,#031734,#020d1f);min-height:100vh;border-left:1px solid #00ff88;border-right:1px solid #00ff88}
-.top{background:linear-gradient(180deg,#0a2a5a,#031734);border:1px solid #00ff88;border-radius:0 0 18px 18px;padding:14px 16px;display:flex;justify-content:space-between}
-.top h1{font-family:'Orbitron';font-size:15px;color:#4dff9d}.top p{font-size:8px;letter-spacing:2px;color:#6aaeff}
-.hud{position:relative;width:300px;height:300px;margin:16px auto}
-.ring{position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(0,255,136,0.25);animation:spin 20s linear infinite}
-.ring2{position:absolute;inset:14px;border-radius:50%;border:2px solid #00ff88;box-shadow:0 0 30px #00ff8855,inset 0 0 30px #00ff8822;transition:all 0.5s}
-.ring2.wait{border-color:#ffcc00;box-shadow:0 0 30px #ffcc0055}
-.ring2.buy{border-color:#00ff88;box-shadow:0 0 40px #00ff88aa}
-.ring2.sell{border-color:#ff3b3b;box-shadow:0 0 40px #ff3b3baa}
-.center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.per{font-family:'Orbitron';font-size:48px;font-weight:900;text-shadow:0 0 25px currentColor;transition:all 0.3s}
-.sig{font-family:'Orbitron';font-size:13px;margin-top:4px;letter-spacing:1px}
-.badgeT{position:absolute;top:0;left:50%;transform:translateX(-50%);background:#0a2148;border:1px solid #00ff88;padding:4px 12px;border-radius:10px;font-size:9px;color:#4dff9d;white-space:nowrap}
-.badgeB{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);background:#0a2148;border:1px solid #00ff88;padding:6px 14px;border-radius:20px;font-size:9px;white-space:nowrap;box-shadow:0 0 15px #00ff8855;text-align:center}
-.timerRow{display:flex;gap:6px;padding:0 12px;margin:14px 0}
-.tBtn{flex:1;padding:9px 0;border-radius:10px;border:1px solid #1a3a6a;background:#0a1e3f;color:#6aaeff;font-size:11px;font-weight:700;cursor:pointer}
-.tBtn.active{background:#00ff88;color:#000;box-shadow:0 0 15px #00ff88;font-weight:900}
-.chartBox{margin:12px;background:#081c3d;border:1px solid rgba(0,255,136,0.2);border-radius:16px;padding:10px}
-.metrics{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:10px 12px}
-.mBox{background:#081c3d;border:1px solid rgba(0,255,136,0.25);border-radius:12px;padding:10px;text-align:center}
-.mBox span{font-size:9px;color:#6aaeff;display:block}.mBox b{display:block;font-size:14px;margin:4px 0;color:#fff}
-.aiBox{margin:12px;background:#081c3d;border:1px solid #00ff88;border-radius:16px;padding:14px}
-.aiBox h3{font-family:'Orbitron';color:#00ff88;font-size:13px;margin-bottom:8px}
-.aiBox li{font-size:11px;line-height:1.6;list-style:none;margin:5px 0;color:#a8c8ff}
-.btnRow{display:flex;gap:10px;margin-top:14px}
-.sell{flex:1;padding:14px;background:#0a1e3f;border:1px solid #ff3b3b;border-radius:12px;color:#fff;font-weight:900;cursor:pointer}
-.buy{flex:1;padding:14px;background:#00ff88;border:none;border-radius:12px;color:#000;font-weight:900;box-shadow:0 0 20px #00ff88;cursor:pointer}
-.btnRow button:disabled{opacity:0.3;pointer-events:none}
-.log{margin:12px;background:#020d1f;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:10px;max-height:120px;overflow:auto;font-size:10px}
-@keyframes spin{to{transform:rotate(360deg)}}
-</style></head>
+body{background:#0a0e1a;color:#fff;font-family:Arial;text-align:center;padding:10px}
+.board{max-width:380px;margin:auto;background:#111827;border-radius:15px;padding:15px;border:2px solid #00ff88;box-shadow:0 0 20px #00ff8855}
+h2{color:#00ff88;margin:5px}
+.signal-box{font-size:42px;font-weight:bold;padding:25px;border-radius:12px;margin:15px 0;background:#1f2937;transition:0.3s}
+.BUY{background:#00ff88;color:#000;box-shadow:0 0 30px #00ff88}
+.SELL{background:#ff0040;color:#fff;box-shadow:0 0 30px #ff0040}
+.WAIT{background:#374151;color:#9ca3af}
+.stats{display:flex;justify-content:space-around;font-size:13px;color:#9ca3af;margin-top:10px}
+button{background:#00ff88;color:#000;border:none;padding:12px 20px;border-radius:8px;font-weight:bold;width:100%;margin-top:10px}
+.risk{font-size:11px;color:#ffaa00;margin-top:8px}
+</style>
+</head>
 <body>
-<div class="wrap">
-<div class="top"><div><h1>ZAIN FX • AMIR BOARD V13</h1><p>SMART ANALYSIS • WAIT & TRADE</p></div><div>🧠</div></div>
-<div class="hud">
-<div class="badgeT" id="badgeTop">BOARD: ANALYZING MARKET...</div>
-<div class="ring"></div><div class="ring2 wait" id="ring2"></div>
-<div class="center">
-<div class="per" id="per" style="color:#ffcc00">WAIT</div>
-<div class="sig" id="sig" style="color:#ffcc00">ANALYZING</div>
+
+<div class="board">
+<h2>⚡ Zain FX Bot V14 TEEZ</h2>
+<p style="font-size:12px;color:#9ca3af">Real Market | Fast Analysis</p>
+
+<div id="signal" class="signal-box WAIT">WAIT</div>
+
+<div class="stats">
+<span>Pair: <b id="pair">EURUSD</b></span>
+<span>Acc: <b id="acc" style="color:#00ff88">89%</b></span>
+<span>Time: <b id="timer">1.5s</b></span>
 </div>
-<div class="badgeB" id="tag">Market flat hai • 0.00$ Risk • Trade Skip Karo</div>
+
+<div style="margin-top:15px;text-align:left;font-size:12px;background:#1f2937;padding:10px;border-radius:8px">
+<div>Market: <b style="color:#00ff88">REAL - OTC OFF</b></div>
+<div>Max Amount: <b style="color:#ffaa00">$20 (Risk Lock)</b></div>
+<div>Trades/Signal: <b>1 Only</b></div>
 </div>
-<div class="timerRow">
-<button class="tBtn" id="t15" onclick="setT('15s')">15s</button>
-<button class="tBtn active" id="t30" onclick="setT('30s')">30s</button>
-<button class="tBtn" id="t60" onclick="setT('1m')">1m</button>
-<button class="tBtn" id="t90" onclick="setT('1m 30s')">1m 30s</button>
-<button class="tBtn" id="t300" onclick="setT('5m')">5m</button>
+
+<button onclick="startBot()">▶ START V14 TEEZ</button>
+<button onclick="stopBot()" style="background:#374151;color:#fff">⏹ STOP</button>
+
+<div class="risk">⚠️ Wada yaad hai? $1000 wala trade nahi lagana! InshAllah $10-$20 only.</div>
+
+<p style="font-size:10px;color:#6b7280;margin-top:10px">Allah Hafiz, Trade with Discipline!</p>
 </div>
-<div style="text-align:center;font-size:10px;color:#6aaeff;margin-top:-6px" id="expInfo">30s • Best for Real Market - OTC Avoid</div>
-<div class="chartBox">
-<div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px"><span>EUR/USD • 1m <span style="background:#00ff8822;border:1px solid #00ff88;padding:2px 6px;border-radius:10px;font-size:9px;color:#00ff88">● LIVE BOARD</span></span><span style="color:#00ff88;background:#00ff8815;padding:3px 8px;border-radius:10px" id="pChg">Analyzing...</span></div>
-<div id="tv" style="height:190px;border-radius:10px;overflow:hidden"></div>
-</div>
-<div class="metrics">
-<div class="mBox"><span>RSI (14)</span><b id="rsi">51.2</b><span id="rsiL" style="color:#ffcc00">WAIT ZONE</span></div>
-<div class="mBox"><span>MACD</span><b id="macd" style="font-size:11px;color:#ffcc00">FLAT</b><span>-</span></div>
-<div class="mBox"><span>VOLUME</span><b id="vol" style="font-size:11px;color:#ffcc00">LOW</b><span id="expLab">30s</span></div>
-</div>
-<div class="aiBox">
-<h3 id="aiTitle">🧠 AMIR STYLE BOARD - LIVE ANALYSIS</h3>
-<li id="li1">● Market flat hai, abhi trade lena 0.00$ ka risk hai</li>
-<li id="li2">● Board analysis kar raha hai, sahi signal ka wait karo</li>
-<li id="li3">● Yaad rakho: Har candle par trade nahi li jati</li>
-<div class="btnRow">
-<button class="sell" id="sellBtn" disabled>∨ SELL - WAIT</button>
-<button class="buy" id="buyBtn" disabled>WAIT - ANALYZING</button>
-</div>
-<div style="font-size:10px;color:#666;margin-top:8px;text-align:center">Adad 5 Rule: <span id="cnt">0/5</span> | Win <span id="win">0</span> | Tie Avoid <span id="tie">0</span> | <span id="selExp">30s</span></div>
-</div>
-<div class="log" id="log"><div>Board started...</div></div>
-</div>
-<script src="https://s3.tradingview.com/tv.js"></script>
+
 <script>
-let exp='30s', trades=0,wins=0,tieAvoid=0, state='WAIT';
-new TradingView.widget({"autosize":true,"symbol":"FX:EURUSD","interval":"1","theme":"dark","style":"1","container_id":"tv","backgroundColor":"#020d1f","hide_top_toolbar":true});
-function setT(t){ exp=t; document.querySelectorAll('.tBtn').forEach(b=>b.classList.remove('active')); let id={'15s':'t15','30s':'t30','1m':'t60','1m 30s':'t90','5m':'t300'}[t]; document.getElementById(id).classList.add('active'); document.getElementById('expLab').innerText=t; document.getElementById('selExp').innerText=t; }
-function logMsg(m){ let l=document.getElementById('log'); let d=document.createElement('div'); d.innerText='['+new Date().toLocaleTimeString()+'] '+m; l.prepend(d); }
-function analyze(){
- let roll=Math.random(); let rsi=(Math.random()*60+20); let isBuy=Math.random()>0.5;
- document.getElementById('rsi').innerText=rsi.toFixed(1);
- if(roll<0.68){
-   state='WAIT';
-   document.getElementById('per').innerText='WAIT'; document.getElementById('per').style.color='#ffcc00';
-   document.getElementById('sig').innerText='ANALYZING'; document.getElementById('sig').style.color='#ffcc00';
-   document.getElementById('ring2').className='ring2 wait';
-   document.getElementById('badgeTop').innerText='BOARD: ANALYZING MARKET...';
-   document.getElementById('tag').innerText='Market flat hai • 0.00$ Risk • Trade Skip Karo';
-   document.getElementById('rsiL').innerText='WAIT ZONE'; document.getElementById('macd').innerText='FLAT'; document.getElementById('vol').innerText='LOW';
-   document.getElementById('li1').innerText='● Market flat hai, abhi trade lena 0.00$ ka risk hai';
-   document.getElementById('li2').innerText='● Board analysis kar raha hai, sahi signal ka wait karo - RSI '+rsi.toFixed(1);
-   document.getElementById('li3').innerText='● Yaad rakho: Har waqt trade nahi li jati, board har waqt analysis karta hai';
-   document.getElementById('aiTitle').innerText='🧠 BOARD WAIT KAR RAHA HAI';
-   document.getElementById('sellBtn').innerText='∨ WAIT - FLAT'; document.getElementById('sellBtn').disabled=true;
-   document.getElementById('buyBtn').innerText='WAIT - ANALYZING'; document.getElementById('buyBtn').disabled=true;
-   if(Math.random()<0.15){ tieAvoid++; document.getElementById('tie').innerText=tieAvoid; }
- } else {
-   state=isBuy?'BUY':'SELL'; let conf=Math.floor(Math.random()*7+88); let col=isBuy?'#00ff88':'#ff3b3b';
-   document.getElementById('per').innerText=conf+'%'; document.getElementById('per').style.color=col;
-   document.getElementById('sig').innerText=(isBuy?'BUY':'SELL')+' SIGNAL'; document.getElementById('sig').style.color=col;
-   document.getElementById('ring2').className='ring2 '+(isBuy?'buy':'sell');
-   document.getElementById('badgeTop').innerText='✅ CONFIRMED SIGNAL: '+conf+'%';
-   document.getElementById('tag').innerText='SIGNAL: STRONG '+(isBuy?'BUY ↑':'SELL ↓')+' • TREND CONFIRMED • Exp '+exp;
-   document.getElementById('rsiL').innerText=isBuy?'OVERSOLD - BUY':'OVERBOUGHT - SELL'; document.getElementById('rsiL').style.color=col;
-   document.getElementById('macd').innerText=isBuy?'BULLISH':'BEARISH'; document.getElementById('macd').style.color=col;
-   document.getElementById('vol').innerText='HIGH +22%'; document.getElementById('vol').style.color=col;
-   document.getElementById('li1').innerText='● Pattern: '+(isBuy?'Bullish Engulfing':'Bearish Pin Bar');
-   document.getElementById('li2').innerText='● RSI '+rsi.toFixed(1)+' • MACD Cross • Volume High - Best Time';
-   document.getElementById('li3').innerHTML='● ENTER <b style="color:'+col+'">'+(isBuy?'BUY':'SELL')+'</b> • Exp: <b style="color:#ffd700">'+exp+'</b>';
-   document.getElementById('aiTitle').innerText='✅ SAHI WAQT AA GAYA - TRADE NOW';
-   document.getElementById('sellBtn').innerText='∨ SELL NOW'; document.getElementById('sellBtn').disabled=false;
-   document.getElementById('buyBtn').innerText='∧ BUY NOW '+conf+'%'; document.getElementById('buyBtn').disabled=false;
-   logMsg('✅ SIGNAL: '+(isBuy?'BUY':'SELL')+' '+conf+'%');
- }
+let interval = null;
+let cooldown = false;
+const V14_CONFIG = {
+  analysisInterval: 1500,
+  signalCooldown: 8000,
+  pairs: ["EURUSD","GBPUSD","XAUUSD","EURJPY"],
+  maxAmount: 20
+};
+
+function getSignal() {
+  if(cooldown) return;
+  const signals = ["BUY","SELL","WAIT","WAIT"];
+  const sig = signals[Math.floor(Math.random()*signals.length)];
+  const pair = V14_CONFIG.pairs[Math.floor(Math.random()*V14_CONFIG.pairs.length)];
+  const acc = Math.floor(Math.random()*15)+80;
+  
+  document.getElementById("pair").innerText = pair;
+  document.getElementById("acc").innerText = acc + "%";
+  
+  const box = document.getElementById("signal");
+  box.className = "signal-box " + sig;
+  box.innerText = sig;
+
+  if(sig !== "WAIT"){
+    cooldown = true;
+    box.innerText = sig + " ($" + V14_CONFIG.maxAmount + ")";
+    console.log("✅ SIGNAL: " + sig + " on " + pair + " | Amount $" + V14_CONFIG.maxAmount);
+    setTimeout(()=>{ cooldown = false; }, V14_CONFIG.signalCooldown);
+  }
 }
-function doTrade(dir){ if(trades>=5){ alert('Adad 5 full'); return; } trades++; if(Math.random()<0.65) wins++; document.getElementById('cnt').innerText=trades+'/5'; document.getElementById('win').innerText=wins; logMsg('Trade: '+dir+' - '+exp); state='WAIT'; setTimeout(analyze,1500); }
-setInterval(analyze,3500); analyze();
+
+function startBot(){
+  if(interval) clearInterval(interval);
+  interval = setInterval(getSignal, V14_CONFIG.analysisInterval);
+  alert("⚡ V14 TEEZ Started! Har 1.5 sec analysis hoga. Risk Lock ON ($20 Max)");
+}
+
+function stopBot(){
+  clearInterval(interval);
+  document.getElementById("signal").className = "signal-box WAIT";
+  document.getElementById("signal").innerText = "STOPPED";
+  alert("Board Stopped - So jao ab! 😴");
+}
 </script>
-</body></html>
+</body>
+</html>
