@@ -4,81 +4,125 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ZAIN FX V15 - 90%</title>
+<title>ZAIN FX - TIKTOK BOT</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#070f2b;padding:10px;display:flex;justify-content:center}
-.main{width:360px;background:#0a1430;border-radius:20px;padding:12px;border:1px solid #00ff88}
-.head{background:#001a33;border:1px solid #00ff88;border-radius:12px;padding:12px;text-align:center}
-.head h2{color:#00ff88;font-size:14px}
-.head div{color:#6aa8ff;font-size:10px;margin-top:4px}
-.box{height:200px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:bold;margin:12px 0;background:#1e293b;text-align:center}
-.BUY{background:#00ff88;color:#000;box-shadow:0 0 25px #00ff88}
-.SELL{background:#ff3040;color:#fff;box-shadow:0 0 25px #ff3040}
-.tf{display:flex;gap:6px;justify-content:center}
-.tf button{padding:9px 14px;border-radius:20px;border:1px solid #1e3a8a;background:#0f1f4a;color:#8aaaff;font-weight:bold}
-.tf button.active{background:#00ff88;color:#000;border-color:#00ff88}
-.btns{display:flex;gap:8px;margin-top:12px}
-.btn{flex:1;padding:12px;border:none;border-radius:10px;font-weight:bold}
-.b1{background:#00ff88;color:#000}
-.b2{background:linear-gradient(90deg,#00ff88,#00d4ff);color:#000}
-.b3{background:#333;color:#fff}
-.tag{margin-top:10px;text-align:center;font-size:11px;color:#00ff88;border:1px solid #00ff88;padding:8px;border-radius:20px}
+body{background:#060c22;display:flex;justify-content:center;padding:8px}
+.app{width:380px;background:#0b132e;border-radius:22px;overflow:hidden;border:1px solid #1a2a5a}
+.top{padding:14px;background:#08102a}
+.bar{height:6px;background:#1a2a4a;border-radius:10px;margin:8px 0;overflow:hidden}
+.fill{height:100%;width:75%;background:linear-gradient(90deg,#00ff88,#00d4ff)}
+.card{background:#121d3d;border-radius:14px;padding:12px;margin-top:10px;border:1px solid #1e3560}
+.call-box{text-align:center;padding:18px}
+.big{font-size:42px;font-weight:900;color:#00ff88;letter-spacing:2px}
+.timer-box{width:110px;height:110px;border-radius:50%;border:3px solid #00ff88;margin:12px auto;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 25px #00ff8855}
+.timer-box b{font-size:36px;color:#00ff88}
+.btn{width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(90deg,#ff2a2a,#ff5a2a);color:#fff;font-weight:900;margin-top:8px}
+.btn2{background:linear-gradient(90deg,#00ff88,#00d4ff);color:#000}
+.bot-info{display:flex;justify-content:space-between;font-size:11px;color:#5a6da0;margin-top:6px}
+.bot-info b{color:#00ff88}
+.qx{background:#080e2a;color:#8aa2c8;padding:8px;font-size:11px}
+.green{color:#00ff88} .red{color:#ff3b3b}
+.trade-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1a2a4a;font-size:11px}
 </style>
 </head>
 <body>
-<div class="main">
-<div class="head">
-<h2>ZAIN FX • V15 - 90% ACCURACY</h2>
-<div>CONFIRMED: 90% • <span id="st">READY</span> • 90% MODE</div>
+<div class="app">
+<div class="top">
+<div style="display:flex;justify-content:space-between;color:#fff;font-size:12px"><span>🤖 AI SIGNAL FINDER</span><span style="color:#00ff88">● LIVE</span></div>
+<div class="bot-info"><span>Balance: <b>$2,295.58</b></span><span>Accuracy: <b>90% MODE</b></span></div>
+<div class="bar"><div class="fill"></div></div>
+
+<div id="step1">
+<div class="card">
+<div style="font-size:11px;color:#6a80b0">AI BOT STATUS: <b style="color:#00ff88">SCANNING...</b></div>
+<div class="call-box">
+<div style="color:#ff3040;font-size:12px;font-weight:bold" id="liveTxt">🔴 LIVE SIGNAL</div>
+<div class="big" id="callPut">CALL</div>
+<div class="timer-box" id="tbox"><b id="sec">5s</b><span style="font-size:10px;color:#8a9ac0">EXPIRY</span></div>
+<div style="font-size:11px;color:#8a9ac0">NEXT TRADE IN <span id="nextSec">5s</span> • 90% CONFIRMED</div>
+</div>
+<button class="btn" onclick="startBot()">⚡ START AI BOT</button>
+<button class="btn btn2" onclick="generateSignal()">▶ GENERATE 90% SIGNAL</button>
+</div>
 </div>
 
-<div id="box" class="box">PRESS GENERATE<br>90%</div>
-
-<div class="tag" id="sig">SIGNAL: WAIT • Exp: 30s • 90% CONFIRMED • $20 MAX</div>
-
-<div class="tf">
-<button onclick="setT('15s',this)">15s</button>
-<button class="active" onclick="setT('30s',this)">30s</button>
-<button onclick="setT('1m',this)">1m</button>
-<button onclick="setT('1m 30s',this)">1m 30s</button>
-<button onclick="setT('5m',this)">5m</button>
+<div id="step2" style="display:none">
+<div class="qx">
+<div style="display:flex;justify-content:space-between"><span>market-qx.trade/en/tr</span><span class="green">+$18.40</span></div>
+<div class="card" style="background:#080f2a;padding:0;overflow:hidden">
+<div style="height:180px;background:linear-gradient(180deg,#0f1f4a,#080e2a);display:flex;align-items:center;justify-content:center;flex-direction:column">
+<div style="font-size:13px">EUR/USD • M1</div>
+<div style="width:90%;height:100px;margin-top:10px;position:relative">
+<canvas id="chart" width="300" height="100"></canvas>
+</div>
+<div id="result" style="font-size:22px;font-weight:900;margin-top:8px" class="green">+ $9.20 PROFIT ✅</div>
+</div>
+<div class="trade-row"><span>00:00:15 • 20$ • BUY</span><span class="green">+$18.40</span></div>
+<div class="trade-row"><span>00:00:08 • 20$ • BUY</span><span class="green">+$18.40</span></div>
+</div>
+<button class="btn btn2" onclick="backToBot()">↩ BACK TO BOT</button>
+</div>
 </div>
 
-<div class="btns">
-<button class="btn b1" onclick="autoStart()">▶ AUTO</button>
-<button class="btn b2" onclick="gen()">⚡ GENERATE 90%</button>
-<button class="btn b3" onclick="stopA()">⏹ STOP</button>
 </div>
 </div>
 
 <script>
-let exp="30s";
-let auto=null;
-function setT(t,b){
- exp=t;
- document.querySelectorAll('.tf button').forEach(x=>x.classList.remove('active'));
- b.classList.add('active');
- document.getElementById('sig').innerText="SIGNAL: WAIT • Exp: "+exp+" • 90% CONFIRMED";
+let count=5;
+let intv=null;
+let botRunning=false;
+
+function generateSignal(){
+ clearInterval(intv);
+ count=5;
+ document.getElementById('callPut').innerText="CALL";
+ document.getElementById('callPut').style.color="#00ff88";
+ document.getElementById('tbox').style.borderColor="#00ff88";
+ document.getElementById('liveTxt').innerText="🟢 SIGNAL FOUND";
+ document.getElementById('sec').innerText=count+"s";
+ intv=setInterval(()=>{
+  count--;
+  document.getElementById('sec').innerText=count+"s";
+  document.getElementById('nextSec').innerText=count+"s";
+  if(count<=0){
+   clearInterval(intv);
+   let isCall=Math.random()>0.5;
+   document.getElementById('callPut').innerText=isCall?"CALL":"PUT";
+   document.getElementById('callPut').style.color=isCall?"#00ff88":"#ff3040";
+   document.getElementById('tbox').style.borderColor=isCall?"#00ff88":"#ff3040";
+   document.getElementById('sec').innerText=isCall?"↑":"↓";
+   setTimeout(()=>{ showQuotex(); },800);
+  }
+ },1000);
 }
-function gen(){
- let buy=Math.random()>0.5;
- let sig=buy?"ULTRA BUY ↑ 90%":"ULTRA SELL ↓ 90%";
- let box=document.getElementById('box');
- box.innerText=sig;
- box.className="box "+(buy?"BUY":"SELL");
- document.getElementById('sig').innerText="SIGNAL: "+sig+" • Exp: "+exp+" • 90% CONFIRMED • $20 MAX";
- document.getElementById('st').innerText=new Date().toLocaleTimeString();
- if(navigator.vibrate) navigator.vibrate(80);
+
+function startBot(){
+ if(botRunning) return;
+ botRunning=true;
+ generateSignal();
+ setInterval(generateSignal,7000);
 }
-function autoStart(){
- if(auto) clearInterval(auto);
- gen();
- auto=setInterval(gen,1500);
+
+function showQuotex(){
+ document.getElementById('step1').style.display='none';
+ document.getElementById('step2').style.display='block';
+ drawChart();
 }
-function stopA(){
- clearInterval(auto);
- document.getElementById('st').innerText="STOPPED";
+
+function backToBot(){
+ document.getElementById('step2').style.display='none';
+ document.getElementById('step1').style.display='block';
+}
+
+function drawChart(){
+ let c=document.getElementById('chart');
+ let ctx=c.getContext('2d');
+ ctx.clearRect(0,0,300,100);
+ ctx.strokeStyle="#00ff88"; ctx.lineWidth=2; ctx.beginPath();
+ ctx.moveTo(0,70);
+ for(let i=0;i<300;i+=20){ ctx.lineTo(i,70-Math.random()*40+Math.sin(i/30)*20); }
+ ctx.stroke();
 }
 </script>
 </body>
