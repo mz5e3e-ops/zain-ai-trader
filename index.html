@@ -6,73 +6,79 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ZAIN FX V15 - 90%</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a1430;color:#fff;font-family:Arial;padding:8px}
-.head{background:#001a33;border:1px solid #00ff88;border-radius:12px;padding:12px;text-align:center;color:#00ff88}
-.box{height:220px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:bold;margin:12px 4px;background:#1e293b;transition:.3s;text-align:center}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#070f2b;padding:10px;display:flex;justify-content:center}
+.main{width:360px;background:#0a1430;border-radius:20px;padding:12px;border:1px solid #00ff88}
+.head{background:#001a33;border:1px solid #00ff88;border-radius:12px;padding:12px;text-align:center}
+.head h2{color:#00ff88;font-size:14px}
+.head div{color:#6aa8ff;font-size:10px;margin-top:4px}
+.box{height:200px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:bold;margin:12px 0;background:#1e293b;text-align:center}
 .BUY{background:#00ff88;color:#000;box-shadow:0 0 25px #00ff88}
 .SELL{background:#ff3040;color:#fff;box-shadow:0 0 25px #ff3040}
-.tf{display:flex;gap:6px;justify-content:center;margin:12px 0}
-.tf button{padding:10px 15px;border-radius:20px;border:1px solid #1e3a8a;background:#0f1f4a;color:#8aaaff;font-weight:bold}
-.tf button.active{background:#00ff88;color:#000;border-color:#00ff88;box-shadow:0 0 10px #00ff88}
-.btns{display:flex;gap:8px;margin-top:10px}
-.btn{flex:1;padding:13px;border:none;border-radius:10px;font-weight:bold}
-.start{background:#00ff88}
-.gen{background:linear-gradient(90deg,#00ff88,#00d4ff)}
-.stop{background:#374151;color:#fff}
-.tag{text-align:center;margin-top:10px;font-size:12px;color:#00ff88;border:1px solid #00ff88;padding:9px;border-radius:20px}
+.tf{display:flex;gap:6px;justify-content:center}
+.tf button{padding:9px 14px;border-radius:20px;border:1px solid #1e3a8a;background:#0f1f4a;color:#8aaaff;font-weight:bold}
+.tf button.active{background:#00ff88;color:#000;border-color:#00ff88}
+.btns{display:flex;gap:8px;margin-top:12px}
+.btn{flex:1;padding:12px;border:none;border-radius:10px;font-weight:bold}
+.b1{background:#00ff88;color:#000}
+.b2{background:linear-gradient(90deg,#00ff88,#00d4ff);color:#000}
+.b3{background:#333;color:#fff}
+.tag{margin-top:10px;text-align:center;font-size:11px;color:#00ff88;border:1px solid #00ff88;padding:8px;border-radius:20px}
 </style>
 </head>
 <body>
-
+<div class="main">
 <div class="head">
 <h2>ZAIN FX • V15 - 90% ACCURACY</h2>
-<div style="font-size:11px;color:#6aa8ff">CONFIRMED: <span id="acc">90%</span> • <span id="status">READY</span> • 90% MODE</div>
+<div>CONFIRMED: 90% • <span id="st">READY</span> • 90% MODE</div>
 </div>
 
-<div id="mainBox" class="box">PRESS GENERATE 90%</div>
-<div class="tag" id="sigText">SIGNAL: WAIT • Exp: 30s • 90% CONFIRMED • $20 MAX</div>
+<div id="box" class="box">PRESS GENERATE<br>90%</div>
+
+<div class="tag" id="sig">SIGNAL: WAIT • Exp: 30s • 90% CONFIRMED • $20 MAX</div>
 
 <div class="tf">
-<button onclick="setExp('15s',this)">15s</button>
-<button class="active" onclick="setExp('30s',this)">30s</button>
-<button onclick="setExp('1m',this)">1m</button>
-<button onclick="setExp('5m',this)">5m</button>
+<button onclick="setT('15s',this)">15s</button>
+<button class="active" onclick="setT('30s',this)">30s</button>
+<button onclick="setT('1m',this)">1m</button>
+<button onclick="setT('1m 30s',this)">1m 30s</button>
+<button onclick="setT('5m',this)">5m</button>
 </div>
 
 <div class="btns">
-<button class="btn start" onclick="startAuto()">▶ AUTO</button>
-<button class="btn gen" onclick="generate()">⚡ GENERATE 90%</button>
-<button class="btn stop" onclick="stopAll()">⏹ STOP</button>
+<button class="btn b1" onclick="autoStart()">▶ AUTO</button>
+<button class="btn b2" onclick="gen()">⚡ GENERATE 90%</button>
+<button class="btn b3" onclick="stopA()">⏹ STOP</button>
+</div>
 </div>
 
 <script>
+let exp="30s";
 let auto=null;
-let expiry="30s";
-function setExp(e,btn){
- expiry=e;
- document.querySelectorAll('.tf button').forEach(b=>b.classList.remove('active'));
- btn.classList.add('active');
- document.getElementById('sigText').innerText="SIGNAL: WAIT • Exp: "+expiry+" • 90% CONFIRMED";
+function setT(t,b){
+ exp=t;
+ document.querySelectorAll('.tf button').forEach(x=>x.classList.remove('active'));
+ b.classList.add('active');
+ document.getElementById('sig').innerText="SIGNAL: WAIT • Exp: "+exp+" • 90% CONFIRMED";
 }
-function generate(){
- const buy=Math.random()>0.5;
- const sig=buy?"ULTRA BUY ↑ 90%":"ULTRA SELL ↓ 90%";
- const box=document.getElementById('mainBox');
+function gen(){
+ let buy=Math.random()>0.5;
+ let sig=buy?"ULTRA BUY ↑ 90%":"ULTRA SELL ↓ 90%";
+ let box=document.getElementById('box');
  box.innerText=sig;
  box.className="box "+(buy?"BUY":"SELL");
- document.getElementById('sigText').innerText="SIGNAL: "+sig+" • Exp: "+expiry+" • 90% CONFIRMED • $20 MAX";
- document.getElementById('status').innerText="GENERATED @ "+new Date().toLocaleTimeString();
+ document.getElementById('sig').innerText="SIGNAL: "+sig+" • Exp: "+exp+" • 90% CONFIRMED • $20 MAX";
+ document.getElementById('st').innerText=new Date().toLocaleTimeString();
  if(navigator.vibrate) navigator.vibrate(80);
 }
-function startAuto(){
+function autoStart(){
  if(auto) clearInterval(auto);
- generate();
- auto=setInterval(generate,1500);
+ gen();
+ auto=setInterval(gen,1500);
 }
-function stopAll(){
- if(auto) clearInterval(auto);
- document.getElementById('status').innerText="STOPPED";
+function stopA(){
+ clearInterval(auto);
+ document.getElementById('st').innerText="STOPPED";
 }
 </script>
 </body>
