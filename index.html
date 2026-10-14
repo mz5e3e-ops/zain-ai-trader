@@ -1,33 +1,38 @@
+
 <!DOCTYPE html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ZAIN FX V15 - 90%</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#0a1430;color:#fff;font-family:Arial;padding:8px}
 .head{background:#001a33;border:1px solid #00ff88;border-radius:12px;padding:12px;text-align:center;color:#00ff88}
-.box{height:220px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:bold;margin:12px 6px;background:#1e293b;transition:.3s}
+.box{height:220px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:bold;margin:12px 4px;background:#1e293b;transition:.3s;text-align:center}
 .BUY{background:#00ff88;color:#000;box-shadow:0 0 25px #00ff88}
 .SELL{background:#ff3040;color:#fff;box-shadow:0 0 25px #ff3040}
-.tf{display:flex;gap:6px;justify-content:center;margin:10px 0}
-.tf button{padding:9px 15px;border-radius:20px;border:1px solid #1e3a8a;background:#0f1f4a;color:#8aaaff;font-weight:bold}
+.tf{display:flex;gap:6px;justify-content:center;margin:12px 0}
+.tf button{padding:10px 15px;border-radius:20px;border:1px solid #1e3a8a;background:#0f1f4a;color:#8aaaff;font-weight:bold}
 .tf button.active{background:#00ff88;color:#000;border-color:#00ff88;box-shadow:0 0 10px #00ff88}
 .btns{display:flex;gap:8px;margin-top:10px}
 .btn{flex:1;padding:13px;border:none;border-radius:10px;font-weight:bold}
 .start{background:#00ff88}
 .gen{background:linear-gradient(90deg,#00ff88,#00d4ff)}
 .stop{background:#374151;color:#fff}
-.tag{text-align:center;margin-top:10px;font-size:11px;color:#00ff88;border:1px solid #00ff88;padding:8px;border-radius:20px}
-</style></head><body>
+.tag{text-align:center;margin-top:10px;font-size:12px;color:#00ff88;border:1px solid #00ff88;padding:9px;border-radius:20px}
+</style>
+</head>
+<body>
 
 <div class="head">
 <h2>ZAIN FX • V15 - 90% ACCURACY</h2>
-<div style="font-size:10px;color:#6aa8ff">CONFIRMED: <span id="acc">90</span>% • <span id="status">READY</span> • 90% MODE</div>
+<div style="font-size:11px;color:#6aa8ff">CONFIRMED: <span id="acc">90%</span> • <span id="status">READY</span> • 90% MODE</div>
 </div>
 
-<div id="mainBox" class="box">PRESS GENERATE</div>
-<div class="tag" id="sigText">SIGNAL: WAIT • Exp: 30s • 90% CONFIRMED</div>
+<div id="mainBox" class="box">PRESS GENERATE 90%</div>
+<div class="tag" id="sigText">SIGNAL: WAIT • Exp: 30s • 90% CONFIRMED • $20 MAX</div>
 
-<!-- TIME FRAME AAP KI DEMAND -->
 <div class="tf">
 <button onclick="setExp('15s',this)">15s</button>
 <button class="active" onclick="setExp('30s',this)">30s</button>
@@ -37,7 +42,7 @@ body{background:#0a1430;color:#fff;font-family:Arial;padding:8px}
 
 <div class="btns">
 <button class="btn start" onclick="startAuto()">▶ AUTO</button>
-<button class="btn gen" onclick="generate()">⚡ GENERATE</button>
+<button class="btn gen" onclick="generate()">⚡ GENERATE 90%</button>
 <button class="btn stop" onclick="stopAll()">⏹ STOP</button>
 </div>
 
@@ -50,15 +55,12 @@ function setExp(e,btn){
  btn.classList.add('active');
  document.getElementById('sigText').innerText="SIGNAL: WAIT • Exp: "+expiry+" • 90% CONFIRMED";
 }
-
 function generate(){
  const buy=Math.random()>0.5;
- const sig=buy?"ULTRA BUY ↑":"ULTRA SELL ↓";
- const acc=90; // AAP KI DEMAND - HAR CHEEZ 90%
+ const sig=buy?"ULTRA BUY ↑ 90%":"ULTRA SELL ↓ 90%";
  const box=document.getElementById('mainBox');
- box.innerText=sig+" • 90%";
+ box.innerText=sig;
  box.className="box "+(buy?"BUY":"SELL");
- document.getElementById('acc').innerText=acc;
  document.getElementById('sigText').innerText="SIGNAL: "+sig+" • Exp: "+expiry+" • 90% CONFIRMED • $20 MAX";
  document.getElementById('status').innerText="GENERATED @ "+new Date().toLocaleTimeString();
  if(navigator.vibrate) navigator.vibrate(80);
@@ -73,4 +75,5 @@ function stopAll(){
  document.getElementById('status').innerText="STOPPED";
 }
 </script>
-</body></html>
+</body>
+</html>
