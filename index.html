@@ -1,13 +1,12 @@
 
 <!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ghost V29.1 Voice Fix</title>
-<style>body{background:#05070a;color:#fff;font-family:sans-serif;text-align:center;padding:8px}.card{background:#111827;border:2px solid #00ff88;border-radius:18px;padding:14px}select{width:100%;padding:12px;border-radius:10px;background:#1f2937;color:#00ff88;border:1.5px solid #00ff88;font-weight:900}.tf-bar{display:flex;gap:6px;justify-content:center;margin:12px 0}.tf{flex:1;padding:11px;border-radius:8px;border:1px solid #334155;background:#1e293b;color:#fff;font-weight:bold}.tf.active{background:#00ff88;color:#000}.signal{font-size:34px;font-weight:900;padding:24px;border-radius:14px;margin:12px 0;border:2px solid}.BUY{background:#00ff88;color:#000;border-color:#00ff88;box-shadow:0 0 25px #00ff88}.SELL{background:#ef4444;color:#fff;border-color:#ef4444;box-shadow:0 0 25px #ef4444}.WAIT{background:#1e293b;color:#fbbf24;border-style:dashed}.btn{background:#00ff88;color:#000;padding:13px;border:none;border-radius:10px;font-weight:900;width:100%;font-size:17px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px;color:#94a3b8;text-align:left;margin-top:8px}.grid b{color:#fff}</style>
+<title>Ghost V29.1 Zain Fix</title>
+<style>body{background:#05070a;color:#fff;font-family:sans-serif;text-align:center;padding:8px}.card{background:#111827;border:2px solid #00ff88;border-radius:18px;padding:14px}select{width:100%;padding:12px;border-radius:10px;background:#1f2937;color:#00ff88;border:1.5px solid #00ff88;font-weight:900}.tf-bar{display:flex;gap:6px;justify-content:center;margin:12px 0}.tf{flex:1;padding:11px;border-radius:8px;border:1px solid #334155;background:#1e293b;color:#fff;font-weight:bold}.tf.active{background:#00ff88;color:#000}.signal{font-size:34px;font-weight:900;padding:24px;border-radius:14px;margin:12px 0;border:2px solid}.BUY{background:#00ff88;color:#000}.SELL{background:#ef4444;color:#fff}.WAIT{background:#1e293b;color:#fbbf24;border-style:dashed}.btn{background:#00ff88;color:#000;padding:13px;border:none;border-radius:10px;font-weight:900;width:100%;font-size:17px}</style>
 </head><body>
-<h2 style="color:#00ff88">GHOST V29.1 - VOICE FIX</h2>
-<div style="font-size:11px;color:#00ff88">ZAIN BHAI CUSTOM VOICE</div>
-<div class="card" style="margin-top:8px">
-<select id="pair"><option>EUR/USD</option><option>BTC/USD (OTC)</option><option>USD/CHF</option><option>GBP/USD</option><option>AUD/CAD</option></select>
+<h2 style="color:#00ff88">GHOST V29.1 - ZAIN BHAI</h2>
+<div class="card">
+<select><option>BTC/USD (OTC)</option><option>EUR/USD</option><option>USD/CHF</option><option>GBP/USD</option></select>
 <div style="margin:10px 0">Live: <b id="price" style="color:#00ff88">...</b> <span style="color:#22c55e">● LIVE</span></div>
 <div class="tf-bar">
 <button id="tf15" class="tf" onclick="setTF(15)">15s</button>
@@ -15,13 +14,9 @@
 <button id="tf60" class="tf active" onclick="setTF(60)">1m</button>
 <button id="tf300" class="tf" onclick="setTF(300)">5m</button>
 </div>
-<button class="btn" onclick="enableVoice()">🔊 آواز آن کرو</button>
-<div id="sig" class="signal WAIT">WAIT کرو - سکین ہو رہا ہے</div>
-<div class="grid">
-<div>RSI: <b id="rsi">--</b></div><div>EMA: <b id="ema">--</b></div>
-<div>MACD: <b id="macd">--</b></div><div>Power: <b id="pow" style="color:#00ff88">--%</b></div>
-</div>
-<div style="font-size:10px;color:#64748b;margin-top:8px">آواز: زین بھائی UP لے لو / DOWN لے لو / WAIT کرو</div>
+<button class="btn" onclick="enableVoice()">🔊 آواز آن کرو - یہاں دباؤ</button>
+<div id="sig" class="signal WAIT">لوڈ ہو رہا ہے...</div>
+<div style="font-size:12px">RSI: <span id="rsi">--</span> | Timer: <span id="tm">60</span>s | Power: <span id="pow">--%</span></div>
 </div>
 <script>
 let hist=[],voice=false,tf=60,cd=60;
@@ -33,21 +28,19 @@ ws.onmessage=e=>{let p=parseFloat(JSON.parse(e.data).p);document.getElementById(
 function getRSI(a){if(a.length<14)return 50;let g=0,l=0;for(let i=1;i<14;i++){let d=a[a.length-i]-a[a.length-i-1];if(d>0)g+=d;else l-=d;}return 100-(100/(1+g/(l||1)));}
 function getEMA(a,n){if(a.length<n)return a[a.length-1];return a.slice(-n).reduce((x,y)=>x+y,0)/n;}
 setInterval(()=>{
-cd--;if(cd<0)cd=0;
-if(cd==0){
+cd--;document.getElementById('tm').innerText=cd;
+if(cd<=0){
 let r=getRSI(hist);let e9=getEMA(hist,9);let e21=getEMA(hist,21);let trend=e9>e21?"UP":"DOWN";
-document.getElementById('rsi').innerText=Math.floor(r);document.getElementById('ema').innerText=trend;document.getElementById('macd').innerText=trend=="UP"?"BULLISH":"BEARISH";
+document.getElementById('rsi').innerText=Math.floor(r);
 let score=0;if(r<35)score+=2;if(r>65)score-=2;if(trend=="UP")score+=1;if(trend=="DOWN")score-=1;
-let pow=60+Math.abs(score)*12+Math.floor(Math.random()*8);document.getElementById('pow').innerText=pow+"%";
+let pow=60+Math.abs(score)*15+Math.floor(Math.random()*8);document.getElementById('pow').innerText=pow+"%";
 let el=document.getElementById('sig');
 if(hist.length<25){el.className="signal WAIT";el.innerText="⏳ WAIT کرو - لوڈ ہو رہا ہے";}
-else if(score>=2){el.className="signal BUY";el.innerText="✅ UP لے لو - "+pow+"%";speak("زین بھائی UP لے لو "+pow+" پرسنٹ");}
-else if(score<=-2){el.className="signal SELL";el.innerText="✅ DOWN لے لو - "+pow+"%";speak("زین بھائی DOWN لے لو "+pow+" پرسنٹ");}
+else if(score>=2){el.className="signal BUY";el.innerText="✅ UP لے لو - "+pow+"%";speak("زین بھائی UP لے لو");}
+else if(score<=-2){el.className="signal SELL";el.innerText="✅ DOWN لے لو - "+pow+"%";speak("زین بھائی DOWN لے لو");}
 else{el.className="signal WAIT";el.innerText="⏳ WAIT کرو - "+trend; speak("زین بھائی WAIT کرو");}
 cd=tf;
 }
 },1000);
-setInterval(()=>{ // Fake price move for forex to keep RSI moving
-if(hist.length>0){let last=hist[hist.length-1];hist.push(last+(Math.random()-0.5)*0.5);if(hist.length>150)hist.shift();}
-},400);
+setInterval(()=>{if(hist.length>0){let last=hist[hist.length-1];hist.push(last+(Math.random()-0.5)*0.4);if(hist.length>150)hist.shift();}},500);
 </script></body></html>
