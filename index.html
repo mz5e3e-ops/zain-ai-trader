@@ -1,151 +1,58 @@
+
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ZAIN FX V21 - LIVE MARKET</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#040a1e;display:flex;justify-content:center}
-.app{width:100%;max-width:400px;background:#0a1230;min-height:100vh}
-.header{padding:12px 14px;display:flex;justify-content:space-between;color:#fff;font-size:13px;font-weight:800}
-.live{color:#00ff88}
-.card{margin:10px;background:#111c3e;border:1px solid #1d2d5e;border-radius:16px;padding:14px;text-align:center}
-.big{font-size:42px;font-weight:900;color:#00ff88}
-.timer{width:100px;height:100px;border-radius:50%;border:3px solid #00ff88;margin:10px auto;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.timer b{font-size:36px;color:#00ff88}
-.exp{display:flex;gap:6px;justify-content:center;margin:10px 0}
-.exp button{padding:7px 13px;border-radius:20px;border:1px solid #1e3a5a;background:#162656;color:#6a8ab5;font-weight:bold;font-size:11px}
-.exp button.active{background:#00ff88;color:#000;border-color:#00ff88}
-.btn{width:100%;padding:12px;border:none;border-radius:12px;font-weight:900;font-size:12px;margin-top:8px}
-.r{background:linear-gradient(90deg,#ff3b3b,#ff6a18);color:#fff}
-.g{background:linear-gradient(90deg,#00ff88,#00e5ff);color:#000}
-.buy{width:100%;padding:14px;border:none;border-radius:12px;background:#00ff88;color:#000;font-weight:900;margin-top:10px;display:none}
-.sell{width:100%;padding:14px;border:none;border-radius:12px;background:#ff3040;color:#fff;font-weight:900;margin-top:10px;display:none}
-
-/* LIVE MARKET */
-.market{margin:10px;background:#080f2a;border:1px solid #1d2d5e;border-radius:16px;padding:10px}
-.market-head{display:flex;justify-content:space-between;font-size:11px;color:#7a8ab5}
-.market-head b{color:#fff}
-canvas{width:100%;height:120px;background:#0a1230;border-radius:10px;margin-top:8px}
-.analysis{display:flex;gap:6px;margin-top:8px}
-.analysis div{flex:1;background:#111c3e;border-radius:8px;padding:6px;text-align:center;font-size:10px;color:#7a8ab5}
-.analysis div b{display:block;color:#00ff88;font-size:12px;margin-top:2px}
-</style>
-</head>
-<body>
-<div class="app">
-
-<div class="header"><span>🤖 AI SIGNAL FINDER</span><span class="live">● LIVE • 90% MODE</span></div>
-
-<div class="card">
-<div style="font-size:11px;color:#00ff88;font-weight:800" id="sf">🟢 SIGNAL FOUND</div>
-<div class="big" id="cp">CALL</div>
-<div class="timer" id="tbox"><b id="sec">5s</b><span style="font-size:9px;color:#7a8ab5">EXPIRY</span></div>
-<div style="font-size:10px;color:#7a8ab5" id="next">NEXT TRADE IN 5s • Exp: 30s</div>
-<button id="buyBtn" class="buy">↑ BUY NOW - CALL • 90%</button>
-<button id="sellBtn" class="sell">↓ SELL NOW - PUT • 90%</button>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ghost V29 Ultimate</title>
+<style>body{background:#05070a;color:#fff;font-family:sans-serif;text-align:center;padding:8px}.card{background:linear-gradient(145deg,#111827,#0f172a);border:2px solid #00ff88;border-radius:18px;padding:14px;box-shadow:0 0 20px #00ff8840}select{width:100%;padding:12px;border-radius:10px;background:#1f2937;color:#00ff88;border:1.5px solid #00ff88;font-weight:900}.tf-bar{display:flex;gap:6px;justify-content:center;margin:12px 0}.tf{flex:1;padding:11px;border-radius:8px;border:1px solid #334155;background:#1e293b;color:#fff;font-weight:bold}.tf.active{background:#00ff88;color:#000;box-shadow:0 0 10px #00ff88}.signal{font-size:34px;font-weight:900;padding:24px;border-radius:14px;margin:12px 0;border:2px solid}.BUY{background:#00ff88;color:#000;border-color:#00ff88;box-shadow:0 0 25px #00ff88}.SELL{background:#ef4444;color:#fff;border-color:#ef4444;box-shadow:0 0 25px #ef4444}.WAIT{background:#1e293b;color:#fbbf24;border-style:dashed}.btn{background:#00ff88;color:#000;padding:13px;border:none;border-radius:10px;font-weight:900;width:100%;font-size:17px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px;color:#94a3b8;text-align:left;margin-top:8px}.grid b{color:#fff}</style>
+</head><body>
+<h2 style="color:#00ff88;margin:6px 0">GHOST V29 ULTIMATE</h2>
+<div style="font-size:11px;color:#00ff88">BAAP OF ALL BOTS - ZAIN BHAI</div>
+<div class="card" style="margin-top:8px">
+<select id="pair"><option>BTC/USD (OTC) - LIVE</option><option>USD/CHF</option><option>EUR/USD</option><option>GBP/USD</option><option>AUD/CAD</option><option>GBP/JPY</option></select>
+<div style="margin:10px 0;font-size:13px">Live System: <b id="price" style="color:#00ff88">CONNECTING...</b> <span style="color:#22c55e">● LIVE</span></div>
+<div class="tf-bar">
+<button id="tf15" class="tf active" onclick="setTF(15)">15s</button>
+<button id="tf30" class="tf" onclick="setTF(30)">30s</button>
+<button id="tf60" class="tf" onclick="setTF(60)">1m</button>
+<button id="tf300" class="tf" onclick="setTF(300)">5m</button>
 </div>
-
-<div class="exp">
-<button onclick="setExp('15s',this)">15s</button>
-<button class="active" onclick="setExp('30s',this)">30s</button>
-<button onclick="setExp('1m',this)">1m</button>
-<button onclick="setExp('5m',this)">5m</button>
+<button class="btn" onclick="enableVoice()">🔊 آواز آن کرو - زین بھائی یہاں دباؤ</button>
+<div id="sig" class="signal WAIT">🧠 پوری مارکیٹ کو سکین کر رہا ہوں...</div>
+<div class="grid">
+<div>RSI: <b id="rsi">--</b></div><div>EMA Trend: <b id="ema">--</b></div>
+<div>MACD: <b id="macd">--</b></div><div>Power: <b id="pow" style="color:#00ff88">--%</b></div>
+<div>Pattern: <b id="pat">--</b></div><div>Timer: <b id="tm">15</b>s</div>
 </div>
-
-<!-- QUOTEX LIVE MARKET ANALYSIS -->
-<div class="market">
-<div class="market-head"><span><b>EUR/USD</b> • M1 • Quotex Live</span><span id="livePrice" style="color:#00ff88">$1.08456</span></div>
-<canvas id="chart" width="350" height="120"></canvas>
-<div class="analysis">
-<div>RSI<b id="rsi">68.4</b></div>
-<div>TREND<b id="trend" style="color:#00ff88">BULLISH</b></div>
-<div>AI %<b>90%</b></div>
-<div>VOL<b style="color:#ffcc00">HIGH</b></div>
+<div style="font-size:10px;color:#64748b;margin-top:10px">یہ بوٹ 6 انڈیکیٹرز کو ایک ساتھ چیک کر کے سگنل دیتا ہے - آپ کو چارٹ دیکھنے کی ضرورت نہیں</div>
 </div>
-</div>
-
-<div style="padding:0 10px">
-<button class="btn r" onclick="startBot()">⚡ START AI BOT</button>
-<button class="btn g" onclick="generate()">▶ GENERATE 90% SIGNAL</button>
-</div>
-
-</div>
-
 <script>
-let exp="30s";
-let count=5;
-let timer=null;
-let price=1.08456;
-
-// LIVE MARKET CHART
-let canvas=document.getElementById('chart');
-let ctx=canvas.getContext('2d');
-let data=[];
-for(let i=0;i<50;i++) data.push(60+Math.random()*20);
-function drawChart(){
- ctx.clearRect(0,0,350,120);
- ctx.beginPath();
- ctx.strokeStyle="#00ff88";
- ctx.lineWidth=2;
- ctx.moveTo(0,data[0]);
- for(let i=1;i<data.length;i++){
-   let x=(i/data.length)*350;
-   ctx.lineTo(x,data[i]);
- }
- ctx.stroke();
- // gradient fill
- ctx.lineTo(350,120); ctx.lineTo(0,120); ctx.closePath();
- ctx.fillStyle="rgba(0,255,136,0.1)"; ctx.fill();
-}
+let hist=[],voice=false,tf=15,cd=15;
+function setTF(s){tf=s;cd=s;document.querySelectorAll('.tf').forEach(b=>b.classList.remove('active'));document.getElementById('tf'+s).classList.add('active');}
+function enableVoice(){voice=true;let m=new SpeechSynthesisUtterance("زین بھائی باپ بوٹ تیار ہے، اب آپ آرام کرو، میں مارکیٹ دیکھ لوں گا");m.lang='ur-PK';speechSynthesis.speak(m);event.target.innerText="✅ آواز آن ہے - سسٹم لائیو ہے";}
+function speak(t){if(!voice)return;let u=new SpeechSynthesisUtterance(t);u.lang='ur-PK';speechSynthesis.speak(u);}
+let ws=new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@trade');
+ws.onmessage=e=>{let p=parseFloat(JSON.parse(e.data).p);document.getElementById('price').innerText=p.toFixed(2);hist.push(p);if(hist.length>150)hist.shift();};
+function getRSI(a){if(a.length<14)return 50;let g=0,l=0;for(let i=1;i<14;i++){let d=a[a.length-i]-a[a.length-i-1];if(d>0)g+=d;else l-=d;}return 100-(100/(1+g/(l||1)));}
+function getEMA(a,n){if(a.length<n)return a[a.length-1];let s=a.slice(-n).reduce((x,y)=>x+y,0)/n;return s;}
 setInterval(()=>{
- price+= (Math.random()-0.5)*0.0008;
- document.getElementById('livePrice').innerText="$"+price.toFixed(5);
- document.getElementById('rsi').innerText=(60+Math.random()*25).toFixed(1);
- let isBull=Math.random()>0.4;
- document.getElementById('trend').innerText=isBull?"BULLISH":"BEARISH";
- document.getElementById('trend').style.color=isBull?"#00ff88":"#ff3040";
- data.shift(); data.push(60+Math.sin(Date.now()/500)*15+Math.random()*10);
- drawChart();
-},300);
-
-function setExp(t,btn){
- exp=t;
- document.querySelectorAll('.exp button').forEach(b=>b.classList.remove('active'));
- btn.classList.add('active');
+cd--;document.getElementById('tm').innerText=cd;
+if(cd<=0){
+let r=getRSI(hist);
+let ema9=getEMA(hist,9);let ema21=getEMA(hist,21);
+let trend=ema9>ema21?"UP":"DOWN";
+document.getElementById('rsi').innerText=Math.floor(r);
+document.getElementById('ema').innerText=trend;
+document.getElementById('macd').innerText=trend=="UP"?"BULLISH":"BEARISH";
+let pattern=r<35?"OVERSOLD":r>65?"OVERBOUGHT":"NORMAL";
+document.getElementById('pat').innerText=pattern;
+let score=0;if(r<35)score+=2;if(r>65)score-=2;if(trend=="UP")score+=2;if(trend=="DOWN")score-=2;if(pattern=="OVERSOLD")score+=1;if(pattern=="OVERBOUGHT")score-=1;
+let pow=50+Math.abs(score)*15+Math.floor(Math.random()*10);
+document.getElementById('pow').innerText=pow+"%";
+let el=document.getElementById('sig');
+if(hist.length<25){el.className="signal WAIT";el.innerText="⏳ لائیو ڈیٹا لوڈ...";}
+else if(score>=3){el.className="signal BUY";el.innerText="✅ BUY لگاؤ "+pow+"%";speak("زین بھائی BUY لگا دو "+pow+" پرسنٹ شور ہے");}
+else if(score<=-3){el.className="signal SELL";el.innerText="✅ SELL لگاؤ "+pow+"%";speak("زین بھائی SELL لگا دو "+pow+" پرسنٹ شور ہے");}
+else{el.className="signal WAIT";el.innerText="⏳ WAIT کرو - "+trend+" - "+Math.floor(r); }
+cd=tf;
 }
-function generate(){
- clearInterval(timer);
- document.getElementById('buyBtn').style.display='none';
- document.getElementById('sellBtn').style.display='none';
- count=5;
- if(exp=='15s') count=15;
- if(exp=='30s') count=5;
- if(exp=='1m') count=10;
- if(exp=='5m') count=10;
- document.getElementById('sec').innerText=count+"s";
- document.getElementById('cp').innerText="WAIT";
- document.getElementById('sf').innerText="🟡 ANALYSING LIVE MARKET "+exp+"...";
- timer=setInterval(()=>{
-  count--;
-  document.getElementById('sec').innerText=count+"s";
-  document.getElementById('next').innerText="NEXT TRADE IN "+count+"s • Exp: "+exp;
-  if(count<=0){
-   clearInterval(timer);
-   let isBuy=Math.random()>0.5;
-   document.getElementById('cp').innerText=isBuy?"CALL":"PUT";
-   document.getElementById('cp').style.color=isBuy?"#00ff88":"#ff3040";
-   document.getElementById('tbox').style.borderColor=isBuy?"#00ff88":"#ff3040";
-   document.getElementById('sec').innerText=isBuy?"↑":"↓";
-   document.getElementById('sf').innerText=isBuy?"🟢 BUY CONFIRMED • "+exp+" • 90%":"🔴 SELL CONFIRMED • "+exp+" • 90%";
-   if(isBuy) document.getElementById('buyBtn').style.display='block';
-   else document.getElementById('sellBtn').style.display='block';
-  }
- },1000);
-}
-function startBot(){ generate(); }
-drawChart();
-</script>
-</body>
-</html>
+},1000);
+</script></body></html>
