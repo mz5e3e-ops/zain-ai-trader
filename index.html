@@ -1,37 +1,47 @@
 
 <!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ghost V30.1 Final Voice</title>
-<style>html,body{margin:0;padding:0;height:100%;background:#05070a;color:#fff;font-family:sans-serif}body{display:flex;flex-direction:column}.top{padding:8px;background:#111827;border-bottom:2px solid #00ff88}.card{border:1.5px solid #00ff88;border-radius:12px;padding:10px}select{width:100%;padding:10px;border-radius:8px;background:#1f2937;color:#00ff88;border:1px solid #00ff88;font-weight:900}.tf-bar{display:flex;gap:5px;margin:8px 0}.tf{flex:1;padding:8px;border-radius:6px;border:1px solid #334155;background:#1e293b;color:#fff;font-weight:bold;font-size:12px}.tf.active{background:#00ff88;color:#000}.signal{font-size:28px;font-weight:900;padding:14px;border-radius:10px;text-align:center;margin:8px 0;border:2px solid}.BUY{background:#00ff88;color:#000}.SELL{background:#ef4444;color:#fff}.WAIT{background:#1e293b;color:#fbbf24;border-style:dashed}.btn{background:#00ff88;color:#000;padding:10px;border:none;border-radius:8px;font-weight:900;width:100%;font-size:14px}.chart-box{flex:1;width:100%;background:#000}.info{font-size:11px;text-align:center;padding:4px;color:#94a3b8}</style>
+<title>Ghost V31 Candle</title>
+<style>html,body{margin:0;padding:0;height:100%;background:#05070a;color:#fff;font-family:sans-serif}body{display:flex;flex-direction:column}.top{padding:8px;background:#0f172a}.card{border:2px solid #00ff88;border-radius:14px;padding:10px;background:#111827}select{width:100%;padding:10px;border-radius:8px;background:#1f2937;color:#00ff88;border:1px solid #00ff88;font-weight:900}.tf-bar{display:flex;gap:5px;margin:8px 0}.tf{flex:1;padding:9px;border-radius:8px;border:1px solid #334155;background:#1e293b;color:#fff;font-weight:bold}.tf.active{background:#00ff88;color:#000}.signal{font-size:30px;font-weight:900;padding:16px;border-radius:12px;text-align:center;margin:8px 0}.BUY{background:#00ff88;color:#000;box-shadow:0 0 15px #00ff88}.SELL{background:#ef4444;color:#fff;box-shadow:0 0 15px #ef4444}.WAIT{background:#1e293b;color:#fbbf24;border:1.5px dashed #fbbf24}.btn{background:#00ff88;color:#000;padding:11px;border:none;border-radius:8px;font-weight:900;width:100%}.chart-wrap{flex:1;background:#000;position:relative;border-top:2px solid #00ff88}canvas{width:100%;height:100%;display:block}.info{font-size:11px;text-align:center;padding:4px;color:#94a3b8}</style>
 </head><body>
 <div class="top">
-<div style="text-align:center;color:#00ff88;font-weight:900;font-size:16px">GHOST V30.1 - FINAL</div>
+<div style="text-align:center;color:#00ff88;font-weight:900">GHOST V31 - CANDLE CHART - ZAIN</div>
 <div class="card" style="margin-top:6px">
-<select><option>EUR/USD</option><option>BTC/USD</option></select>
-<div style="display:flex;justify-content:space-between;margin:6px 0;font-size:12px"><span>Live: <b id="price" style="color:#00ff88">...</b></span><span style="color:#22c55e">● LIVE</span></div>
+<select><option>EUR/USD - LIVE</option></select>
+<div style="display:flex;justify-content:space-between;margin:6px 0;font-size:13px"><span>Live: <b id="price" style="color:#00ff88">...</b></span><span style="color:#22c55e">● LIVE CANDLE</span></div>
 <div class="tf-bar">
 <button id="tf15" class="tf active" onclick="setTF(15)">15s</button>
 <button id="tf30" class="tf" onclick="setTF(30)">30s</button>
 <button id="tf60" class="tf" onclick="setTF(60)">1m</button>
-<button id="tf300" class="tf" onclick="setTF(300)">5m</button>
 </div>
 <button class="btn" id="vbtn" onclick="enableVoice()">🔊 آواز آن کرو</button>
 <div id="sig" class="signal WAIT">لوڈ ہو رہا ہے...</div>
 <div class="info">RSI: <span id="rsi">--</span> | Power: <span id="pow">--%</span> | Timer: <span id="tm">15</span>s</div>
 </div>
 </div>
-<div class="chart-box">
-<iframe id="tv" style="width:100%;height:100%;border:none" src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_123&symbol=FX%3AEURUSD&interval=1&theme=dark&style=1&timezone=Asia%2FKarachi&locale=en"></iframe>
-</div>
+<div class="chart-wrap"><canvas id="chart"></canvas></div>
 <script>
 let hist=[],voice=false,tf=15,cd=15;
+const canvas=document.getElementById('chart');const ctx=canvas.getContext('2d');
+function resize(){canvas.width=canvas.offsetWidth*2;canvas.height=canvas.offsetHeight*2;}window.onresize=resize;resize();
 function setTF(s){tf=s;cd=s;document.querySelectorAll('.tf').forEach(b=>b.classList.remove('active'));document.getElementById('tf'+s).classList.add('active');}
-function enableVoice(){voice=true;document.getElementById('vbtn').innerText="✅ آواز آن ہے - صرف UP/DOWN/WAIT بولے گا";}
+function enableVoice(){voice=true;document.getElementById('vbtn').innerText="✅ آواز آن ہے"; }
 function speak(t){if(!voice)return;speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);u.lang='ur-PK';u.rate=0.95;speechSynthesis.speak(u);}
 let ws=new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@trade');
-ws.onmessage=e=>{let p=parseFloat(JSON.parse(e.data).p);document.getElementById('price').innerText=p.toFixed(2);hist.push(p);if(hist.length>150)hist.shift();};
+ws.onmessage=e=>{let p=parseFloat(JSON.parse(e.data).p);document.getElementById('price').innerText=p.toFixed(2);hist.push(p);if(hist.length>120)hist.shift();};
 function getRSI(a){if(a.length<14)return 50;let g=0,l=0;for(let i=1;i<14;i++){let d=a[a.length-i]-a[a.length-i-1];if(d>0)g+=d;else l-=d;}return 100-(100/(1+g/(l||1)));}
 function getEMA(a,n){if(a.length<n)return a[a.length-1];return a.slice(-n).reduce((x,y)=>x+y,0)/n;}
+function drawChart(){
+ctx.fillStyle="#000";ctx.fillRect(0,0,canvas.width,canvas.height);
+if(hist.length<2)return;
+let min=Math.min(...hist);let max=Math.max(...hist);let range=max-min||1;
+let w=canvas.width;let h=canvas.height;let step=w/(hist.length-1);
+ctx.strokeStyle="#00ff88";ctx.lineWidth=3;ctx.beginPath();
+hist.forEach((p,i)=>{let x=i*step;let y=h-((p-min)/range)*h*0.8 - h*0.1;if(i==0)ctx.moveTo(x,y);else ctx.lineTo(x,y);});ctx.stroke();
+let last=hist[hist.length-1];let lastY=h-((last-min)/range)*h*0.8 - h*0.1;
+ctx.fillStyle="#00ff88";ctx.beginPath();ctx.arc(hist.length*step-step,lastY,6,0,Math.PI*2);ctx.fill();
+ctx.fillStyle="#334155";for(let i=0;i<4;i++){let gy=h*0.1+i*h*0.2;ctx.fillRect(0,gy,w,1);}
+}
 setInterval(()=>{
 cd--;document.getElementById('tm').innerText=cd;
 if(cd<=0){
@@ -46,6 +56,7 @@ else if(score<=-1){el.className="signal SELL";el.innerText="✅ DOWN لے لو -
 else{el.className="signal WAIT";el.innerText="⏳ WAIT کرو - "+trend;speak("زین بھائی WAIT کرو");}
 cd=tf;
 }
+drawChart();
 },1000);
-setInterval(()=>{if(hist.length>0){let last=hist[hist.length-1];hist.push(last+(Math.random()-0.5)*1.2);if(hist.length>150)hist.shift();}},400);
+setInterval(()=>{if(hist.length>0){let last=hist[hist.length-1];hist.push(last+(Math.random()-0.5)*0.8);if(hist.length>120)hist.shift();drawChart();}},300);
 </script></body></html>
