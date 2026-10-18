@@ -3,77 +3,132 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Practice Dashboard</title>
+<title>MALIK ZAIN ALI - GHOST V31</title>
 <style>
-body{font-family:sans-serif; background:#0e0e10; color:white; margin:0; padding:10px;}
-.card{background:#1e1e22; border-radius:12px; padding:12px; margin-bottom:10px; border:1px solid #333;}
-.green{color:#00d084;} .red{color:#ff4d4d;}
-.btn{width:48%; padding:14px; border:none; border-radius:10px; font-size:18px; font-weight:bold; cursor:pointer;}
-.btn-buy{background:#00d084; color:black;}
-.btn-sell{background:#ff4d4d; color:white;}
-.status{font-size:20px; font-weight:bold; text-align:center; padding:15px; border-radius:10px; background:#2a2a2e; margin:10px 0;}
-.support-box{border:2px dashed #00d084; padding:10px; border-radius:8px; text-align:center;}
+body{font-family:sans-serif; background:#000; color:white; margin:0; padding:8px;}
+.main{border:2px solid #00ff88; border-radius:15px; padding:12px; background:#0a1a14;}
+.top{display:flex; justify-content:space-between; color:#00ff88; font-size:12px; margin:6px 0;}
+.sel{width:100%; padding:10px; background:#000; color:#00ff88; border:1px solid #00ff88; border-radius:8px; margin:6px 0; font-weight:bold;}
+.btns{display:flex; gap:6px; margin:8px 0;}
+.btns button{flex:1; padding:10px; border:none; border-radius:8px; font-weight:bold; cursor:pointer;}
+.active{background:#00ff88; color:black;}
+.inactive{background:#1a2e26; color:white;}
+.gen{width:100%; padding:14px; background:#00ff88; border:none; border-radius:10px; font-size:16px; font-weight:bold; margin:8px 0; cursor:pointer;}
+.result{border:1px dashed #ffcc00; border-radius:10px; padding:15px; text-align:center; min-height:70px; margin:10px 0; background:#111;}
+.green{color:#00ff88; font-size:20px; font-weight:bold;}
+.red{color:#ff4444; font-size:20px; font-weight:bold;}
+.yellow{color:#ffcc00; font-size:16px;}
+.chart{height:260px; background:#050505; border-radius:10px; display:flex; align-items:end; justify-content:space-around; padding:10px; border:1px solid #222;}
+.buy-sell{display:flex; gap:10px; margin-top:10px;}
+.buy-sell button{flex:1; padding:14px; border:none; border-radius:10px; font-size:18px; font-weight:bold; cursor:pointer;}
+.owner{text-align:center; color:#00ff88; font-weight:bold; font-size:20px; letter-spacing:1px;}
+.sub{font-size:11px; color:#888; text-align:center; margin-top:8px;}
 </style>
 </head>
 <body>
-<h2>📊 پریکٹس ڈیش بورڈ</h2>
-<div class="card">
-<div class="status" id="status">چارٹ لوڈ ہو رہا ہے...</div>
-<div class="support-box">
-<p>زمین (Support): <b>1.12290</b></p>
-<p>موجودہ قیمت: <span id="price">1.12315</span></p>
-<p id="hint">مارکیٹ زمین کے قریب ہے، غور سے دیکھو</p>
+<div class="main">
+<div class="owner">MALIK ZAIN ALI - GHOST V31</div>
+<div style="text-align:center; color:#ffcc00; font-size:12px;">PRACTICE DASHBOARD - ALL BOTS</div>
+
+<select id="botType" class="sel">
+<option value="ghost">GHOST V31 - MALIK ZAIN ALI</option>
+<option value="chinese">Chinese Bot - Fast 15s</option>
+<option value="indian">Indian Bot - Support Wala</option>
+<option value="coast">Coast Bot - Slow Market</option>
+<option value="otc">OTC Bot - 1m Wala</option>
+</select>
+
+<select class="sel">
+<option>EUR/USD - LIVE</option>
+<option>GBP/USD - LIVE</option>
+</select>
+
+<div class="top"><span>Live: <span id="livePrice">1.12290</span></span><span>● LIVE CANDLE</span></div>
+
+<div class="btns">
+<button id="b15" class="active" onclick="setTime('15s')">15s</button>
+<button id="b30" class="inactive" onclick="setTime('30s')">30s</button>
+<button id="b60" class="inactive" onclick="setTime('1m')">1m</button>
+</div>
+
+<button class="gen" onclick="generate()">🔊 Generate Signal - MALIK ZAIN ALI</button>
+
+<div class="result" id="res"><span class="yellow">Bot سلیکٹ کرو اور Generate دباؤ</span></div>
+
+<div style="display:flex; justify-content:space-between; font-size:11px; color:#888;">
+<span>RSI: <span id="rsi">--</span></span>
+<span>Power: <span id="pow">--%</span></span>
+<span>Support: 1.12290</span>
+<span>Timer: <span id="timer">12s</span></span>
 </div>
 </div>
-<div class="card">
-<div style="height:250px; background:#131316; border-radius:8px; display:flex; align-items:end; justify-content:space-around; padding:10px;" id="chart"></div>
+
+<div class="chart" id="chart"></div>
+
+<div class="buy-sell">
+<button style="background:#ff4444; color:white;" onclick="tradeAlert('SELL')">📉 SELL</button>
+<button style="background:#00ff88; color:black;" onclick="tradeAlert('BUY')">📈 BUY</button>
 </div>
-<div class="card" style="display:flex; justify-content:space-between;">
-<button class="btn btn-buy" onclick="trade('BUY')">BUY 📈</button>
-<button class="btn btn-sell" onclick="trade('SELL')">SELL 📉</button>
-</div>
-<div class="card" id="result" style="display:none;"></div>
+
+<div class="sub">Created by MALIK ZAIN ALI - Practice Only</div>
+
 <script>
-let prices=[1.1245,1.1240,1.1238,1.1232,1.1229,1.12267,1.1229,1.1231,1.1235,1.1238,1.1240];
-let support=1.12290; let current=0;
-let chartEl=document.getElementById('chart');
-let priceEl=document.getElementById('price');
-let statusEl=document.getElementById('status');
-let hintEl=document.getElementById('hint');
-function drawChart(){
- chartEl.innerHTML='';
- prices.forEach((p,i)=>{
-   let h=50+(p-1.1226)*10000;
-   let color=i>0&&p>prices[i-1]?'#00d084':'#ff4d4d';
-   let div=document.createElement('div');
-   div.style.width='6%'; div.style.height=h+'px'; div.style.background=color; div.style.borderRadius='3px';
-   chartEl.appendChild(div);
+let support=1.12290;
+let chart=document.getElementById('chart');
+let prices=[];
+for(let i=0;i<24;i++) prices.push(1.1230 + (Math.random()-0.5)*0.001);
+function draw(){
+ chart.innerHTML='';
+ prices.forEach(p=>{
+   let h=30+Math.abs(p-support)*22000;
+   if(h>200) h=200; if(h<10) h=10;
+   let c = p>support?'#00ff88':'#ff4444';
+   let d=document.createElement('div');
+   d.style.width='2.8%'; d.style.height=h+'px'; d.style.background=c; d.style.borderRadius='2px';
+   chart.appendChild(d);
  });
 }
-function update(){
- let p=prices[current%prices.length]+(Math.random()-0.5)*0.0002;
- priceEl.innerText=p.toFixed(5);
- let diff=p-support;
- if(diff<0.00015 && diff>-0.0001){
-   statusEl.innerHTML='<span class="green">مارکیٹ زمین پر ہے - BUY کا سوچو</span>';
-   hintEl.innerText='یہی وہ جگہ ہے جہاں سے مارکیٹ واپس مڑتی ہے';
- } else if(diff>0.0005){
-   statusEl.innerHTML='<span class="red">مارکیٹ بہت اوپر ہے - انتظار کرو</span>';
-   hintEl.innerText='اب Buy مت کرو';
- } else { statusEl.innerText='مارکیٹ دیکھ رہے ہیں...'; }
- current++; drawChart();
+draw();
+setInterval(()=>{
+ let lp=1.1230+(Math.random()-0.5)*0.0008;
+ document.getElementById('livePrice').innerText=lp.toFixed(5);
+ prices.shift(); prices.push(lp);
+ draw();
+},1000);
+let t=12;
+setInterval(()=>{t--; if(t<0)t=12; document.getElementById('timer').innerText=t+'s';},1000);
+function setTime(x){
+ document.getElementById('b15').className='inactive';
+ document.getElementById('b30').className='inactive';
+ document.getElementById('b60').className='inactive';
+ if(x=='15s') document.getElementById('b15').className='active';
+ if(x=='30s') document.getElementById('b30').className='active';
+ if(x=='1m') document.getElementById('b60').className='active';
 }
-setInterval(update,1500); update();
-function trade(type){
- let p=parseFloat(priceEl.innerText);
- let res=document.getElementById('result'); res.style.display='block';
- if(type=='BUY' && Math.abs(p-support)<0.0003){
-   res.innerHTML='<h3 class="green">✅ بہترین فیصلہ!</h3><p>آپ نے Support سے BUY کیا۔ 5 منٹ میں پرافٹ بنتا۔</p>';
- } else if(type=='BUY'){
-   res.innerHTML='<h3 class="red">⚠️ جلدی کر دی</h3><p>زمین کے قریب آنے کا انتظار کرو۔</p>';
- } else {
-   res.innerHTML='<h3 class="red">❌ غلط جگہ SELL</h3><p>زمین پر کبھی Sell نہیں کرتے۔</p>';
- }
+function generate(){
+ let bot=document.getElementById('botType').value;
+ let res=document.getElementById('res');
+ res.innerHTML='<span class="yellow">⏳ '+bot+' لوڈ ہو رہا ہے...</span>';
+ setTimeout(()=>{
+   let live=parseFloat(document.getElementById('livePrice').innerText);
+   let diff=live-support;
+   let nearSupport = Math.abs(diff) < 0.0004;
+   if(bot=='ghost'){
+     if(nearSupport){ res.innerHTML='<div class="green">📈 MALIK ZAIN ALI: BUY کرو - زمین پر ہے</div><div style="font-size:12px;">Power 92% - Support strong</div>'; document.getElementById('rsi').innerText='28'; document.getElementById('pow').innerText='92%'; }
+     else { res.innerHTML='<div class="red">⏳ انتظار کرو - اوپر ہے</div>'; document.getElementById('rsi').innerText='68'; document.getElementById('pow').innerText='40%'; }
+   }
+   else if(bot=='chinese'){ res.innerHTML='<div class="green">⚡ CHINESE: FAST BUY 15s</div>'; document.getElementById('rsi').innerText='32'; document.getElementById('pow').innerText='88%'; }
+   else if(bot=='indian'){ if(nearSupport){ res.innerHTML='<div class="green">📈 INDIAN: Support سے BUY</div>'; } else { res.innerHTML='<div class="red">⏳ INDIAN: زمین سے دور ہے</div>'; } document.getElementById('rsi').innerText='25'; document.getElementById('pow').innerText='90%'; }
+   else if(bot=='coast'){ res.innerHTML='<div class="yellow">🌊 COAST: سائیڈ مارکیٹ - انتظار</div>'; document.getElementById('rsi').innerText='50'; document.getElementById('pow').innerText='45%'; }
+   else if(bot=='otc'){ res.innerHTML='<div class="green">📊 OTC: 1m BUY Signal</div>'; document.getElementById('rsi').innerText='35'; document.getElementById('pow').innerText='85%'; }
+ },1100);
+}
+function tradeAlert(type){
+ let live=parseFloat(document.getElementById('livePrice').innerText);
+ let diff=live-support;
+ if(type=='BUY' && Math.abs(diff)<0.0004){ alert('✅ صحیح! MALIK ZAIN ALI - Practice کامیاب'); } 
+ else if(type=='BUY'){ alert('⚠️ اوپر BUY کیا - انتظار کرنا تھا'); } 
+ else { alert('❌ Support پر SELL نہیں کرتے'); }
 }
 </script>
 </body>
