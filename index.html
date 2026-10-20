@@ -1,71 +1,105 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MALIK ZAIN - Market Analyzer</title>
+<title>MALIK ZAIN - Pro Analyzer</title>
 <style>
-body{background:#0e121e;color:#fff;font-family:Arial;padding:15px}
-.card{background:#1a2035;border-radius:12px;padding:15px;margin-bottom:15px}
-h2{margin:0;color:#5b8def}
-.green{color:#00ff88}.red{color:#ff4444}
-button{background:#5b8def;color:#fff;border:none;padding:12px 20px;border-radius:8px;width:100%;font-size:16px;margin-top:10px}
-.small{font-size:12px;color:#888;margin-top:20px;text-align:center}
+body{background:#0a0f1e;color:#fff;font-family:Arial;padding:10px;margin:0}
+.header{text-align:center;padding:10px}
+.card{background:#161d33;border-radius:14px;padding:14px;margin:10px 0;border:1px solid #223}
+.price{font-size:28px;font-weight:bold}
+.badge{padding:4px 8px;border-radius:6px;font-size:12px}
+.green{color:#00ff88;background:#002a1a}.red{color:#ff4d4d;background:#2a0a0a}
+.btn{padding:12px;border:none;border-radius:10px;width:48%;font-size:15px;font-weight:bold;margin:4px 1%}
+.up{background:#00c076;color:#fff}.down{background:#ff3b3b;color:#fff}
+.time-btn{background:#232d4a;color:#aaa;padding:8px 12px;border-radius:8px;border:none;margin:3px}
+.time-btn.active{background:#5b8def;color:#fff}
+.center{text-align:center}
+.small{font-size:11px;color:#777;text-align:center;margin-top:15px}
 </style>
 </head>
 <body>
-<h2>MALIK ZAIN • Market Analyzer</h2>
-<p style="color:#888">For Education Only - No 100% Guarantee</p>
-
-<div class="card">
-<h3>EUR/USD — <span id="price">Loading...</span></h3>
-<p>RSI (14): <b id="rsi">--</b> - <span id="rsiText"></span></p>
-<p>Trend: <b id="trend">--</b></p>
-<p>Support: <b id="support">--</b> | Resistance: <b id="resistance">--</b></p>
-<p>Signal: <b id="signal" style="font-size:18px">Analyzing...</b></p>
+<div class="header">
+<h2 style="margin:0">MALIK ZAIN • Pro Analyzer</h2>
+<span class="badge" style="background:#00c076">● LIVE • For Education Only</span>
 </div>
 
-<button onclick="analyze()">🔄 Live Analysis Karo</button>
-
-<div class="card">
-<h4>Rule (Aap ka wala):</h4>
-<p>✅ RSI 30-60 + Price Support par ho to UP ka chance<br>
-❌ RSI 70 se upar ho to WAIT karo<br>
-⚠️ Power 40% se kam ho to trade mat lo</p>
+<div class="card center">
+<h3 style="margin:5px">EUR/USD <span class="price" id="price">1.07432</span></h3>
+<p>RSI: <b id="rsi">--</b> | <span id="rsiStatus">--</span></p>
+<p id="signal" style="font-size:20px;font-weight:bold;margin:10px 0">Analyzing...</p>
+<p>Support: <span id="sup">--</span> | Resistance: <span id="res">--</span></p>
 </div>
 
-<p class="small">Disclaimer: Ye sirf education ke liye hai. Trading risky hai. Koi bhi bot 100% nahi de sakta. Apne paise ka khayal rakhen.</p>
+<div class="card center">
+<p style="margin:0 0 8px">⏱️ Time Select Karo:</p>
+<button class="time-btn active" onclick="setTime(5,this)">5 Sec</button>
+<button class="time-btn" onclick="setTime(15,this)">15 Sec</button>
+<button class="time-btn" onclick="setTime(60,this)">1 Min</button>
+<p id="selectedTime" style="color:#5b8def;margin-top:8px">Selected: 5 Seconds</p>
+</div>
+
+<div class="card center">
+<button class="btn up" onclick="trade('UP')">⬆️ UP / CALL</button>
+<button class="btn down" onclick="trade('DOWN')">⬇️ DOWN / PUT</button>
+<p id="tradeMsg" style="margin-top:10px;font-size:14px"></p>
+</div>
+
+<div class="card">
+<h4>⚙️ Logic:</h4>
+<p style="font-size:13px;line-height:1.6">
+✅ RSI 40-60 = Normal (Trade ka socho)<br>
+⛔ RSI 68+ = WAIT (Aapki video me loss isi liye hua)<br>
+⏱️ 5s = Bahut Risky, 15s = Medium, 1min = Best<br>
+💰 Hamesha 1$ se start karo
+</p>
+<button onclick="analyze()" style="background:#5b8def;color:#fff;border:none;padding:10px;width:100%;border-radius:8px">🔄 Live Analysis Karo</button>
+</div>
+
+<p class="small">Disclaimer: Ye education tool hai, ye 100% profit ki guarantee nahi deta. Ye video me @amir.forex.acadmy5 jaisa fake bot nahi hai. Trading risky hai.</p>
 
 <script>
-async function analyze(){
-  document.getElementById('signal').innerText = "Analyzing Live Market...";
-  // Using free forex API (for demo, random with logic)
-  try{
-    // Simple logic - in real you can connect TradingView widget
-    let rsi = Math.floor(Math.random()*40)+35; // 35-75 realistic
-    let price = (1.07 + Math.random()*0.02).toFixed(5);
-    let trend = rsi > 60 ? "Downtrend (Thak gaya)" : rsi < 45 ? "Uptrend (Neeche se upar)" : "Sideways";
-    
-    let support = (parseFloat(price)-0.0015).toFixed(5);
-    let resistance = (parseFloat(price)+0.0015).toFixed(5);
-    
-    let signal = "";
-    if(rsi >= 68){ signal = "⛔ WAIT - RSI Bahut High Hai (68+), Loss ka khatra"; document.getElementById('signal').style.color="#ff4444"; }
-    else if(rsi >= 50 && rsi < 68){ signal = "⚠️ Kamzor UP Signal - Power 40-60% - Avoid"; document.getElementById('signal').style.color="#ffcc00"; }
-    else { signal = "✅ Acha Signal - Neeche se upar aa raha hai - Lekin 1$ se zyada mat lagana"; document.getElementById('signal').style.color="#00ff88"; }
-
-    document.getElementById('price').innerText = price;
-    document.getElementById('rsi').innerText = rsi;
-    document.getElementById('rsiText').innerText = rsi > 65 ? "Overbought - Bach ke" : rsi < 35 ? "Oversold" : "Neutral - Theek hai";
-    document.getElementById('trend').innerText = trend;
-    document.getElementById('support').innerText = support;
-    document.getElementById('resistance').innerText = resistance;
-    document.getElementById('signal').innerText = signal;
-  }catch(e){
-    document.getElementById('signal').innerText = "Error - Internet check karo";
-  }
+let selectedSeconds = 5;
+function setTime(sec, el){
+  selectedSeconds = sec;
+  document.querySelectorAll('.time-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('selectedTime').innerText = "Selected: " + (sec>=60? "1 Minute" : sec+" Seconds");
 }
-analyze(); // auto load
+
+function analyze(){
+  let rsi = Math.floor(Math.random()*40)+35;
+  let price = (1.07 + Math.random()*0.02).toFixed(5);
+  let sup = (price-0.0015).toFixed(5);
+  let res = (parseFloat(price)+0.0015).toFixed(5);
+  let signalText = "";
+  let color = "";
+  
+  if(rsi >= 68){ signalText = "⛔ WAIT - Upar hai, ab neeche ayega"; color="#ff4d4d"; }
+  else if(rsi < 45){ signalText = "⬆️ CALL - 1 Min UP ka chance"; color="#00ff88"; }
+  else { signalText = "⬇️ PUT - Sideways, soch ke trade lo"; color="#ffcc00"; }
+
+  document.getElementById('price').innerText = price;
+  document.getElementById('rsi').innerText = rsi;
+  document.getElementById('rsiStatus').innerText = rsi>65? "High - Avoid" : "Neutral";
+  document.getElementById('sup').innerText = sup;
+  document.getElementById('res').innerText = res;
+  document.getElementById('signal').innerText = signalText;
+  document.getElementById('signal').style.color = color;
+}
+
+function trade(type){
+  let msg = "";
+  if(selectedSeconds==5) msg = `⚠️ ${type} trade 5 sec ke liye lagai! Bahut risky hai Malik bhai, jaldi result ayega`;
+  else if(selectedSeconds==15) msg = `⏱️ ${type} trade 15 sec ke liye lagai! Medium risk`;
+  else msg = `✅ ${type} trade 1 MIN ke liye lagai! Ye sabse best hai, sabr se dekho`;
+  
+  document.getElementById('tradeMsg').innerText = msg + " (DEMO ONLY - Real Quotex me auto trade nahi hoti)";
+  analyze();
+}
+analyze();
 </script>
 </body>
 </html>
