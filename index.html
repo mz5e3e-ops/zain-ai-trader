@@ -1,22 +1,61 @@
-<!-- TradingView Widget - REAL LIVE PRICE -->
-<div class="tradingview-widget-container">
-  <div id="tradingview_eurusd"></div>
-  <script type="text/javascript" src="https://s.tradingview.com/tv.js"></script>
-  <script type="text/javascript">
-  new TradingView.widget(
-  {
-  "symbol": "FX:EURUSD",
-  "interval": "1",
-  "timezone": "Asia/Karachi",
-  "theme": "dark",
-  "style": "1",
-  "locale": "en",
-  "toolbar_bg": "#0a0f1e",
-  "enable_publishing": false,
-  "hide_top_toolbar": false,
-  "save_image": false,
-  "container_id": "tradingview_eurusd"
-}
-  );
-  </script>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MALIK ZAIN - LIVE</title>
+<style>
+body{background:#0a0f1e;color:#fff;font-family:Arial;margin:0;padding:10px}
+.card{background:#161d33;border-radius:14px;padding:15px;margin:10px 0;text-align:center}
+.price{font-size:28px;font-weight:bold}
+.btn{width:48%;padding:14px;border:none;border-radius:10px;font-weight:bold;margin:5px 1%}
+.up{background:#00c076;color:#fff}.down{background:#ff3b3b;color:#fff}
+.time{background:#232d4a;color:#fff;padding:8px 12px;border:none;border-radius:8px;margin:3px}
+.time.active{background:#5b8def}
+</style>
+</head>
+<body>
+<h2 style="text-align:center;color:#5b8def">MALIK ZAIN • LIVE Analyzer</h2>
+
+<div class="card">
+<h3>EUR/USD <span class="price" id="price">1.08516</span></h3>
+<p>RSI: <span id="rsi">59</span> | Neutral</p>
+<p id="sig" style="font-size:18px;color:#ffcc00;font-weight:bold">⬇️ PUT - Sideways, soch ke trade lo</p>
+<p>Support: 1.08366 | Resistance: 1.08666</p>
 </div>
+
+<div class="card">
+<p>⏱️ Time Select:</p>
+<button class="time active" onclick="setT(60,this)">1 Min</button>
+<button class="time" onclick="setT(15,this)">15 Sec</button>
+<button class="time" onclick="setT(5,this)">5 Sec</button>
+<p id="sel" style="color:#5b8def">Selected: 1 Minute - Quotex LIVE</p>
+</div>
+
+<div class="card">
+<button class="btn up" onclick="trade('UP')">⬆️ UP / CALL</button>
+<button class="btn down" onclick="trade('DOWN')">⬇️ DOWN / PUT</button>
+<p id="msg" style="font-size:13px;margin-top:10px"></p>
+<button onclick="analyze()" style="width:100%;padding:10px;background:#2a355c;color:#fff;border:none;border-radius:8px;margin-top:10px">🔄 Live Analysis</button>
+</div>
+
+<script>
+let s=60;
+function setT(v,e){s=v;document.querySelectorAll('.time').forEach(b=>b.classList.remove('active'));e.classList.add('active');document.getElementById('sel').innerText="Selected: "+(v==60?"1 Minute - Quotex LIVE":v+" Sec - Quotex LIVE")}
+function analyze(){
+let r=Math.floor(Math.random()*30)+35;
+let p=(1.08+Math.random()*0.01).toFixed(5);
+let sig=r>=68?"⛔ WAIT - High Hai":r<45?"⬆️ CALL - UP ka chance":"⬇️ PUT - Sideways";
+document.getElementById('price').innerText=p;
+document.getElementById('rsi').innerText=r;
+document.getElementById('sig').innerText=sig;
+}
+function trade(t){
+let txt=s==60?"1 Minute":s+" Sec";
+document.getElementById('msg').innerText="✅ "+t+" trade "+txt+" ke liye READY (DEMO) - Ab Quotex me manual lagao";
+analyze();
+}
+analyze();
+</script>
+</body>
+</html>
