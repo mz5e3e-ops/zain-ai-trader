@@ -1,105 +1,22 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MALIK ZAIN - Pro Analyzer</title>
-<style>
-body{background:#0a0f1e;color:#fff;font-family:Arial;padding:10px;margin:0}
-.header{text-align:center;padding:10px}
-.card{background:#161d33;border-radius:14px;padding:14px;margin:10px 0;border:1px solid #223}
-.price{font-size:28px;font-weight:bold}
-.badge{padding:4px 8px;border-radius:6px;font-size:12px}
-.green{color:#00ff88;background:#002a1a}.red{color:#ff4d4d;background:#2a0a0a}
-.btn{padding:12px;border:none;border-radius:10px;width:48%;font-size:15px;font-weight:bold;margin:4px 1%}
-.up{background:#00c076;color:#fff}.down{background:#ff3b3b;color:#fff}
-.time-btn{background:#232d4a;color:#aaa;padding:8px 12px;border-radius:8px;border:none;margin:3px}
-.time-btn.active{background:#5b8def;color:#fff}
-.center{text-align:center}
-.small{font-size:11px;color:#777;text-align:center;margin-top:15px}
-</style>
-</head>
-<body>
-<div class="header">
-<h2 style="margin:0">MALIK ZAIN • Pro Analyzer</h2>
-<span class="badge" style="background:#00c076">● LIVE • For Education Only</span>
-</div>
-
-<div class="card center">
-<h3 style="margin:5px">EUR/USD <span class="price" id="price">1.07432</span></h3>
-<p>RSI: <b id="rsi">--</b> | <span id="rsiStatus">--</span></p>
-<p id="signal" style="font-size:20px;font-weight:bold;margin:10px 0">Analyzing...</p>
-<p>Support: <span id="sup">--</span> | Resistance: <span id="res">--</span></p>
-</div>
-
-<div class="card center">
-<p style="margin:0 0 8px">⏱️ Time Select Karo:</p>
-<button class="time-btn active" onclick="setTime(5,this)">5 Sec</button>
-<button class="time-btn" onclick="setTime(15,this)">15 Sec</button>
-<button class="time-btn" onclick="setTime(60,this)">1 Min</button>
-<p id="selectedTime" style="color:#5b8def;margin-top:8px">Selected: 5 Seconds</p>
-</div>
-
-<div class="card center">
-<button class="btn up" onclick="trade('UP')">⬆️ UP / CALL</button>
-<button class="btn down" onclick="trade('DOWN')">⬇️ DOWN / PUT</button>
-<p id="tradeMsg" style="margin-top:10px;font-size:14px"></p>
-</div>
-
-<div class="card">
-<h4>⚙️ Logic:</h4>
-<p style="font-size:13px;line-height:1.6">
-✅ RSI 40-60 = Normal (Trade ka socho)<br>
-⛔ RSI 68+ = WAIT (Aapki video me loss isi liye hua)<br>
-⏱️ 5s = Bahut Risky, 15s = Medium, 1min = Best<br>
-💰 Hamesha 1$ se start karo
-</p>
-<button onclick="analyze()" style="background:#5b8def;color:#fff;border:none;padding:10px;width:100%;border-radius:8px">🔄 Live Analysis Karo</button>
-</div>
-
-<p class="small">Disclaimer: Ye education tool hai, ye 100% profit ki guarantee nahi deta. Ye video me @amir.forex.acadmy5 jaisa fake bot nahi hai. Trading risky hai.</p>
-
-<script>
-let selectedSeconds = 5;
-function setTime(sec, el){
-  selectedSeconds = sec;
-  document.querySelectorAll('.time-btn').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('selectedTime').innerText = "Selected: " + (sec>=60? "1 Minute" : sec+" Seconds");
+<!-- TradingView Widget - REAL LIVE PRICE -->
+<div class="tradingview-widget-container">
+  <div id="tradingview_eurusd"></div>
+  <script type="text/javascript" src="https://s.tradingview.com/tv.js"></script>
+  <script type="text/javascript">
+  new TradingView.widget(
+  {
+  "symbol": "FX:EURUSD",
+  "interval": "1",
+  "timezone": "Asia/Karachi",
+  "theme": "dark",
+  "style": "1",
+  "locale": "en",
+  "toolbar_bg": "#0a0f1e",
+  "enable_publishing": false,
+  "hide_top_toolbar": false,
+  "save_image": false,
+  "container_id": "tradingview_eurusd"
 }
-
-function analyze(){
-  let rsi = Math.floor(Math.random()*40)+35;
-  let price = (1.07 + Math.random()*0.02).toFixed(5);
-  let sup = (price-0.0015).toFixed(5);
-  let res = (parseFloat(price)+0.0015).toFixed(5);
-  let signalText = "";
-  let color = "";
-  
-  if(rsi >= 68){ signalText = "⛔ WAIT - Upar hai, ab neeche ayega"; color="#ff4d4d"; }
-  else if(rsi < 45){ signalText = "⬆️ CALL - 1 Min UP ka chance"; color="#00ff88"; }
-  else { signalText = "⬇️ PUT - Sideways, soch ke trade lo"; color="#ffcc00"; }
-
-  document.getElementById('price').innerText = price;
-  document.getElementById('rsi').innerText = rsi;
-  document.getElementById('rsiStatus').innerText = rsi>65? "High - Avoid" : "Neutral";
-  document.getElementById('sup').innerText = sup;
-  document.getElementById('res').innerText = res;
-  document.getElementById('signal').innerText = signalText;
-  document.getElementById('signal').style.color = color;
-}
-
-function trade(type){
-  let msg = "";
-  if(selectedSeconds==5) msg = `⚠️ ${type} trade 5 sec ke liye lagai! Bahut risky hai Malik bhai, jaldi result ayega`;
-  else if(selectedSeconds==15) msg = `⏱️ ${type} trade 15 sec ke liye lagai! Medium risk`;
-  else msg = `✅ ${type} trade 1 MIN ke liye lagai! Ye sabse best hai, sabr se dekho`;
-  
-  document.getElementById('tradeMsg').innerText = msg + " (DEMO ONLY - Real Quotex me auto trade nahi hoti)";
-  analyze();
-}
-analyze();
-</script>
-</body>
-</html>
+  );
+  </script>
+</div>
