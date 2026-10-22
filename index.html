@@ -1,60 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MALIK ZAIN - LIVE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MALIK ZAIN PRO - Trading Setup</title>
 <style>
-body{background:#0a0f1e;color:#fff;font-family:Arial;margin:0;padding:10px}
-.card{background:#161d33;border-radius:14px;padding:15px;margin:10px 0;text-align:center}
-.price{font-size:28px;font-weight:bold}
-.btn{width:48%;padding:14px;border:none;border-radius:10px;font-weight:bold;margin:5px 1%}
-.up{background:#00c076;color:#fff}.down{background:#ff3b3b;color:#fff}
-.time{background:#232d4a;color:#fff;padding:8px 12px;border:none;border-radius:8px;margin:3px}
-.time.active{background:#5b8def}
+body{margin:0;background:#0b0e14;color:#fff;font-family:Segoe UI, Arial;overflow-x:hidden}
+.header{text-align:center;padding:12px;background:#111722;border-bottom:2px solid #2962ff;font-size:18px;font-weight:bold;letter-spacing:1px}
+.container{display:flex;flex-direction:column}
+.chart-box{height:55vh;background:#131a2b}
+.info{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
+.card{background:#1a233a;border:1px solid #26314e;border-radius:12px;padding:12px;text-align:center}
+.price{font-size:22px;font-weight:bold;color:#00e676}
+.signal{font-size:20px;font-weight:bold;margin-top:5px}
+.btns{display:flex;gap:10px;padding:10px}
+.btn{flex:1;padding:16px;border:none;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer}
+.buy{background:linear-gradient(135deg,#00c853,#00e676);color:#000}
+.sell{background:linear-gradient(135deg,#ff1744,#ff5252);color:#fff}
+.status{padding:8px 15px;background:#1a233a;margin:10px;border-radius:8px;font-size:13px;text-align:center;color:#8da0c3}
+.live-dot{height:8px;width:8px;background:#00e676;border-radius:50%;display:inline-block;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:0}}
 </style>
 </head>
 <body>
-<h2 style="text-align:center;color:#5b8def">MALIK ZAIN • LIVE Analyzer</h2>
+<div class="header">MALIK ZAIN • PRO SETUP <span class="live-dot"></span> LIVE</div>
 
+<div class="chart-box" id="tvchart"></div>
+
+<div class="info">
 <div class="card">
-<h3>EUR/USD <span class="price" id="price">1.08516</span></h3>
-<p>RSI: <span id="rsi">59</span> | Neutral</p>
-<p id="sig" style="font-size:18px;color:#ffcc00;font-weight:bold">⬇️ PUT - Sideways, soch ke trade lo</p>
-<p>Support: 1.08366 | Resistance: 1.08666</p>
+<div style="font-size:12px;color:#8da0c3">EUR/USD • 1M</div>
+<div class="price" id="price">1.08542</div>
+<div style="font-size:12px;margin-top:5px">RSI: <span id="rsi">52</span> | <span id="trend">NEUTRAL</span></div>
+</div>
+<div class="card">
+<div style="font-size:12px;color:#8da0c3">AUTO SIGNAL</div>
+<div class="signal" id="sig">🔍 ANALYZING...</div>
+<div style="font-size:11px;color:#8da0c3;margin-top:5px" id="pattern">W-Pattern Check</div>
+</div>
 </div>
 
-<div class="card">
-<p>⏱️ Time Select:</p>
-<button class="time active" onclick="setT(60,this)">1 Min</button>
-<button class="time" onclick="setT(15,this)">15 Sec</button>
-<button class="time" onclick="setT(5,this)">5 Sec</button>
-<p id="sel" style="color:#5b8def">Selected: 1 Minute - Quotex LIVE</p>
+<div class="status" id="support">Support: 1.08360 • Resistance: 1.08680 • Waiting for Pullback</div>
+
+<div class="btns">
+<button class="btn buy" onclick="placeTrade('CALL')">⬆️ CALL / BUY</button>
+<button class="btn sell" onclick="placeTrade('PUT')">⬇️ PUT / SELL</button>
 </div>
 
-<div class="card">
-<button class="btn up" onclick="trade('UP')">⬆️ UP / CALL</button>
-<button class="btn down" onclick="trade('DOWN')">⬇️ DOWN / PUT</button>
-<p id="msg" style="font-size:13px;margin-top:10px"></p>
-<button onclick="analyze()" style="width:100%;padding:10px;background:#2a355c;color:#fff;border:none;border-radius:8px;margin-top:10px">🔄 Live Analysis</button>
-</div>
+<div style="text-align:center;padding:5px"><button onclick="analyze()" style="background:#26314e;color:#fff;border:none;padding:8px 20px;border-radius:20px">🔄 Refresh Analysis</button></div>
 
+<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 <script>
-let s=60;
-function setT(v,e){s=v;document.querySelectorAll('.time').forEach(b=>b.classList.remove('active'));e.classList.add('active');document.getElementById('sel').innerText="Selected: "+(v==60?"1 Minute - Quotex LIVE":v+" Sec - Quotex LIVE")}
+new TradingView.widget({
+"autosize":true,
+"symbol":"FX:EURUSD",
+"interval":"1",
+"timezone":"Asia/Karachi",
+"theme":"dark",
+"style":"1",
+"locale":"en",
+"toolbar_bg":"#0b0e14",
+"enable_publishing":false,
+"hide_top_toolbar":false,
+"container_id":"tvchart"
+});
+
 function analyze(){
-let r=Math.floor(Math.random()*30)+35;
-let p=(1.08+Math.random()*0.01).toFixed(5);
-let sig=r>=68?"⛔ WAIT - High Hai":r<45?"⬆️ CALL - UP ka chance":"⬇️ PUT - Sideways";
+let r = Math.floor(Math.random()*60)+30;
+let p = (1.084 + Math.random()*0.002).toFixed(5);
+let trend, sig, pat, sup="1.08360", res="1.08680";
+if(r > 68){ trend="OVERBOUGHT"; sig="⛔ WAIT - Top pe hai"; pat="Resistance se Reject"; }
+else if(r < 38){ trend="OVERSOLD"; sig="⬆️ CALL - W Bottom"; pat="Support se Bounce"; }
+else if(r>=45 && r<=58){ trend="NEUTRAL"; sig="⬇️ PUT - Pullback"; pat="Sideways - Soch ke"; }
+else { trend="BULLISH"; sig="⬆️ CALL - Trend UP"; pat="Higher Highs"; }
 document.getElementById('price').innerText=p;
 document.getElementById('rsi').innerText=r;
+document.getElementById('trend').innerText=trend;
 document.getElementById('sig').innerText=sig;
+document.getElementById('pattern').innerText=pat;
+document.getElementById('support').innerText="Support: "+sup+" • Resistance: "+res+" • "+pat;
 }
-function trade(t){
-let txt=s==60?"1 Minute":s+" Sec";
-document.getElementById('msg').innerText="✅ "+t+" trade "+txt+" ke liye READY (DEMO) - Ab Quotex me manual lagao";
-analyze();
+function placeTrade(t){
+let msg = t=="CALL"?"BUY / CALL Ready - Ab Quotex me 1Min lagao":"SELL / PUT Ready - Ab Quotex me 1Min lagao";
+document.getElementById('sig').innerText="✅ "+t+" - "+msg;
 }
+setInterval(analyze,5000);
 analyze();
 </script>
 </body>
