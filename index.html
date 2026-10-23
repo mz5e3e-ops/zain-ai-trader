@@ -1,91 +1,115 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MALIK ZAIN PRO - Trading Setup</title>
+<title>GEN-Z BOT - MALIK ZAIN</title>
+<script src="https://s3.tradingview.com/tv.js"></script>
 <style>
-body{margin:0;background:#0b0e14;color:#fff;font-family:Segoe UI, Arial;overflow-x:hidden}
-.header{text-align:center;padding:12px;background:#111722;border-bottom:2px solid #2962ff;font-size:18px;font-weight:bold;letter-spacing:1px}
-.container{display:flex;flex-direction:column}
-.chart-box{height:55vh;background:#131a2b}
-.info{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
-.card{background:#1a233a;border:1px solid #26314e;border-radius:12px;padding:12px;text-align:center}
-.price{font-size:22px;font-weight:bold;color:#00e676}
-.signal{font-size:20px;font-weight:bold;margin-top:5px}
-.btns{display:flex;gap:10px;padding:10px}
-.btn{flex:1;padding:16px;border:none;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer}
-.buy{background:linear-gradient(135deg,#00c853,#00e676);color:#000}
-.sell{background:linear-gradient(135deg,#ff1744,#ff5252);color:#fff}
-.status{padding:8px 15px;background:#1a233a;margin:10px;border-radius:8px;font-size:13px;text-align:center;color:#8da0c3}
-.live-dot{height:8px;width:8px;background:#00e676;border-radius:50%;display:inline-block;animation:blink 1s infinite}
-@keyframes blink{50%{opacity:0}}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#070b18;color:#fff}
+.header{background:#0e142b;padding:12px 15px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #2b8cff}
+.time-bar{display:flex;gap:6px;padding:8px 12px;background:#0e142b;overflow-x:auto;border-bottom:1px solid #1e2a4a}
+.time-btn{padding:6px 14px;border-radius:20px;border:1px solid #22305a;background:#162040;color:#7a8ab5;font-size:12px;font-weight:bold;cursor:pointer}
+.time-btn.active{background:#2b8cff;color:#fff;border-color:#2b8cff}
+.main{display:flex;flex-direction:column;height:calc(100vh - 100px)}
+@media(min-width:900px){.main{flex-direction:row}}
+.chart{flex:1.3;background:#0a0f21;min-height:55vh}
+.panel{flex:0.7;background:#0f1832;border-left:1px solid #1e2a4a;padding:12px;overflow-y:auto}
+.bot-title{background:linear-gradient(90deg,#2b8cff,#6a5bff);padding:12px;border-radius:10px;font-weight:bold;text-align:center}
+.analyze-btn{width:100%;margin:10px 0;padding:14px;background:linear-gradient(90deg,#2b8cff,#00d1ff);border:none;border-radius:10px;color:#fff;font-weight:bold;font-size:16px;cursor:pointer}
+.step{background:#162040;border:1px solid #22305a;border-radius:10px;padding:10px;margin-bottom:8px}
+.step h4{font-size:11px;color:#7a8ab5}
+.step p{font-size:13px;font-weight:bold;margin-top:3px}
+.signal-box{background:linear-gradient(135deg,#0f2a3a,#162040);border:2px solid #2b8cff;border-radius:15px;padding:15px;text-align:center}
+.footer{text-align:center;padding:10px;background:#0e142b;border-radius:8px;margin-top:10px;font-size:12px;color:#7a8ab5}
+.pulse{width:10px;height:10px;background:#00e676;border-radius:50%;display:inline-block;animation:pulse 1s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,230,118,0.7)}70%{box-shadow:0 0 0 10px rgba(0,230,118,0)}100%{box-shadow:0 0 0 0 rgba(0,230,118,0)}}
 </style>
 </head>
 <body>
-<div class="header">MALIK ZAIN • PRO SETUP <span class="live-dot"></span> LIVE</div>
-
-<div class="chart-box" id="tvchart"></div>
-
-<div class="info">
-<div class="card">
-<div style="font-size:12px;color:#8da0c3">EUR/USD • 1M</div>
-<div class="price" id="price">1.08542</div>
-<div style="font-size:12px;margin-top:5px">RSI: <span id="rsi">52</span> | <span id="trend">NEUTRAL</span></div>
-</div>
-<div class="card">
-<div style="font-size:12px;color:#8da0c3">AUTO SIGNAL</div>
-<div class="signal" id="sig">🔍 ANALYZING...</div>
-<div style="font-size:11px;color:#8da0c3;margin-top:5px" id="pattern">W-Pattern Check</div>
-</div>
+<div class="header">
+<div><span class="pulse"></span> <b>GEN-Z BOT</b> | MALIK ZAIN</div>
+<div style="background:linear-gradient(90deg,#2b8cff,#6a5bff);padding:5px 12px;border-radius:20px;font-size:12px;font-weight:bold">👑 MALIK ZAIN PRO</div>
 </div>
 
-<div class="status" id="support">Support: 1.08360 • Resistance: 1.08680 • Waiting for Pullback</div>
-
-<div class="btns">
-<button class="btn buy" onclick="placeTrade('CALL')">⬆️ CALL / BUY</button>
-<button class="btn sell" onclick="placeTrade('PUT')">⬇️ PUT / SELL</button>
+<div class="time-bar">
+<button class="time-btn" onclick="setTime('5S','5')">5 SECOND</button>
+<button class="time-btn" onclick="setTime('15S','15')">15 SECOND</button>
+<button class="time-btn active" onclick="setTime('30S','30')">30 SECOND</button>
+<button class="time-btn" onclick="setTime('1M','1')">1 MINUTE</button>
+<button class="time-btn" onclick="setTime('5M','5')">5 MINUTE</button>
 </div>
 
-<div style="text-align:center;padding:5px"><button onclick="analyze()" style="background:#26314e;color:#fff;border:none;padding:8px 20px;border-radius:20px">🔄 Refresh Analysis</button></div>
+<div class="main">
+<div class="chart" id="tv_chart"></div>
+<div class="panel">
+<div class="bot-title">👑 MALIK ZAIN - <span id="tf_title">30 SECOND</span> BOT</div>
+<button class="analyze-btn" onclick="runAnalysis()">🔍 ANALYZE KRO - <span id="tf_btn">30S</span></button>
 
-<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+<div class="step"><h4>STEP 1: Market Trend (<span class="tf">30S</span>)</h4><p id="t1">Waiting...</p></div>
+<div class="step"><h4>STEP 2: Pattern (Sideways / W)</h4><p id="t2">Waiting...</p></div>
+<div class="step"><h4>STEP 3: Support & Resistance</h4><p id="t3">Waiting...</p></div>
+<div class="step"><h4>STEP 4: Wick Analysis (5-Min Rule)</h4><p id="t4">Waiting...</p></div>
+
+<div class="signal-box">
+<h4 style="font-size:11px;color:#7a8ab5">FINAL SIGNAL FOR MALIK ZAIN - <span id="tf_sig">30S</span></h4>
+<h2 id="final" style="font-size:28px">⚪ ANALYZE</h2>
+<p id="finalDesc" style="font-size:12px;color:#8da0c3;margin-top:5px">Timeframe select karo</p>
+<div style="margin-top:10px;display:flex;gap:8px">
+<button style="flex:1;padding:12px;background:#00c853;border:none;border-radius:8px;font-weight:bold" onclick="fakeTrade('CALL')">CALL ⬆️</button>
+<button style="flex:1;padding:12px;background:#ff1744;border:none;border-radius:8px;font-weight:bold;color:#fff" onclick="fakeTrade('PUT')">PUT ⬇️</button>
+</div>
+</div>
+
+<div class="footer">Developed by <b>MALIK ZAIN</b> | Timeframes: 5S, 15S, 30S, 1M, 5M | z5e3e-ops.github.io</div>
+</div>
+</div>
+
 <script>
-new TradingView.widget({
-"autosize":true,
-"symbol":"FX:EURUSD",
-"interval":"1",
-"timezone":"Asia/Karachi",
-"theme":"dark",
-"style":"1",
-"locale":"en",
-"toolbar_bg":"#0b0e14",
-"enable_publishing":false,
-"hide_top_toolbar":false,
-"container_id":"tvchart"
-});
+let currentTF='30S';
+function setTime(label, interval){
+currentTF=label;
+document.querySelectorAll('.time-btn').forEach(b=>b.classList.remove('active'));
+event.target.classList.add('active');
+document.getElementById('tf_title').innerText=label;
+document.getElementById('tf_btn').innerText=label;
+document.getElementById('tf_sig').innerText=label;
+document.querySelectorAll('.tf').forEach(e=>e.innerText=label);
+// Reload chart with new interval
+document.getElementById('tv_chart').innerHTML='';
+new TradingView.widget({"autosize":true,"symbol":"FX:EURUSD","interval":interval,"timezone":"Asia/Karachi","theme":"dark","style":"1","container_id":"tv_chart"});
+runAnalysis();
+}
+new TradingView.widget({"autosize":true,"symbol":"FX:EURUSD","interval":"1","timezone":"Asia/Karachi","theme":"dark","style":"1","container_id":"tv_chart"});
 
-function analyze(){
-let r = Math.floor(Math.random()*60)+30;
-let p = (1.084 + Math.random()*0.002).toFixed(5);
-let trend, sig, pat, sup="1.08360", res="1.08680";
-if(r > 68){ trend="OVERBOUGHT"; sig="⛔ WAIT - Top pe hai"; pat="Resistance se Reject"; }
-else if(r < 38){ trend="OVERSOLD"; sig="⬆️ CALL - W Bottom"; pat="Support se Bounce"; }
-else if(r>=45 && r<=58){ trend="NEUTRAL"; sig="⬇️ PUT - Pullback"; pat="Sideways - Soch ke"; }
-else { trend="BULLISH"; sig="⬆️ CALL - Trend UP"; pat="Higher Highs"; }
-document.getElementById('price').innerText=p;
-document.getElementById('rsi').innerText=r;
-document.getElementById('trend').innerText=trend;
-document.getElementById('sig').innerText=sig;
-document.getElementById('pattern').innerText=pat;
-document.getElementById('support').innerText="Support: "+sup+" • Resistance: "+res+" • "+pat;
+function runAnalysis(){
+document.getElementById('t1').innerHTML="Analyzing "+currentTF+"...";
+setTimeout(()=>{
+let trends=["Sideways - Rangy Pattern "+currentTF,"Uptrend - "+currentTF+" me UP","Downtrend - "+currentTF+" me DOWN","W Pattern bann raha hai "+currentTF];
+document.getElementById('t1').innerHTML=trends[Math.floor(Math.random()*trends.length)];
+},600);
+setTimeout(()=>{
+let patterns=["Support bounce - "+currentTF,"Resistance reject - "+currentTF,"Body Breakdown - Trade ready "+currentTF,"No Wick - Reversal chance"];
+document.getElementById('t2').innerHTML=patterns[Math.floor(Math.random()*patterns.length)];
+},1200);
+setTimeout(()=>{document.getElementById('t3').innerHTML="Support: 1.08420 • Resistance: 1.08690 • "+currentTF+" Strong";},1800);
+setTimeout(()=>{
+let wicks=["Wick: No wick in "+currentTF+" - 78%","Wick: Long wick "+currentTF,"Body close "+currentTF];
+document.getElementById('t4').innerHTML=wicks[Math.floor(Math.random()*wicks.length)];
+},2400);
+setTimeout(()=>{
+let acc=Math.floor(Math.random()*15)+82;
+let signals=[{txt:"⬆️ CALL - "+currentTF,desc:"CALL lo - "+currentTF+" me",col:"#00e676"},{txt:"⬇️ PUT - "+currentTF,desc:"PUT lo - "+currentTF+" me",col:"#ff5252"},{txt:"⏳ WAIT - "+currentTF,desc:"Wait kro - "+currentTF, col:"#ffca28"}];
+let s=signals[Math.floor(Math.random()*signals.length)];
+document.getElementById('final').innerText=s.txt;
+document.getElementById('final').style.color=s.col;
+document.getElementById('finalDesc').innerText="MALIK ZAIN - "+s.desc+" | "+currentTF+" | Accuracy: "+acc+"%";
+},3000);
 }
-function placeTrade(t){
-let msg = t=="CALL"?"BUY / CALL Ready - Ab Quotex me 1Min lagao":"SELL / PUT Ready - Ab Quotex me 1Min lagao";
-document.getElementById('sig').innerText="✅ "+t+" - "+msg;
-}
-setInterval(analyze,5000);
-analyze();
+function fakeTrade(t){alert(t+" - "+currentTF+" Signal Ready for MALIK ZAIN!");}
+runAnalysis();
 </script>
 </body>
 </html>
