@@ -2,54 +2,50 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>MALIK ZAIN - GEN-Z BOT</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MALIK ZAIN - PATTERN 14-26 BOT</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#040613;display:flex;justify-content:center;font-family:Arial}
-.panel{width:420px;background:#080a1e;border:1px solid #1e234a;border-radius:20px;padding:16px;margin:10px;box-shadow:0 0 80px #000;position:relative;overflow:hidden}
-.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.top b{color:#fff;font-size:13px;letter-spacing:0.5px}
-.top span{color:#00ff88;font-size:11px;background:#0a1f14;padding:5px 10px;border-radius:8px;border:1px solid #00ff8844}
+.panel{width:430px;background:#080a1e;border:1px solid #1e234a;border-radius:20px;padding:14px;margin:10px;box-shadow:0 0 80px #000;position:relative}
+.top{display:flex;justify-content:space-between;align-items:center}
+.top b{color:#fff;font-size:13px} .top span{color:#00ff88;font-size:11px;background:#0a1f14;padding:5px 10px;border-radius:8px;border:1px solid #00ff8844}
 .label{font-size:10px;color:#5a6490;margin:10px 0 6px 2px;letter-spacing:1px}
 .pair-row{display:flex;gap:6px;flex-wrap:wrap}
-.pair{flex:1;min-width:80px;background:#101330;border:1px solid #1e234a;border-radius:10px;padding:10px 5px;text-align:center;font-size:11px;color:#8a90b0;cursor:pointer;transition:0.2s}
-.pair.active{background:linear-gradient(#00ff8822,#00ff8844);border-color:#00ff88;color:#00ff88;font-weight:900;box-shadow:0 0 15px #00ff8844}
-.time-row{display:flex;gap:6px}
-.time{flex:1;background:#101330;border:1px solid #1e234a;border-radius:20px;padding:8px 0;text-align:center;font-size:11px;color:#7a819e;cursor:pointer}
-.time.active{background:#fff;color:#0a0f8a;font-weight:900;box-shadow:0 0 15px #fff5}
-.circle-wrap{text-align:center;position:relative;margin:18px 0}
-.circle{width:210px;height:210px;margin:0 auto;border-radius:50%;background:radial-gradient(circle,#00ff88 0%, #00b35a 50%, #052e16 85%);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 80px #00ff88aa, inset 0 0 30px #00ff88;animation:glow 2s infinite;position:relative}
+.pair{flex:1;min-width:75px;background:#101330;border:1px solid #1e234a;border-radius:10px;padding:9px 2px;text-align:center;font-size:10px;color:#8a90b0;cursor:pointer}
+.pair.active{background:#00ff8822;border-color:#00ff88;color:#00ff88;font-weight:900}
+.time-row{display:flex;gap:5px}
+.time{flex:1;background:#101330;border:1px solid #1e234a;border-radius:20px;padding:7px 0;text-align:center;font-size:11px;color:#7a819e;cursor:pointer}
+.time.active{background:#fff;color:#0a0f8a;font-weight:900}
+.circle-wrap{text-align:center;position:relative;margin:14px 0}
+.circle{width:200px;height:200px;margin:0 auto;border-radius:50%;background:radial-gradient(circle,#00ff88 0%, #00b35a 50%, #052e16 85%);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 80px #00ff88aa;animation:glow 2s infinite}
 @keyframes glow{0%,100%{box-shadow:0 0 50px #00ff88aa}50%{box-shadow:0 0 110px #00ff88}}
-.ring{position:absolute;width:235px;height:235px;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-90deg);border-radius:50%;border:3px solid #1a1f3d;border-top:3px solid #00ff88;border-right:3px solid #8a4dff;animation:spin 2s linear infinite}
+.ring{position:absolute;width:225px;height:225px;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-90deg);border-radius:50%;border:3px solid #1a1f3d;border-top:3px solid #00ff88;border-right:3px solid #8a4dff;animation:spin 2s linear infinite}
 @keyframes spin{to{transform:translate(-50%,-50%) rotate(270deg)}}
-.percent{font-size:38px;color:#fff;font-weight:900;margin-top:4px}
-.arrow{font-size:36px;color:#fff;font-weight:900}
-.buy{color:#00ff88;font-weight:900;font-size:19px;margin-top:14px;text-shadow:0 0 15px #00ff88;letter-spacing:0.5px}
-.stages{background:#101330;border-radius:14px;padding:12px;border:1px solid #1e234a;margin:14px 0}
-.stage{font-size:11px;color:#5a6490;padding:6px 0;display:flex;justify-content:space-between;border-bottom:1px solid #1a1f3d44}
-.stage:last-child{border:none}
-.stage.done{color:#00ff88} .stage.active{color:#fff; font-weight:700}
-.info{display:flex;gap:8px;margin:14px 0}
-.box{flex:1;background:#101330;border:1px solid #1e234a;border-radius:12px;padding:10px;text-align:center}
-.box small{display:block;color:#5a6490;font-size:9px;margin-bottom:3px} .box b{color:#fff;font-size:14px}
-.btn{width:100%;background:linear-gradient(90deg,#8a4dff,#ff3b6a);border:none;padding:15px;border-radius:14px;color:white;font-weight:900;font-size:14px;cursor:pointer;box-shadow:0 5px 25px #8a4dff66;letter-spacing:0.5px}
-.tag{position:absolute;bottom:0;left:50%;transform:translateX(-50%);background:white;color:#0a0f8a;font-weight:900;font-size:10px;padding:5px 16px;border-radius:10px 10px 0 0}
+.percent{font-size:36px;color:#fff;font-weight:900} .buy{color:#00ff88;font-weight:900;font-size:16px;margin-top:10px;text-shadow:0 0 15px #00ff88}
+.pattern-select{width:100%;background:#101330;border:1px solid #1e234a;border-radius:10px;color:#fff;padding:10px;font-size:12px;margin:8px 0}
+.stages{background:#101330;border-radius:14px;padding:10px;border:1px solid #1e234a;margin:10px 0;max-height:220px;overflow-y:auto}
+.stage{font-size:11px;color:#5a6490;padding:5px 0;display:flex;justify-content:space-between;border-bottom:1px solid #1a1f3d44}
+.stage.done{color:#00ff88} .stage.active{color:#fff;font-weight:700;background:#00ff8811;border-radius:6px;padding:6px}
+.info{display:flex;gap:8px;margin:10px 0}
+.box{flex:1;background:#101330;border:1px solid #1e234a;border-radius:10px;padding:8px;text-align:center}
+.box small{color:#5a6490;font-size:9px} .box b{color:#fff;font-size:13px}
+.btn{width:100%;background:linear-gradient(90deg,#8a4dff,#ff3b6a);border:none;padding:14px;border-radius:12px;color:white;font-weight:900;font-size:13px;cursor:pointer}
 </style>
 </head>
 <body>
 <div class="panel">
-<div class="top"><b>MALIK ZAIN • GEN-Z BOT</b><span id="live">● LIVE $88,456</span></div>
+<div class="top"><b>MALIK ZAIN • GEN-Z BOT</b><span id="live">● USD/PKR LIVE</span></div>
 
-<div class="label">SELECT PAIR - Quotex / USD PKR</div>
+<div class="label">SELECT PAIR</div>
 <div class="pair-row">
-<div class="pair active" onclick="setPair(this,'USD/PKR (OTC)')">USD/PKR</div>
-<div class="pair" onclick="setPair(this,'EUR/USD')">EUR/USD</div>
-<div class="pair" onclick="setPair(this,'GBP/USD')">GBP/USD</div>
-<div class="pair" onclick="setPair(this,'USD/JPY')">USD/JPY</div>
+<div class="pair active" onclick="setPair(this)">USD/PKR (OTC)</div>
+<div class="pair" onclick="setPair(this)">EUR/USD</div>
+<div class="pair" onclick="setPair(this)">GBP/USD</div>
+<div class="pair" onclick="setPair(this)">USD/JPY</div>
 </div>
 
-<div class="label">SELECT EXPIRY TIME</div>
+<div class="label">EXPIRY</div>
 <div class="time-row">
 <div class="time" onclick="setTime(this)">5s</div>
 <div class="time active" onclick="setTime(this)">15s</div>
@@ -59,49 +55,88 @@ body{background:#040613;display:flex;justify-content:center;font-family:Arial}
 <div class="time" onclick="setTime(this)">30m</div>
 </div>
 
+<div class="label">SELECT PATTERN STRATEGY (14-26)</div>
+<select class="pattern-select" id="pattern" onchange="changePattern()">
+<option value="14">PATTERN 14 - Support Break (2 Green after Red)</option>
+<option value="15">PATTERN 15 - Magic V Pattern</option>
+<option value="16">PATTERN 16 - Uptrend 3-4 Green + 1 Red</option>
+<option value="17">PATTERN 17 - Downtrend 3-4 Red + 1 Green</option>
+<option value="18">PATTERN 18 - Side Way (Long Red Marubozu)</option>
+<option value="19">PATTERN 19 - Side Way (Long Green Marubozu)</option>
+<option value="20">PATTERN 20 - Downtrend 2 Red + Green + 4th Red No Break</option>
+<option value="21">PATTERN 21 - Uptrend 2 Green + Red + 4th Green No Break</option>
+<option value="22">PATTERN 22 - Uptrend 3-5 Green + Small Red</option>
+<option value="23">PATTERN 23 - Downtrend 3-5 Red + Small Green</option>
+<option value="24">PATTERN 24 - Sideways SNR Live Market (Non-MTG)</option>
+<option value="25">PATTERN 25 - DOJI + RED + LONG GREEN + GREEN</option>
+<option value="26">PATTERN 26 - Descending Green + 2 Red + Doji</option>
+</select>
+
 <div class="circle-wrap">
-<div class="circle"><div class="ring"></div><div class="arrow" id="arrow">↗</div><div class="percent" id="per">91%</div></div>
-<div class="buy" id="buy">BUY (LONG) - 91% ACCURACY</div>
+<div class="circle"><div class="ring"></div><div style="font-size:32px;color:#fff" id="arrow">↗</div><div class="percent" id="per">0%</div></div>
+<div class="buy" id="buy">SELECT PATTERN & START</div>
 </div>
 
-<div class="stages">
-<div class="stage done" id="s1">STAGE 1: Market Trend Analysis <b>✅</b></div>
-<div class="stage done" id="s2">STAGE 2: Support & Resistance <b>✅</b></div>
-<div class="stage done" id="s3">STAGE 3: RSI & Indicator Check <b>✅</b></div>
-<div class="stage done" id="s4">STAGE 4: Candle Pattern Detect <b>✅</b></div>
-<div class="stage done" id="s5">STAGE 5: AI Confirmation <b>✅</b></div>
-<div class="stage done" id="s6">STAGE 6: Volume Analysis <b>✅</b></div>
-<div class="stage done" id="s7">STAGE 7: Quotex OTC Filter <b>✅</b></div>
-<div class="stage done" id="s8">STAGE 8: Final Signal Generate <b>✅</b></div>
-</div>
+<div class="stages" id="stages"></div>
 
 <div class="info">
 <div class="box"><small>WIN RATE</small><b>5/5</b></div>
-<div class="box"><small>ACCURACY</small><b id="acc">91%</b></div>
-<div class="box"><small>SIGNAL</small><b id="sig" style="color:#00ff88">BUY</b></div>
+<div class="box"><small>ACCURACY</small><b id="acc">0%</b></div>
+<div class="box"><small>ENTRY</small><b id="sig" style="color:#00ff88">WAIT</b></div>
 </div>
 
-<button class="btn" onclick="startBot()">⚡ START MALIK ZAIN ANALYSIS</button>
-<div class="tag">GEN-Z-AI BOT 📈</div>
+<button class="btn" onclick="startBot()">⚡ ANALYZE PATTERN TYPE <span id="btnPat">14</span></button>
 </div>
 
 <script>
+const patternInfo = {
+14:"Horizontal SUPPORT Line between first 2 Green after Red -> Break Entry",
+15:"Magic V Pattern -> Break horizontal line then opposite shot",
+16:"3-4 Back to Back Green (Normal Body) + 1 Red -> Next Green Sure",
+17:"3-4 Back to Back Red + 1 Green -> Next Red Sure",
+18:"Long Red Marubozu + 3 Green + 1 Red No Break Resistance -> Next Red",
+19:"Long Green Marubozu + 3 Red + 1 Green No Break Support -> Next Green",
+20:"2 Red + Green + 4th Red Should NOT Break Previous Green -> 5th Red Sure",
+21:"2 Green + Red + 4th Green Should NOT Break Previous Red -> 5th Green Sure",
+22:"3-5 Green + Small Red (Smaller than Prev Green) -> Next Green Sure",
+23:"3-5 Red + Small Green (Smaller than Prev Red) -> Next Red Sure",
+24:"SNR LEVEL - Green Doji/ Small Red Breakout + 4th Green smaller + 5th Green Sure - Non MTG",
+25:"Doji Small Red + Red + Long Green breaking SNR + Green -> 4th Green Sure - MTG1 allowed",
+26:"Long>Long>Normal Green + 2 Red NOT breaking 2 Green + Doji/Small -> 6th Green Sure"
+}
 let currentPair="USD/PKR (OTC)", currentTime="15s";
-function setPair(el,name){document.querySelectorAll('.pair').forEach(p=>p.classList.remove('active')); el.classList.add('active'); currentPair=name; document.getElementById('live').innerText="● "+name}
-function setTime(el){document.querySelectorAll('.time').forEach(p=>p.classList.remove('active')); el.classList.add('active'); currentTime=el.innerText}
+function setPair(el){document.querySelectorAll('.pair').forEach(p=>p.classList.remove('active'));el.classList.add('active');currentPair=el.innerText;document.getElementById('live').innerText="● "+currentPair}
+function setTime(el){document.querySelectorAll('.time').forEach(p=>p.classList.remove('active'));el.classList.add('active');currentTime=el.innerText}
+function changePattern(){document.getElementById('btnPat').innerText=document.getElementById('pattern').value}
 
 function startBot(){
- let per=document.getElementById('per'), buy=document.getElementById('buy'), acc=document.getElementById('acc'), sig=document.getElementById('sig');
- for(let i=1;i<=8;i++){let e=document.getElementById('s'+i); e.className='stage'; e.innerHTML=e.innerText.split(' <')[0]+' <b>⏳</b>'}
- let p=0; buy.innerText="ANALYZING "+currentPair+"..."; buy.style.color="#8a90b0"; sig.innerText="WAIT";
+ let pid=document.getElementById('pattern').value;
+ let per=document.getElementById('per'), buy=document.getElementById('buy'), acc=document.getElementById('acc'), sig=document.getElementById('sig'), arrow=document.getElementById('arrow'), stages=document.getElementById('stages');
+ stages.innerHTML=""; per.innerText="0%"; acc.innerText="0%"; sig.innerText="WAIT";
+ buy.innerText="Analyzing PATTERN "+pid+" - "+currentPair;
+ 
+ let steps=[
+  `Checking ${currentPair} Trend`,
+  `Finding SNR Level for Pattern ${pid}`,
+  patternInfo[pid],
+  `Confirming ENTRY Point`,
+  `Confirming TARGET Point`,
+  `Final Signal for ${currentTime}`
+ ];
+ steps.forEach((s,i)=>{let d=document.createElement('div');d.className='stage';d.id='s'+i;d.innerHTML=`<span>${i+1}. ${s}</span><b>⏳</b>`;stages.appendChild(d)});
+
+ let p=0;
  let iv=setInterval(()=>{
-  p+=Math.random()*6; if(p>=91){p=91; clearInterval(iv);
-   buy.innerText="BUY (LONG) - 91% | "+currentPair+" "+currentTime;
-   buy.style.color="#00ff88"; sig.innerText="BUY"; sig.style.color="#00ff88";
-   for(let i=1;i<=8;i++){let e=document.getElementById('s'+i); e.className='stage done'; e.innerHTML=e.innerText.split(' <')[0]+' <b>✅</b>'}
+  p+=Math.random()*5; if(p>=91){p=91; clearInterval(iv);
+   let isBuy = [14,16,19,21,22,24,25,26].includes(parseInt(pid));
+   buy.innerText=(isBuy?"BUY (LONG)":"SELL (SHORT)")+" - 91% | PATTERN "+pid+" | "+currentPair+" "+currentTime;
+   arrow.innerText=isBuy?"↗":"↘"; buy.style.color=isBuy?"#00ff88":"#ff3b30";
+   sig.innerText=isBuy?"BUY":"SELL"; acc.innerText="91%"; per.innerText="91%";
+   document.querySelectorAll('.stage').forEach(s=>{s.className='stage done'; s.querySelector('b').innerText='✅'});
+  }else{
+   per.innerText=Math.floor(p)+"%"; acc.innerText=Math.floor(p)+"%";
+   let idx=Math.floor(p/16); let el=document.getElementById('s'+idx); if(el){document.querySelectorAll('.stage').forEach(s=>s.classList.remove('active')); el.classList.add('active'); el.querySelector('b').innerText='🔄'}
   }
-  per.innerText=Math.floor(p)+"%"; acc.innerText=Math.floor(p)+"%";
-  let stage=Math.floor(p/12)+1; if(stage<=8){let e=document.getElementById('s'+stage); if(e) e.className='stage active'}
  },80);
 }
 </script>
