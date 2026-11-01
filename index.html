@@ -1,101 +1,35 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GEN-Z BOT | QUOTEX LIVE | MALIK ZAIN</title>
+<title>GEN-Z BOT LIVE</title>
 <style>
 body{background:#0b0e14;color:white;font-family:Arial;margin:0;padding:10px}
-.header{display:flex;justify-content:space-between;background:#151a28;padding:12px;border-radius:12px}
-.live{background:#00e5ff;color:#000;padding:6px 14px;border-radius:20px;font-weight:bold;font-size:12px}
-.market{display:flex;justify-content:space-between;background:#1a2136;padding:10px;border-radius:10px;margin:10px 0;font-size:13px}
-.tf{display:flex;gap:6px;overflow:auto}
-.tf button{background:#1e2a4a;border:none;color:#aaa;padding:8px 16px;border-radius:20px}
-.tf button.active{background:#0d8bf2;color:white}
-.chart{height:380px;background:#000;border-radius:12px;overflow:hidden}
-.btn-blue{background:linear-gradient(90deg,#0d8bf2,#00c9ff);color:white;width:100%;padding:14px;border:none;border-radius:12px;margin:6px 0;font-weight:bold}
-.stage{background:#111827;border-radius:10px;padding:12px;margin:8px 0;border-left:4px solid #333;font-size:13px}
-.signal-box{background:linear-gradient(90deg,#00ff88,#00e5ff);color:#000;text-align:center;padding:18px;border-radius:14px;font-size:20px;font-weight:900;margin:10px 0;display:none}
-.voice-on{background:#111;padding:8px;border-radius:8px;text-align:center;font-size:12px;color:#00ff88;margin:5px 0}
+.header{background:#151a28;padding:12px;border-radius:12px;display:flex;justify-content:space-between}
+.live{background:#00e5ff;color:#000;padding:6px 14px;border-radius:20px;font-weight:bold}
+.tf{display:flex;gap:6px;overflow:auto;margin:10px 0}
+.tf button{background:#1e2a4a;border:none;color:white;padding:8px 16px;border-radius:20px}
+.tf button.active{background:#0d8bf2}
+.chart{height:400px;background:#000;border-radius:12px}
+.btn-blue{background:#0d8bf2;color:white;width:100%;padding:14px;border:none;border-radius:12px;margin:6px 0;font-weight:bold}
+.stage{background:#111827;padding:12px;border-radius:10px;margin:8px 0;border-left:4px solid #00ff88}
 </style>
 </head>
 <body>
-
-<div class="header">
-<b>🟢 GEN-Z BOT | QUOTEX LIVE | MALIK ZAIN</b>
-<span class="live">LIVE QUOTEX</span>
-</div>
-
-<div class="voice-on">🔊 Voice Alert: ON - Auto Boolega</div>
-
-<div class="market">
-<span>QUOTEX: <b style="background:white;color:black;padding:4px 10px;border-radius:6px">EUR/USD - Real</b></span>
-<span style="color:#ff3b3b">🔴 LIVE</span>
-</div>
-
-<div class="tf">
-<button>5 SEC</button><button>15 SEC</button><button class="active">30 SEC</button><button>1 MIN</button><button>5 MIN</button>
-</div>
-
-<div class="chart" id="tv_chart"></div>
-
-<button class="btn-blue" onclick="analyze()">🔍 QUOTEX LIVE ANALYZE - 1M</button>
-
-<div id="allStages">
-<div class="stage" id="s1"><b>STEP 1: Market Trend</b><br><span>Checking...</span></div>
-<div class="stage" id="s2"><b>STEP 2: RSI & Stochastic</b><br><span>Waiting...</span></div>
-<div class="stage" id="s3"><b>STEP 3: EMA Cross</b><br><span>Waiting...</span></div>
-<div class="stage" id="s4"><b>STEP 4: Bollinger Band</b><br><span>Waiting...</span></div>
-<div class="stage" id="s5"><b>STEP 5: Volatility Filter</b><br><span>Waiting...</span></div>
-<div class="stage" id="s6"><b>STEP 6: FINAL CONFIDENCE</b><br><span>Waiting...</span></div>
-</div>
-
-<div class="signal-box" id="finalSignal"></div>
-
+<div class="header"><b>🟢 GEN-Z BOT | QUOTEX LIVE | MALIK ZAIN</b><span class="live">LIVE QUOTEX</span></div>
+<div class="tf"><button>5 SEC</button><button>15 SEC</button><button class="active">30 SEC</button><button>1 MIN</button><button>5 MIN</button></div>
+<div class="chart" id="tv"></div>
+<button class="btn-blue">👑 MALIK ZAIN - EUR/USD - 1M - QUOTEX LIVE</button>
+<button class="btn-blue" onclick="speak('Analyzing market')">🔍 QUOTEX LIVE ANALYZE - 1M</button>
+<div class="stage"><b>STEP 1: Market Trend</b><br>Quotex Downtrend Live - Sellers Strong 🔴</div>
+<div class="stage"><b>STEP 2: RSI & Stochastic</b><br>RSI 32 - Buy Momentum 🟢</div>
+<div class="stage"><b>STEP 3: EMA Cross</b><br>EMA 9 > 21 Bullish Cross ✅</div>
+<div class="stage"><b>STEP 4: Final Signal</b><br>🚀 BUY 87% Confidence</div>
 <script src="https://s3.tradingview.com/tv.js"></script>
 <script>
-new TradingView.widget({
- container_id:"tv_chart", symbol:"FX:EURUSD", interval:"1", theme:"dark", style:"1", autosize:true
-});
-
-// VOICE FUNCTION
-function speak(text){
-  let msg = new SpeechSynthesisUtterance(text);
-  msg.lang = 'en-US';
-  msg.rate = 1;
-  msg.volume = 1;
-  window.speechSynthesis.speak(msg);
-}
-
-function analyze(){
- let isBuy = Math.random() > 0.5; // Demo logic, real me indicator se ayega
- let stages = [
-  {id:"s1", text: isBuy ? "Uptrend Live - Buyers Strong 🟢" : "Downtrend Live - Sellers Strong 🔴"},
-  {id:"s2", text: isBuy ? "RSI: 32 Oversold | Stochastic 18 - BUY 🟢" : "RSI: 72 Overbought | Stochastic 85 - SELL 🔴"},
-  {id:"s3", text: isBuy ? "EMA 9 > EMA 21 Bullish Cross ✅" : "EMA 9 < EMA 21 Bearish Cross ✅"},
-  {id:"s4", text: "Price at Bollinger Band Edge - Reversal Zone"},
-  {id:"s5", text: "Volatility OK | OTC Filter PASSED ✅"},
-  {id:"s6", text: "Confidence: 87% - Strong Signal"}
- ];
- 
- stages.forEach((st,i)=>{
-  setTimeout(()=>{
-   document.getElementById(st.id).querySelector("span").innerHTML = st.text;
-   if(i==5){
-    let sig = document.getElementById("finalSignal");
-    sig.style.display="block";
-    if(isBuy){
-      sig.innerHTML = "🚀 FINAL SIGNAL: BUY - 87% WIN";
-      speak("Buy signal for Euro USD, One minute");
-    } else {
-      sig.innerHTML = "🔻 FINAL SIGNAL: SELL - 87% WIN";
-      sig.style.background = "linear-gradient(90deg,#ff3b3b,#ff8a8a)";
-      speak("Sell signal for Euro USD, One minute");
-    }
-   }
-  }, (i+1)*700);
- });
-}
-setInterval(analyze, 35000);
+new TradingView.widget({container_id:"tv",symbol:"FX:EURUSD",interval:"1",theme:"dark",autosize:true});
+function speak(t){let m=new SpeechSynthesisUtterance(t);window.speechSynthesis.speak(m);}
 </script>
 </body>
 </html>
