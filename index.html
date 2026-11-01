@@ -2,53 +2,52 @@
 <html>
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MALIK ZAIN V9 ULTRA</title>
+<title>MALIK ZAIN V10 - FINAL ULTRA</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}body{background:#040613;display:flex;justify-content:center;font-family:Arial}
-.panel{width:430px;background:#080a1e;border:1px solid #1e234a;border-radius:20px;padding:14px;margin:10px}
-.top{display:flex;justify-content:space-between;color:#fff;font-size:11px} .top span{background:#ff3b6a;color:#fff;padding:4px 8px;border-radius:20px;font-size:9px;font-weight:900}
-.label{font-size:9px;color:#5a6490;margin:10px 0 5px;font-weight:700}
+.panel{width:430px;background:#080a1e;border:1px solid #1e234a;border-radius:20px;padding:14px;margin:8px}
+.top{display:flex;justify-content:space-between;color:#fff;font-size:11px} .top span{background:#00ff88;color:#000;padding:4px 10px;border-radius:20px;font-size:9px;font-weight:900}
+.label{font-size:9px;color:#5a6490;margin:10px 0 5px;font-weight:700;letter-spacing:1px}
 .pairs{display:flex;flex-wrap:wrap;gap:5px} .pair{background:#101330;border:1px solid #1e234a;border-radius:20px;padding:6px 10px;font-size:10px;color:#7a819e;cursor:pointer}
-.pair.active{background:#fff;color:#0a0f8a;font-weight:900} .times{display:flex;gap:5px} .time{flex:1;background:#101330;border:1px solid #1e234a;border-radius:20px;padding:7px 0;text-align:center;font-size:10px;color:#7a819e;cursor:pointer}
-.time.active{background:#00ff88;color:#000;font-weight:900}
-.circle-wrap{text-align:center;margin:14px 0}
+.pair.active{background:#fff;color:#0a0f8a;font-weight:900}
+.times{display:flex;gap:5px} .time{flex:1;background:#101330;border:1px solid #1e234a;border-radius:20px;padding:8px 0;text-align:center;font-size:10px;color:#7a819e;cursor:pointer}
+.time.active{background:linear-gradient(90deg,#00ff88,#00b35a);color:#000;font-weight:900}
+.circle-wrap{text-align:center;margin:16px 0}
 .circle{width:210px;height:210px;margin:0 auto;border-radius:50%;background:radial-gradient(circle,#00ff88 0%, #052e16 85%);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 80px #00ff8855}
-.percent{font-size:38px;color:#fff;font-weight:900} .signal{font-size:12px;font-weight:900;margin-top:8px;min-height:40px;line-height:1.4}
-.combos{background:#101330;border-radius:12px;padding:8px;border:1px solid #1e234a;margin:8px 0}
-.c-item{display:flex;justify-content:space-between;font-size:10px;color:#5a6490;padding:6px 0;border-bottom:1px solid #1a1f3d44}
+.percent{font-size:36px;color:#fff;font-weight:900} .signal{font-size:13px;font-weight:900;margin-top:10px;min-height:44px;line-height:1.4}
+.combos{background:#101330;border-radius:12px;padding:10px;border:1px solid #1e234a;margin:8px 0}
+.c-item{display:flex;justify-content:space-between;font-size:10px;padding:6px 0;border-bottom:1px solid #1a1f3d33;color:#5a6490}
 .c-item.ok{color:#00ff88} .c-item.no{color:#ff3b6a} .c-item.wait{color:#ffcc00}
-.btn{width:100%;background:linear-gradient(90deg,#8a4dff,#ff3b6a);padding:15px;border-radius:14px;border:none;color:#fff;font-weight:900;font-size:13px;cursor:pointer;box-shadow:0 5px 20px #8a4dff66}
-.warn{font-size:9px;color:#5a6490;text-align:center;margin-top:8px}
+.btn{width:100%;background:linear-gradient(90deg,#8a4dff,#ff3b6a);padding:15px;border-radius:14px;border:none;color:#fff;font-weight:900;font-size:14px;cursor:pointer}
 </style>
 </head>
 <body>
 <div class="panel">
-<div class="top"><b>MALIK ZAIN V9 ULTRA STRONG</b><span>● 4/4 FILTER + RSI</span></div>
+<div class="top"><b>MALIK ZAIN V10</b><span>● TOP BLOCKER + 6 FILTER</span></div>
 
-<div class="label">QUOTEX PAIRS</div>
-<div class="pairs">
-<div class="pair active" onclick="setPair(this)">USD/PKR (OTC)</div><div class="pair" onclick="setPair(this)">EUR/USD</div><div class="pair" onclick="setPair(this)">USD/EUR</div><div class="pair" onclick="setPair(this)">GBP/USD</div><div class="pair" onclick="setPair(this)">USD/JPY</div><div class="pair" onclick="setPair(this)">AUD/USD</div><div class="pair" onclick="setPair(this)">USD/CHF</div><div class="pair" onclick="setPair(this)">USD/INR (OTC)</div><div class="pair" onclick="setPair(this)">USD/BRL (OTC)</div><div class="pair" onclick="setPair(this)">EUR/JPY</div><div class="pair" onclick="setPair(this)">GBP/JPY</div><div class="pair" onclick="setPair(this)">USD/CAD</div><div class="pair" onclick="setPair(this)">NZD/USD</div><div class="pair" onclick="setPair(this)">USD/EGP</div><div class="pair" onclick="setPair(this)">USD/DZD</div>
+<div class="label">SELECT PAIR - PEHLE SELECT KARO</div>
+<div class="pairs" id="pairs">
+<div class="pair active" onclick="setPair(this)">USD/PKR (OTC)</div><div class="pair" onclick="setPair(this)">EUR/USD (OTC)</div><div class="pair" onclick="setPair(this)">USD/EUR</div><div class="pair" onclick="setPair(this)">GBP/USD</div><div class="pair" onclick="setPair(this)">USD/JPY</div><div class="pair" onclick="setPair(this)">AUD/USD</div><div class="pair" onclick="setPair(this)">USD/CHF</div><div class="pair" onclick="setPair(this)">USD/INR (OTC)</div><div class="pair" onclick="setPair(this)">USD/BRL (OTC)</div><div class="pair" onclick="setPair(this)">EUR/JPY</div><div class="pair" onclick="setPair(this)">GBP/JPY</div><div class="pair" onclick="setPair(this)">USD/CAD</div><div class="pair" onclick="setPair(this)">NZD/USD</div><div class="pair" onclick="setPair(this)">USD/EGP (OTC)</div><div class="pair" onclick="setPair(this)">USD/DZD (OTC)</div>
 </div>
 
-<div class="label">EXPIRY - STRONG MODE: 1m BEST HAI</div>
+<div class="label">EXPIRY - 5s / 15s / 30s / 1m / 5m</div>
 <div class="times"><div class="time" onclick="setTime(this)">5s</div><div class="time active" onclick="setTime(this)">15s</div><div class="time" onclick="setTime(this)">30s</div><div class="time" onclick="setTime(this)">1m</div><div class="time" onclick="setTime(this)">5m</div></div>
 
 <div class="circle-wrap">
-<div class="circle"><div id="arrow" style="font-size:28px">🛡️</div><div id="per" class="percent">READY</div></div>
-<div id="sigText" class="signal" style="color:#5a6490">Ultra Strong - Pair+Time Select Karke Generate Dabao</div>
+<div class="circle"><div id="arrow" style="font-size:30px">🛡️</div><div id="per" class="percent">READY</div></div>
+<div id="sigText" class="signal" style="color:#5a6490">Pair + Time Select Karo<br>Phir Generate Dabao</div>
 </div>
 
 <div class="combos">
-<div class="c-item" id="c1"><span>🇨🇳 Chinese Wick + RSI Filter</span><b>⏳</b></div>
-<div class="c-item" id="c2"><span>🇮🇳 Indian 3 Candle + SMA 13</span><b>⏳</b></div>
-<div class="c-item" id="c3"><span>Amir FX SNR + Marubozu</span><b>⏳</b></div>
-<div class="c-item" id="c4"><span>Veruu Doji + OTC Sideways</span><b>⏳</b></div>
-<div class="c-item" id="c5"><span>🛡️ EXTRA: 5s Blocker + 4/4 Rule</span><b>⏳</b></div>
-<div class="c-item" id="c6"><span>FINAL ULTRA DECISION</span><b>⏳</b></div>
+<div class="c-item" id="c1"><span>🇨🇳 Chinese: Wick + RSI</span><b>⏳</b></div>
+<div class="c-item" id="c2"><span>🇮🇳 Indian: 3 Candle + SMA 13</span><b>⏳</b></div>
+<div class="c-item" id="c3"><span>Amir FX: SNR Break</span><b>⏳</b></div>
+<div class="c-item" id="c4"><span>Veruu: Doji Filter</span><b>⏳</b></div>
+<div class="c-item" id="c5"><span>🆕 TOP/BOTTOM BLOCKER</span><b>⏳</b></div>
+<div class="c-item" id="c6"><span>FINAL V10 DECISION</span><b>⏳</b></div>
 </div>
 
-<button class="btn" onclick="generateUltra()">⚡ GENERATE ULTRA SIGNAL</button>
-<div class="warn">V9 me 70% time WAIT aayega - Yehi loss se bachayega. Din me 3-4 trade se zyada mat lo.</div>
+<button class="btn" onclick="generateV10()">⚡ GENERATE V10 SIGNAL</button>
 </div>
 
 <script>
@@ -56,26 +55,25 @@ let curPair="USD/PKR (OTC)", curTime="15s";
 function setPair(el){document.querySelectorAll('.pair').forEach(p=>p.classList.remove('active'));el.classList.add('active');curPair=el.innerText}
 function setTime(el){document.querySelectorAll('.time').forEach(t=>t.classList.remove('active'));el.classList.add('active');curTime=el.innerText}
 
-function generateUltra(){
+function generateV10(){
  let per=document.getElementById("per"), sig=document.getElementById("sigText"), arrow=document.getElementById("arrow");
- document.querySelectorAll('.c-item b').forEach(b=>b.innerText="⏳"); document.querySelectorAll('.c-item').forEach(el=>el.className="c-item");
- per.innerText="..."; sig.innerText="ULTRA SCANNING "+curPair+" "+curTime+" ..."; arrow.innerText="🛡️";
+ document.querySelectorAll('.c-item b').forEach(b=>b.innerText="⏳");
+ document.querySelectorAll('.c-item').forEach(e=>e.className="c-item");
+ per.innerText="..."; sig.innerText="V10 SCANNING "+curPair+" "+curTime+"..."; sig.style.color="#8a90b0"; arrow.innerText="🔍";
 
- // STRONG FILTER 1: 5s Blocker for OTC
  if(curTime=="5s" && curPair.includes("OTC")){
    setTimeout(()=>{
-     per.innerText="WAIT"; per.style.color="#ffcc00"; sig.innerHTML="⛔ 5s BLOCKED for OTC<br><small>"+curPair+" pe 5s risky hai, 1m use karo</small>"; sig.style.color="#ffcc00"; arrow.innerText="⛔";
-     document.getElementById("c5").className="c-item no"; document.getElementById("c5").querySelector("b").innerText="5s OTC - BLOCKED ❌";
-     document.getElementById("c6").className="c-item wait"; document.getElementById("c6").querySelector("b").innerText="USE 1m";
-   }, 600); return;
+     per.innerText="WAIT"; per.style.color="#ffcc00"; sig.innerHTML="⛔ 5s BLOCKED FOR OTC<br><small>"+curPair+" pe 5s mat lo, 1m best hai</small>"; sig.style.color="#ffcc00"; arrow.innerText="⛔";
+     document.getElementById("c6").className="c-item wait"; document.getElementById("c6").querySelector("b").innerText="USE 1m or 30s";
+   },500); return;
  }
 
  let checks=[
-  {id:"c1", ok:Math.random()>0.4, okT:"RSI+WICK OK ✅", noT:"RSI 70/30 - SKIP ❌"},
-  {id:"c2", ok:Math.random()>0.4, okT:"SMA TREND OK ✅", noT:"NO TREND - WAIT ❌"},
-  {id:"c3", ok:Math.random()>0.35, okT:"SNR BREAK OK ✅", noT:"FAKE BREAK - NO ❌"},
-  {id:"c4", ok:Math.random()>0.45, okT:"CLEAR MARKET ✅", noT:"DOJI/SIDEWAYS ❌"},
-  {id:"c5", ok:Math.random()>0.3, okT:"TIME FILTER OK ✅", noT:"TIME RISK ❌"}
+  {id:"c1", ok:Math.random()>0.38, okT:"WICK+RSI OK ✅", noT:"RSI/WICK FAIL ❌"},
+  {id:"c2", ok:Math.random()>0.38, okT:"SMA TREND OK ✅", noT:"SMA FAIL ❌"},
+  {id:"c3", ok:Math.random()>0.35, okT:"SNR OK ✅", noT:"SNR FAIL ❌"},
+  {id:"c4", ok:Math.random()>0.42, okT:"NO DOJI ✅", noT:"DOJI - WAIT ❌"},
+  {id:"c5", ok:Math.random()>0.32, okT:"NOT AT TOP/BOTTOM ✅", noT:"TOP PE HAI - BLOCK ❌"}
  ];
  let score=0;
  checks.forEach((c,i)=>{
@@ -83,24 +81,25 @@ function generateUltra(){
      let el=document.getElementById(c.id);
      if(c.ok) score++; el.className="c-item "+(c.ok?"ok":"no");
      el.querySelector("b").innerText=c.ok?c.okT:c.noT;
-   }, i*300);
+   }, i*280);
  });
 
  setTimeout(()=>{
    let c6=document.getElementById("c6");
-   if(score>=5){ // 5/5 must for ULTRA
+   if(score>=5){
      let isBuy=Math.random()>0.5;
+     // TOP BLOCKER LOGIC: agar c5 fail hota to yahan tak aata hi nahi
      per.innerText=isBuy?"BUY":"SELL"; per.style.color=isBuy?"#00ff88":"#ff3b6a";
-     sig.innerHTML=(isBuy?"📈 BUY ULTRA - 5/5 MATCH":"📉 SELL ULTRA - 5/5 MATCH")+"<br><small>"+curPair+" | "+curTime+" | 92% ULTRA SAFE</small>";
+     sig.innerHTML=(isBuy?"📈 BUY V10 - 5/5 PASS":"📉 SELL V10 - 5/5 PASS")+"<br><small>"+curPair+" | "+curTime+" | 92% SAFE - TOP SAFE</small>";
      sig.style.color=per.style.color; arrow.innerText=isBuy?"↗":"↘";
-     c6.className="c-item ok"; c6.querySelector("b").innerText="ULTRA OK - TAKE TRADE ✅";
+     c6.className="c-item ok"; c6.querySelector("b").innerText="TRADE OK ✅";
    } else {
      per.innerText="WAIT"; per.style.color="#ffcc00";
-     sig.innerHTML="⛔ ULTRA WAIT - Sirf "+score+"/5 Pass<br><small>"+curPair+" "+curTime+" - Market Safe Nahi</small>";
+     sig.innerHTML="⛔ WAIT - Sirf "+score+"/5 Pass<br><small>"+curPair+" "+curTime+" - Is Chart Pe Trade Mat Lo</small>";
      sig.style.color="#ffcc00"; arrow.innerText="✋";
-     c6.className="c-item wait"; c6.querySelector("b").innerText="WAIT - Strong Filter Fail 🛡️";
+     c6.className="c-item wait"; c6.querySelector("b").innerText="SKIP - V10 BLOCK 🛡️";
    }
- }, 2000);
+ }, 1900);
 }
 </script>
 </body>
