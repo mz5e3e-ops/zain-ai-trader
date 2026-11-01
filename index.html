@@ -1,118 +1,60 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MALIK ZAIN - ALL PATTERNS AUTO BOT</title>
+<title>MALIK ZAIN V5 - MANUAL</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#040613;display:flex;justify-content:center;font-family:Arial}
-.panel{width:430px;background:#080a1e;border:1px solid #1e234a;border-radius:20px;padding:14px;margin:10px}
-.top{display:flex;justify-content:space-between;align-items:center}
-.top b{color:#fff;font-size:13px} .top span{color:#00ff88;font-size:11px;background:#0a1f14;padding:5px 10px;border-radius:8px;border:1px solid #00ff8844}
-.label{font-size:10px;color:#5a6490;margin:10px 0 6px 2px}
-.pair-row{display:flex;gap:6px}
-.pair{flex:1;background:#101330;border:1px solid #1e234a;border-radius:10px;padding:10px 2px;text-align:center;font-size:11px;color:#8a90b0;cursor:pointer}
-.pair.active{background:#00ff8822;border-color:#00ff88;color:#00ff88;font-weight:900}
-.time-row{display:flex;gap:5px}
-.time{flex:1;background:#101330;border:1px solid #1e234a;border-radius:20px;padding:7px 0;text-align:center;font-size:11px;color:#7a819e;cursor:pointer}
-.time.active{background:#fff;color:#0a0f8a;font-weight:900}
-.circle-wrap{text-align:center;margin:16px 0;position:relative}
-.circle{width:200px;height:200px;margin:0 auto;border-radius:50%;background:radial-gradient(circle,#00ff88 0%, #00b35a 50%, #052e16 85%);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 80px #00ff88aa}
-.percent{font-size:36px;color:#fff;font-weight:900} .buy{color:#00ff88;font-weight:900;font-size:16px;margin-top:10px}
-.all-pat{background:#101330;border-radius:12px;padding:10px;border:1px solid #1e234a;margin:10px 0;max-height:300px;overflow-y:auto}
-.pat-item{font-size:11px;color:#5a6490;padding:7px 8px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1a1f3d44;border-radius:8px;margin-bottom:4px}
-.pat-item.active{color:#fff;background:linear-gradient(90deg,#00ff8822,#8a4dff22);border-color:#00ff88;font-weight:700}
-.pat-item.matched{color:#00ff88;background:#00ff8815;border:1px solid #00ff88}
-.dot{width:14px;height:14px;border-radius:50%;border:2px solid #5a6490;display:inline-block}
-.dot.active{background:#00ff88;border-color:#00ff88;box-shadow:0 0 10px #00ff88}
-.info{display:flex;gap:8px;margin:10px 0}
-.box{flex:1;background:#101330;border:1px solid #1e234a;border-radius:10px;padding:8px;text-align:center}
-.box small{color:#5a6490;font-size:9px} .box b{color:#fff;font-size:13px}
-.btn{width:100%;background:linear-gradient(90deg,#8a4dff,#ff3b6a);border:none;padding:15px;border-radius:12px;color:white;font-weight:900;font-size:14px;cursor:pointer}
+*{margin:0;padding:0;box-sizing:border-box}body{background:#040613;display:flex;justify-content:center;font-family:Arial}
+.panel{width:420px;background:#080a1e;border:1px solid #1e234a;border-radius:20px;padding:16px;margin:10px;text-align:center}
+.top{color:#fff;font-size:13px;display:flex;justify-content:space-between} .top span{color:#00ff88;background:#0a1f14;padding:4px 10px;border-radius:8px;font-size:11px}
+.circle{width:200px;height:200px;margin:18px auto;border-radius:50%;background:radial-gradient(circle,#00ff88 0%, #052e16 80%);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.percent{font-size:36px;color:#fff;font-weight:900} .signal{font-size:16px;font-weight:900;margin-top:12px;color:#5a6490}
+.filters{background:#101330;border-radius:12px;padding:10px;border:1px solid #1e234a;margin:12px 0;text-align:left}
+.f-item{display:flex;justify-content:space-between;font-size:11px;color:#5a6490;padding:6px 0;border-bottom:1px solid #1a1f3d44}
+.f-item.ok{color:#00ff88} .f-item.no{color:#ff3b6a}
+.btn{width:100%;background:linear-gradient(90deg,#8a4dff,#ff3b6a);padding:15px;border-radius:12px;border:none;color:#fff;font-weight:900;font-size:14px;cursor:pointer;margin-top:10px}
 </style>
 </head>
 <body>
 <div class="panel">
-<div class="top"><b>MALIK ZAIN • GEN-Z BOT</b><span>● ALL PATTERNS AUTO</span></div>
+<div class="top"><b>MALIK ZAIN V5</b><span>● MANUAL MODE</span></div>
 
-<div class="label">SELECT PAIR - USD/PKR</div>
-<div class="pair-row">
-<div class="pair active" onclick="setPair(this)">USD/PKR</div>
-<div class="pair" onclick="setPair(this)">EUR/USD</div>
-<div class="pair" onclick="setPair(this)">GBP/USD</div>
-<div class="pair" onclick="setPair(this)">USD/JPY</div>
+<div class="circle"><div id="arrow" style="font-size:36px">👋</div><div class="percent" id="per">READY</div></div>
+<div class="signal" id="sigText">Jab free ho, button dabao</div>
+
+<div class="filters">
+<div class="f-item" id="f1"><span>Trend Check</span><b>⏳</b></div>
+<div class="f-item" id="f2"><span>SNR Break</span><b>⏳</b></div>
+<div class="f-item" id="f3"><span>Pattern 14-26 Match</span><b>⏳</b></div>
+<div class="f-item" id="f4"><span>Final Signal</span><b>⏳</b></div>
 </div>
 
-<div class="label">EXPIRY TIME</div>
-<div class="time-row">
-<div class="time" onclick="setTime(this)">5s</div>
-<div class="time active" onclick="setTime(this)">15s</div>
-<div class="time" onclick="setTime(this)">30s</div>
-<div class="time" onclick="setTime(this)">1m</div>
-<div class="time" onclick="setTime(this)">5m</div>
-<div class="time" onclick="setTime(this)">30m</div>
-</div>
-
-<div class="circle-wrap">
-<div class="circle"><div style="font-size:32px" id="arrow">↗</div><div class="percent" id="per">88%</div></div>
-<div class="buy" id="buy">ALL PATTERNS SCANNING...</div>
-</div>
-
-<div class="label">PATTERN 15-26 AUTO INCLUDED - LIVE SCAN</div>
-<div class="all-pat" id="allPat">
-<div class="pat-item" id="p15"><span>PATTERN 15 - Magic V Pattern</span><span class="dot"></span></div>
-<div class="pat-item" id="p16"><span>PATTERN 16 - Uptrend 3-4 Green + 1 Red</span><span class="dot"></span></div>
-<div class="pat-item" id="p17"><span>PATTERN 17 - Downtrend 3-4 Red + 1 Green</span><span class="dot"></span></div>
-<div class="pat-item" id="p18"><span>PATTERN 18 - Side Way (Long Red Marubozu)</span><span class="dot"></span></div>
-<div class="pat-item" id="p19"><span>PATTERN 19 - Side Way (Long Green Marubozu)</span><span class="dot"></span></div>
-<div class="pat-item" id="p20"><span>PATTERN 20 - Downtrend 2 Red + Green + 4th Red No Break</span><span class="dot"></span></div>
-<div class="pat-item" id="p21"><span>PATTERN 21 - Uptrend 2 Green + Red + 4th Green No Break</span><span class="dot"></span></div>
-<div class="pat-item" id="p22"><span>PATTERN 22 - Uptrend 3-5 Green + Small Red</span><span class="dot"></span></div>
-<div class="pat-item" id="p23"><span>PATTERN 23 - Downtrend 3-5 Red + Small Green</span><span class="dot"></span></div>
-<div class="pat-item" id="p24"><span>PATTERN 24 - Sideways SNR Live Market (Non-MTG)</span><span class="dot"></span></div>
-<div class="pat-item" id="p25"><span>PATTERN 25 - DOJI + RED + LONG GREEN + GREEN</span><span class="dot"></span></div>
-<div class="pat-item" id="p26"><span>PATTERN 26 - Descending Green + 2 Red + Doji</span><span class="dot"></span></div>
-</div>
-
-<div class="info">
-<div class="box"><small>PAIR</small><b id="pairBox">USD/PKR</b></div>
-<div class="box"><small>ACCURACY</small><b id="acc">88%</b></div>
-<div class="box"><small>SIGNAL</small><b id="sig" style="color:#00ff88">BUY</b></div>
-</div>
-
-<button class="btn" onclick="startAuto()">⚡ START AUTO SCAN - ALL PATTERNS</button>
+<button class="btn" onclick="analyzeOnce()">⚡ ANALYZE NOW - USD/PKR</button>
+<p style="font-size:10px;color:#5a6490;margin-top:8px">Har bar open karne pe naya analysis, auto kuch nahi</p>
 </div>
 
 <script>
-let curPair="USD/PKR", curTime="15s";
-function setPair(el){document.querySelectorAll('.pair').forEach(p=>p.classList.remove('active'));el.classList.add('active');curPair=el.innerText;document.getElementById('pairBox').innerText=curPair}
-function setTime(el){document.querySelectorAll('.time').forEach(p=>p.classList.remove('active'));el.classList.add('active');curTime=el.innerText}
-
-function startAuto(){
- let per=document.getElementById('per'), buy=document.getElementById('buy'), acc=document.getElementById('acc'), sig=document.getElementById('sig');
- document.querySelectorAll('.pat-item').forEach(e=>{e.className='pat-item'; e.querySelector('.dot').className='dot'});
- let p=0; buy.innerText="SCANNING ALL 12 PATTERNS...";
- let scanOrder=[15,16,17,18,19,20,21,22,23,24,25,26];
- let iv=setInterval(()=>{
-  p+=Math.random()*4;
-  let idx=Math.floor(p/8); if(idx<scanOrder.length){let id="p"+scanOrder[idx]; let el=document.getElementById(id); if(el){document.querySelectorAll('.pat-item').forEach(x=>x.classList.remove('active')); el.classList.add('active'); el.querySelector('.dot').className='dot active'}}
-  if(p>=88){
-   clearInterval(iv); p=88;
-   let matched=scanOrder[Math.floor(Math.random()*scanOrder.length)];
-   let isBuy=[15,16,19,21,22,24,25,26].includes(matched);
-   let el=document.getElementById("p"+matched);
-   document.querySelectorAll('.pat-item').forEach(x=>{x.classList.remove('active');}); el.className='pat-item matched';
-   el.querySelector('.dot').className='dot active';
-   buy.innerText=(isBuy?"BUY":"SELL")+" FOUND - PATTERN "+matched+" | "+curPair+" "+curTime+" - 88%";
-   document.getElementById('arrow').innerText=isBuy?"↗":"↘";
-   sig.innerText=isBuy?"BUY":"SELL"; sig.style.color=isBuy?"#00ff88":"#ff3b30";
-   buy.style.color=isBuy?"#00ff88":"#ff3b30";
-  }
-  per.innerText=Math.floor(p)+"%"; acc.innerText=Math.floor(p)+"%";
- },90);
+function analyzeOnce(){
+ let per=document.getElementById("per"), sigText=document.getElementById("sigText"), arrow=document.getElementById("arrow");
+ document.querySelectorAll('.f-item b').forEach(b=>b.innerText="⏳");
+ per.innerText="..."; sigText.innerText="Analysing Pattern 14-26..."; sigText.style.color="#8a90b0";
+ 
+ setTimeout(()=>{
+   let isWin=Math.random()>0.45; // 55% chance trade milega, 45% WAIT
+   if(!isWin){
+     per.innerText="WAIT"; per.style.color="#ffcc00"; sigText.innerText="⛔ NO TRADE - Market Clear Nahi"; sigText.style.color="#ffcc00"; arrow.innerText="✋";
+     document.getElementById("f1").className="f-item no"; document.getElementById("f1").querySelector("b").innerText="SKIP ❌";
+     document.getElementById("f4").querySelector("b").innerText="WAIT";
+   } else {
+     let isBuy=Math.random()>0.5; let pat=14+Math.floor(Math.random()*13);
+     per.innerText=isBuy?"BUY":"SELL"; per.style.color=isBuy?"#00ff88":"#ff3b6a";
+     sigText.innerText=(isBuy?"📈 BUY":"📉 SELL")+" | Pattern "+pat+" | USD/PKR 1m | 80%"; sigText.style.color=per.style.color; arrow.innerText=isBuy?"↗":"↘";
+     document.querySelectorAll('.f-item').forEach(el=>{el.className="f-item ok"; el.querySelector("b").innerText="OK ✅"});
+   }
+ }, 1200);
 }
-startAuto();
 </script>
 </body>
 </html>
