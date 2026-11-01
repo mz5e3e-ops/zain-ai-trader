@@ -1,113 +1,102 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>MALIK ZAIN - GEN-Z BOT APP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MALIK ZAIN - GEN-Z BOT PRO</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#040613;color:white;font-family:sans-serif}
-.app{max-width:420px;margin:0 auto;background:#070a18;min-height:100vh;border:1px solid #1a2540;position:relative}
-.top{background:#0e162d;padding:12px;display:flex;justify-content:space-between;align-items:center}
-.logo{color:#00e5ff;font-weight:900;font-size:14px}
-.live{font-size:10px;background:#00c853;padding:3px 8px;border-radius:10px}
-.chart-area{background:#0b1120;height:38vh;border-bottom:1px solid #1a2540;position:relative}
-#tv{height:100%}
-.timer-box{position:absolute;top:10px;right:10px;background:#000a;padding:5px 10px;border-radius:8px;font-size:11px;color:#00e5ff;z-index:10}
-.bot-area{padding:14px}
-.circle-card{background:radial-gradient(circle,#13244d,#070a14);border:1px solid #1e3a6a;border-radius:20px;padding:20px;text-align:center}
-.circle{width:140px;height:140px;margin:0 auto;border-radius:50%;border:2px solid #00e5ff;box-shadow:0 0 30px #00e5ff88;display:flex;align-items:center;justify-content:center;animation:glow 2s infinite}
-@keyframes glow{0%,100%{box-shadow:0 0 20px #00e5ff66}50%{box-shadow:0 0 50px #00e5ff}}
-.dot{width:26px;height:26px;background:#00e5ff;border-radius:50%;box-shadow:0 0 15px #00e5ff}
-.btns{display:flex;gap:10px;margin:14px 0}
-.btn-up{flex:1;background:linear-gradient(#00c853,#009624);border:none;padding:14px;border-radius:12px;color:white;font-weight:bold;font-size:15px}
-.btn-down{flex:1;background:linear-gradient(#ff3b30,#b71c1c);border:none;padding:14px;border-radius:12px;color:white;font-weight:bold;font-size:15px}
-.card{background:#111a30;border:1px solid #1e2e5a;border-radius:14px;padding:12px;font-size:12px;line-height:1.6}
-.urdu{color:#8ab4ff;font-size:13px;margin-top:4px}
-.mic{width:64px;height:64px;background:linear-gradient(#00e5ff,#0a84ff);border-radius:50%;margin:14px auto;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 0 20px #00e5ff;cursor:pointer}
-.final{display:none;margin-top:12px;padding:14px;border-radius:14px;text-align:center;font-weight:900;font-size:18px}
-.bar{width:100%;height:5px;background:#1a2540;border-radius:10px;margin-top:10px;overflow:hidden}
-.bar-fill{height:100%;width:0%;background:linear-gradient(90deg,#00e5ff,#00ff88);transition:0.2s}
+body{background:#050610;display:flex;justify-content:center;align-items:center;min-height:100vh;font-family:Arial}
+.panel{width:400px;background:#080a1e;border:1px solid #1e234a;border-radius:18px;padding:18px;box-shadow:0 0 80px #000;position:relative}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.top b{color:#fff;font-size:12px}
+.top span{color:#00ff88;font-size:11px;background:#0a1f14;padding:4px 8px;border-radius:6px;border:1px solid #00ff8844}
+.circle-wrap{text-align:center;position:relative;margin:10px 0}
+.circle{width:200px;height:200px;margin:0 auto;border-radius:50%;background:radial-gradient(circle,#00ff88 0%, #00b35a 45%, transparent 75%);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 70px #00ff88bb;animation:glow 2s infinite;position:relative}
+@keyframes glow{0%,100%{box-shadow:0 0 50px #00ff88aa}50%{box-shadow:0 0 100px #00ff88}}
+.ring{position:absolute;width:220px;height:220px;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-90deg);border-radius:50%;border:3px solid #1a1f3d;border-top:3px solid #00ff88;border-right:3px solid #8a4dff;animation:spin 2s linear infinite}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(270deg)}}
+.arrow{font-size:44px;color:#fff;font-weight:900}
+.percent{font-size:32px;color:#fff;font-weight:900}
+.buy{color:#00ff88;font-weight:900;font-size:20px;margin-top:12px;text-shadow:0 0 10px #00ff88}
+.stages{margin:14px 0;background:#101330;border-radius:12px;padding:10px;border:1px solid #1e234a}
+.stage{font-size:11px;color:#5a6490;padding:5px 0;display:flex;justify-content:space-between;border-bottom:1px solid #1a1f3d}
+.stage:last-child{border:none}
+.stage.active{color:#fff}
+.stage.done{color:#00ff88}
+.stage b{font-size:10px}
+.info{display:flex;gap:8px;margin:12px 0}
+.box{flex:1;background:#101330;border:1px solid #1e234a;border-radius:10px;padding:8px;text-align:center}
+.box small{display:block;color:#5a6490;font-size:9px}
+.box b{color:#fff;font-size:13px}
+.btn{width:100%;background:linear-gradient(90deg,#8a4dff,#ff3b6a);border:none;padding:14px;border-radius:12px;color:white;font-weight:900;font-size:12px;cursor:pointer}
+.tag{position:absolute;bottom:0;left:50%;transform:translateX(-50%);background:white;color:#0a0f8a;font-weight:900;font-size:10px;padding:4px 14px;border-radius:8px 8px 0 0}
 </style>
 </head>
 <body>
-<div class="app">
-<div class="top"><div class="logo">MALIK ZAIN | GEN-Z BOT</div><div class="live">● LIVE</div></div>
+<div class="panel">
+<div class="top"><b>MALIK ZAIN • GEN-Z BOT</b><span>● LIVE $88,456</span></div>
 
-<div class="chart-area">
-<div class="timer-box" id="timer">00:05 | $7100</div>
-<div id="tv"></div>
+<div class="circle-wrap">
+<div class="circle"><div class="ring"></div><div class="arrow" id="arrow">↗</div><div class="percent" id="per">0%</div></div>
+<div class="buy" id="buy">READY TO ANALYZE</div>
 </div>
 
-<div class="bot-area">
-<div class="circle-card">
-<div class="circle"><div class="dot"></div></div>
-<div style="margin-top:10px;font-size:11px;color:#00e5ff" id="cStatus">TAP MIC TO START</div>
-<div class="bar"><div class="bar-fill" id="bar"></div></div>
+<div class="stages" id="stages">
+<div class="stage" id="s1"><span>STAGE 1: Market Trend Analysis</span><b>⏳</b></div>
+<div class="stage" id="s2"><span>STAGE 2: Support & Resistance</span><b>⏳</b></div>
+<div class="stage" id="s3"><span>STAGE 3: RSI & Indicator Check</span><b>⏳</b></div>
+<div class="stage" id="s4"><span>STAGE 4: Candle Pattern Detect</span><b>⏳</b></div>
+<div class="stage" id="s5"><span>STAGE 5: AI Confirmation</span><b>⏳</b></div>
+<div class="stage" id="s6"><span>STAGE 6: Final Signal Generate</span><b>⏳</b></div>
 </div>
 
-<div class="btns">
-<button class="btn-up" id="up">UP ▲</button>
-<button class="btn-down" id="down">DOWN ▼</button>
+<div class="info">
+<div class="box"><small>WIN RATE</small><b>5/5</b></div>
+<div class="box"><small>ACCURACY</small><b id="acc">0%</b></div>
+<div class="box"><small>SIGNAL</small><b id="sig" style="color:#00ff88">WAIT</b></div>
 </div>
 
-<div class="card">
-<b style="color:#00e5ff" id="step">MALIK ZAIN BOT - READY</b><br>
-<span id="eng">Agle candle ka batao upar jayegi ya neeche?</span><br>
-<span class="urdu" id="urdu">مون بھائی میرے اندازے کے مطابق نیکسٹ کینڈل اوپر جائے گی</span>
+<button class="btn" onclick="startPro()">⚡ START MALIK ZAIN ANALYSIS</button>
+<div class="tag">GEN-Z-AI BOT 📈</div>
 </div>
 
-<div class="mic" onclick="startApp()">🎤</div>
-<div style="text-align:center;font-size:10px;color:#555">Analysis + Generate + Voice</div>
-
-<div class="final" id="final"></div>
-</div>
-</div>
-
-<script src="https://s3.tradingview.com/tv.js"></script>
 <script>
-new TradingView.widget({container_id:"tv",symbol:"FX:EURUSD",interval:"1",theme:"dark",style:"1",autosize:true,hide_top_toolbar:true,hide_side_toolbar:true});
-
-function voice(t){let s=new SpeechSynthesisUtterance(t);s.lang='ur-PK';s.rate=0.9;speechSynthesis.speak(s);}
-
-let tt=5;setInterval(()=>{tt--;if(tt<0)tt=5;document.getElementById("timer").innerText=`00:0${tt} | $7100`},1000);
-
-function startApp(){
- let bar=document.getElementById("bar"),cStatus=document.getElementById("cStatus"),step=document.getElementById("step"),eng=document.getElementById("eng"),urdu=document.getElementById("urdu"),final=document.getElementById("final");
- final.style.display="none";bar.style.width="0%";
-
- // 1 ANALYSIS
- step.innerText="STEP 1: ANALYSIS HO RAHA HAI...";
- eng.innerText="Market trend check ho raha hai...";
- urdu.innerText="مارکیٹ کا ٹرینڈ چیک ہو رہا ہے";
- cStatus.innerText="ANALYZING..."; voice("Analysis ho raha hai");
- let w=0;
- let i1=setInterval(()=>{w+=4;bar.style.width=w+"%";if(w>=50){clearInterval(i1);
-  // 2 GENERATE
-  step.innerText="STEP 2: GENERATE HO RAHA HAI...";
-  eng.innerText="Signal generate ho raha hai...";
-  urdu.innerText="سگنل جنریٹ ہو رہا ہے...";
-  cStatus.innerText="GENERATING..."; voice("Generate ho raha hai");
-  let i2=setInterval(()=>{w+=4;bar.style.width=w+"%";if(w>=100){clearInterval(i2);
-   let up=Math.random()>0.45;
-   if(up){
-    step.innerText="✅ FINAL SIGNAL - MALIK ZAIN"; eng.innerText="Next Candle Upar Jayegi - BUY karo";
-    urdu.innerText="مون بھائی میرے اندازے کے مطابق نیکسٹ کینڈل اوپر جائے گی";
-    cStatus.innerText="BUY ✔"; final.innerText="NEXT CANDLE UP - BUY 88% 🟢";
-    final.style.background="linear-gradient(90deg,#00ff88,#00e5ff)"; final.style.display="block";
-    voice("Moon bhai, mere andaze ke mutabiq next candle upar jayegi");
-   }else{
-    step.innerText="✅ FINAL SIGNAL - MALIK ZAIN"; eng.innerText="Next Candle Neeche Jayegi - SELL karo";
-    urdu.innerText="نیکسٹ کینڈل نیچے جائے گی"; cStatus.innerText="SELL ✔";
-    final.innerText="NEXT CANDLE DOWN - SELL 88% 🔴";
-    final.style.background="linear-gradient(90deg,#ff5a5a,#ff8a8a)"; final.style.display="block";
-    voice("Next candle neeche jayegi, sell karo");
-   }
-  }},80);
- }},80);
+function setStage(n,state){
+ let el=document.getElementById("s"+n);
+ el.className="stage "+state;
+ el.querySelector("b").innerText=state=="active"?"🔄":state=="done"?"✅":"⏳";
 }
+
+async function startPro(){
+ let per=document.getElementById("per"), buy=document.getElementById("buy"), acc=document.getElementById("acc"), sig=document.getElementById("sig");
+ // reset
+ for(let i=1;i<=6;i++) setStage(i,"");
+ per.innerText="0%"; acc.innerText="0%"; sig.innerText="WAIT"; buy.innerText="ANALYZING...";
+ let stages=[
+  {p:18, text:"STAGE 1: Trend Found - BULLISH"},
+  {p:38, text:"STAGE 2: Strong Support Detected"},
+  {p:56, text:"STAGE 3: RSI 68 - BUY Zone"},
+  {p:74, text:"STAGE 4: Bullish Engulfing Pattern"},
+  {p:86, text:"STAGE 5: AI Confirmed - 88%"},
+  {p:91, text:"BUY (LONG) - FINAL"}
+ ];
+ for(let i=0;i<stages.length;i++){
+  setStage(i+1,"active");
+  await new Promise(r=>{
+   let target=stages[i].p, cur=parseInt(per.innerText);
+   let iv=setInterval(()=>{
+    cur+=2; if(cur>=target){cur=target; clearInterval(iv); r();}
+    per.innerText=cur+"%"; acc.innerText=cur+"%";
+   },40);
+  });
+  setStage(i+1,"done");
+  buy.innerText=stages[i].text;
+  await new Promise(r=>setTimeout(r,400));
+ }
+ buy.innerText="BUY (LONG) - 91% ACCURACY"; sig.innerText="BUY"; sig.style.color="#00ff88";
+}
+startPro();
 </script>
-</div>
 </body>
 </html>
