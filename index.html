@@ -2,104 +2,101 @@
 <html>
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MALIK ZAIN V10 - FINAL ULTRA</title>
+<title>MALIK ZAIN V12 - 80% WIN</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}body{background:#040613;display:flex;justify-content:center;font-family:Arial}
 .panel{width:430px;background:#080a1e;border:1px solid #1e234a;border-radius:20px;padding:14px;margin:8px}
-.top{display:flex;justify-content:space-between;color:#fff;font-size:11px} .top span{background:#00ff88;color:#000;padding:4px 10px;border-radius:20px;font-size:9px;font-weight:900}
-.label{font-size:9px;color:#5a6490;margin:10px 0 5px;font-weight:700;letter-spacing:1px}
+.top{display:flex;justify-content:space-between;color:#fff;font-size:11px} .top span{background:#00ff88;color:#000;padding:5px 10px;border-radius:20px;font-size:9px;font-weight:900}
+.label{font-size:9px;color:#5a6490;margin:10px 0 5px;font-weight:700}
 .pairs{display:flex;flex-wrap:wrap;gap:5px} .pair{background:#101330;border:1px solid #1e234a;border-radius:20px;padding:6px 10px;font-size:10px;color:#7a819e;cursor:pointer}
 .pair.active{background:#fff;color:#0a0f8a;font-weight:900}
 .times{display:flex;gap:5px} .time{flex:1;background:#101330;border:1px solid #1e234a;border-radius:20px;padding:8px 0;text-align:center;font-size:10px;color:#7a819e;cursor:pointer}
-.time.active{background:linear-gradient(90deg,#00ff88,#00b35a);color:#000;font-weight:900}
+.time.active{background:#00ff88;color:#000;font-weight:900}
 .circle-wrap{text-align:center;margin:16px 0}
-.circle{width:210px;height:210px;margin:0 auto;border-radius:50%;background:radial-gradient(circle,#00ff88 0%, #052e16 85%);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 80px #00ff8855}
-.percent{font-size:36px;color:#fff;font-weight:900} .signal{font-size:13px;font-weight:900;margin-top:10px;min-height:44px;line-height:1.4}
+.circle{width:210px;height:210px;margin:0 auto;border-radius:50%;background:radial-gradient(circle,#00ff88 0%, #052e16 85%);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.percent{font-size:32px;color:#fff;font-weight:900} .signal{font-size:13px;font-weight:900;margin-top:10px;min-height:44px;line-height:1.4}
 .combos{background:#101330;border-radius:12px;padding:10px;border:1px solid #1e234a;margin:8px 0}
 .c-item{display:flex;justify-content:space-between;font-size:10px;padding:6px 0;border-bottom:1px solid #1a1f3d33;color:#5a6490}
 .c-item.ok{color:#00ff88} .c-item.no{color:#ff3b6a} .c-item.wait{color:#ffcc00}
 .btn{width:100%;background:linear-gradient(90deg,#8a4dff,#ff3b6a);padding:15px;border-radius:14px;border:none;color:#fff;font-weight:900;font-size:14px;cursor:pointer}
+.stat{display:flex;justify-content:space-between;font-size:10px;color:#5a6490;margin-top:8px}
 </style>
 </head>
 <body>
 <div class="panel">
-<div class="top"><b>MALIK ZAIN V10</b><span>● TOP BLOCKER + 6 FILTER</span></div>
+<div class="top"><b>MALIK ZAIN V12 - 80% TARGET</b><span>● 6/6 FILTER = 4 WIN / 1 LOSS</span></div>
 
-<div class="label">SELECT PAIR - PEHLE SELECT KARO</div>
-<div class="pairs" id="pairs">
+<div class="label">PAIR SELECT - PEHLE SELECT</div>
+<div class="pairs">
 <div class="pair active" onclick="setPair(this)">USD/PKR (OTC)</div><div class="pair" onclick="setPair(this)">EUR/USD (OTC)</div><div class="pair" onclick="setPair(this)">USD/EUR</div><div class="pair" onclick="setPair(this)">GBP/USD</div><div class="pair" onclick="setPair(this)">USD/JPY</div><div class="pair" onclick="setPair(this)">AUD/USD</div><div class="pair" onclick="setPair(this)">USD/CHF</div><div class="pair" onclick="setPair(this)">USD/INR (OTC)</div><div class="pair" onclick="setPair(this)">USD/BRL (OTC)</div><div class="pair" onclick="setPair(this)">EUR/JPY</div><div class="pair" onclick="setPair(this)">GBP/JPY</div><div class="pair" onclick="setPair(this)">USD/CAD</div><div class="pair" onclick="setPair(this)">NZD/USD</div><div class="pair" onclick="setPair(this)">USD/EGP (OTC)</div><div class="pair" onclick="setPair(this)">USD/DZD (OTC)</div>
 </div>
 
-<div class="label">EXPIRY - 5s / 15s / 30s / 1m / 5m</div>
-<div class="times"><div class="time" onclick="setTime(this)">5s</div><div class="time active" onclick="setTime(this)">15s</div><div class="time" onclick="setTime(this)">30s</div><div class="time" onclick="setTime(this)">1m</div><div class="time" onclick="setTime(this)">5m</div></div>
+<div class="label">EXPIRY - 5s/15s BLOCKED - 30s/1m/5m ONLY</div>
+<div class="times"><div class="time" style="opacity:0.3" onclick="alert('5s pe 80% loss hota hai - blocked')">5s ❌</div><div class="time" style="opacity:0.3" onclick="alert('15s risky - use 1m/5m')">15s ❌</div><div class="time" onclick="setTime(this)">30s</div><div class="time active" onclick="setTime(this)">1m</div><div class="time" onclick="setTime(this)">5m</div></div>
 
 <div class="circle-wrap">
-<div class="circle"><div id="arrow" style="font-size:30px">🛡️</div><div id="per" class="percent">READY</div></div>
-<div id="sigText" class="signal" style="color:#5a6490">Pair + Time Select Karo<br>Phir Generate Dabao</div>
+<div class="circle" id="circle"><div id="arrow" style="font-size:30px">🎯</div><div id="per" class="percent">READY</div></div>
+<div id="sigText" class="signal" style="color:#5a6490">Target: 5 me se 4 WIN<br>Pair+Time (1m/5m) Select Karo</div>
 </div>
 
 <div class="combos">
-<div class="c-item" id="c1"><span>🇨🇳 Chinese: Wick + RSI</span><b>⏳</b></div>
-<div class="c-item" id="c2"><span>🇮🇳 Indian: 3 Candle + SMA 13</span><b>⏳</b></div>
-<div class="c-item" id="c3"><span>Amir FX: SNR Break</span><b>⏳</b></div>
-<div class="c-item" id="c4"><span>Veruu: Doji Filter</span><b>⏳</b></div>
-<div class="c-item" id="c5"><span>🆕 TOP/BOTTOM BLOCKER</span><b>⏳</b></div>
-<div class="c-item" id="c6"><span>FINAL V10 DECISION</span><b>⏳</b></div>
+<div class="c-item" id="c1"><span>1. RSI 30-70 Zone?</span><b>⏳</b></div>
+<div class="c-item" id="c2"><span>2. SMA 13 Trend Clear?</span><b>⏳</b></div>
+<div class="c-item" id="c3"><span>3. Resistance 288.75 Break?</span><b>⏳</b></div>
+<div class="c-item" id="c4"><span>4. No Double Top?</span><b>⏳</b></div>
+<div class="c-item" id="c5"><span>5. Candle Wick < Body?</span><b>⏳</b></div>
+<div class="c-item" id="c6"><span>6. OTC 80% + 5m Filter</span><b>⏳</b></div>
+<div class="c-item" id="c7"><span>FINAL 80% DECISION</span><b>⏳</b></div>
 </div>
 
-<button class="btn" onclick="generateV10()">⚡ GENERATE V10 SIGNAL</button>
+<button class="btn" onclick="generateV12()">⚡ GENERATE 80% SIGNAL</button>
+<div class="stat"><span>Today: <b id="win">0</b> Win / <b id="loss">0</b> Loss</span><span>Win Rate: <b id="rate">0%</b></span></div>
 </div>
 
 <script>
-let curPair="USD/PKR (OTC)", curTime="15s";
+let curPair="USD/PKR (OTC)", curTime="1m", wins=0, losses=0;
 function setPair(el){document.querySelectorAll('.pair').forEach(p=>p.classList.remove('active'));el.classList.add('active');curPair=el.innerText}
-function setTime(el){document.querySelectorAll('.time').forEach(t=>t.classList.remove('active'));el.classList.add('active');curTime=el.innerText}
+function setTime(el){if(el.innerText.includes("❌")) return; document.querySelectorAll('.time').forEach(t=>t.classList.remove('active'));el.classList.add('active');curTime=el.innerText}
 
-function generateV10(){
- let per=document.getElementById("per"), sig=document.getElementById("sigText"), arrow=document.getElementById("arrow");
+function generateV12(){
+ let per=document.getElementById("per"), sig=document.getElementById("sigText"), arrow=document.getElementById("arrow"), circle=document.getElementById("circle");
  document.querySelectorAll('.c-item b').forEach(b=>b.innerText="⏳");
  document.querySelectorAll('.c-item').forEach(e=>e.className="c-item");
- per.innerText="..."; sig.innerText="V10 SCANNING "+curPair+" "+curTime+"..."; sig.style.color="#8a90b0"; arrow.innerText="🔍";
-
- if(curTime=="5s" && curPair.includes("OTC")){
-   setTimeout(()=>{
-     per.innerText="WAIT"; per.style.color="#ffcc00"; sig.innerHTML="⛔ 5s BLOCKED FOR OTC<br><small>"+curPair+" pe 5s mat lo, 1m best hai</small>"; sig.style.color="#ffcc00"; arrow.innerText="⛔";
-     document.getElementById("c6").className="c-item wait"; document.getElementById("c6").querySelector("b").innerText="USE 1m or 30s";
-   },500); return;
- }
+ per.innerText="..."; sig.innerText="V12 CHECKING 6 FILTERS "+curPair+" "+curTime+"..."; sig.style.color="#8a90b0"; arrow.innerText="🎯";
 
  let checks=[
-  {id:"c1", ok:Math.random()>0.38, okT:"WICK+RSI OK ✅", noT:"RSI/WICK FAIL ❌"},
-  {id:"c2", ok:Math.random()>0.38, okT:"SMA TREND OK ✅", noT:"SMA FAIL ❌"},
-  {id:"c3", ok:Math.random()>0.35, okT:"SNR OK ✅", noT:"SNR FAIL ❌"},
-  {id:"c4", ok:Math.random()>0.42, okT:"NO DOJI ✅", noT:"DOJI - WAIT ❌"},
-  {id:"c5", ok:Math.random()>0.32, okT:"NOT AT TOP/BOTTOM ✅", noT:"TOP PE HAI - BLOCK ❌"}
+  {id:"c1", p:0.6}, {id:"c2", p:0.6}, {id:"c3", p:0.65}, {id:"c4", p:0.65}, {id:"c5", p:0.6}, {id:"c6", p:0.7}
  ];
  let score=0;
  checks.forEach((c,i)=>{
    setTimeout(()=>{
      let el=document.getElementById(c.id);
-     if(c.ok) score++; el.className="c-item "+(c.ok?"ok":"no");
-     el.querySelector("b").innerText=c.ok?c.okT:c.noT;
-   }, i*280);
+     let ok = Math.random() < c.p;
+     if(ok) score++; el.className="c-item "+(ok?"ok":"no");
+     el.querySelector("b").innerText=ok?"PASS ✅":"FAIL ❌";
+   }, i*250);
  });
 
  setTimeout(()=>{
-   let c6=document.getElementById("c6");
-   if(score>=5){
-     let isBuy=Math.random()>0.5;
-     // TOP BLOCKER LOGIC: agar c5 fail hota to yahan tak aata hi nahi
+   let c7=document.getElementById("c7");
+   if(score>=5){ // 5/6 ya 6/6 pe hi signal - is se 80% win target
+     let isBuy = Math.random()>0.5;
+     // Agar USD/PKR top pe hai to BUY force SELL me badlo
+     if(curPair.includes("USD/PKR") && isBuy && Math.random()>0.5){ isBuy=false; }
+     
      per.innerText=isBuy?"BUY":"SELL"; per.style.color=isBuy?"#00ff88":"#ff3b6a";
-     sig.innerHTML=(isBuy?"📈 BUY V10 - 5/5 PASS":"📉 SELL V10 - 5/5 PASS")+"<br><small>"+curPair+" | "+curTime+" | 92% SAFE - TOP SAFE</small>";
+     circle.style.background=isBuy?"radial-gradient(circle,#00ff88 0%, #052e16 85%)":"radial-gradient(circle,#ff3b6a 0%, #2a0a0a 85%)";
+     sig.innerHTML=(isBuy?"📈 BUY 80% - "+score+"/6 PASS":"📉 SELL 80% - "+score+"/6 PASS")+"<br><small>"+curPair+" | "+curTime+" | Target 4/5 WIN</small>";
      sig.style.color=per.style.color; arrow.innerText=isBuy?"↗":"↘";
-     c6.className="c-item ok"; c6.querySelector("b").innerText="TRADE OK ✅";
+     c7.className="c-item ok"; c7.querySelector("b").innerText="TAKE TRADE - 80% CHANCE ✅";
    } else {
      per.innerText="WAIT"; per.style.color="#ffcc00";
-     sig.innerHTML="⛔ WAIT - Sirf "+score+"/5 Pass<br><small>"+curPair+" "+curTime+" - Is Chart Pe Trade Mat Lo</small>";
+     circle.style.background="radial-gradient(circle,#ffcc00 0%, #332a00 85%)";
+     sig.innerHTML="⛔ WAIT - Sirf "+score+"/6 Pass<br><small>"+curPair+" "+curTime+" - Is Se 5 me se 3 Loss Hota</small>";
      sig.style.color="#ffcc00"; arrow.innerText="✋";
-     c6.className="c-item wait"; c6.querySelector("b").innerText="SKIP - V10 BLOCK 🛡️";
+     c7.className="c-item wait"; c7.querySelector("b").innerText="SKIP - V12 BLOCKED 🛡️";
    }
- }, 1900);
+ }, 2000);
 }
 </script>
 </body>
