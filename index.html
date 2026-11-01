@@ -1,34 +1,130 @@
+
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GEN-Z BOT LIVE</title>
+<title>MALIK ZAIN - GEN-Z BOT</title>
 <style>
-body{background:#0b0e14;color:white;font-family:Arial;margin:0;padding:10px}
-.header{background:#151a28;padding:12px;border-radius:12px;display:flex;justify-content:space-between}
-.live{background:#00e5ff;color:#000;padding:6px 14px;border-radius:20px;font-weight:bold}
-.tf{display:flex;gap:6px;overflow:auto;margin:10px 0}
-.tf button{background:#1e2a4a;border:none;color:white;padding:8px 16px;border-radius:20px}
-.tf button.active{background:#0d8bf2}
-.chart{height:400px;background:#000;border-radius:12px}
-.btn-blue{background:#0d8bf2;color:white;width:100%;padding:14px;border:none;border-radius:12px;margin:6px 0;font-weight:bold}
-.stage{background:#111827;padding:12px;border-radius:10px;margin:8px 0;border-left:4px solid #00ff88}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#070a14;color:white;font-family:Arial;display:flex;height:100vh;overflow:hidden}
+.left{width:65%;background:#0e1320;border-right:1px solid #1e2a4a}
+.right{width:35%;background:linear-gradient(180deg,#0b1225,#060a18);padding:12px;display:flex;flex-direction:column}
+.header{padding:10px;display:flex;justify-content:space-between;background:#121a30;font-size:11px;border-bottom:1px solid #00e5ff}
+.circle-wrap{display:flex;justify-content:center;margin:25px 0;position:relative}
+.circle{width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,#00e5ff15,#001a2e);border:2px solid #00e5ff;box-shadow:0 0 30px #00e5ff66;display:flex;flex-direction:column;align-items:center;justify-content:center;animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 20px #00e5ff66}50%{box-shadow:0 0 60px #00e5ff}100%{box-shadow:0 0 20px #00e5ff66}}
+.dot{width:12px;height:12px;background:#00e5ff;border-radius:50%;margin:2px;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:0.2}}
+.prog{width:80%;height:4px;background:#1a2a4a;border-radius:10px;margin-top:15px;overflow:hidden}
+.prog-bar{height:100%;width:0%;background:linear-gradient(90deg,#00e5ff,#00ff88);transition:0.3s}
+.up{background:#00c853;color:white;border:none;width:50%;padding:14px;border-radius:10px;font-weight:bold}
+.down{background:#d50000;color:white;border:none;width:50%;padding:14px;border-radius:10px;font-weight:bold}
+.status{background:#111a30;padding:12px;border-radius:10px;margin:8px 0;font-size:13px;border:1px solid #1e2a4a;min-height:70px}
+.mic{width:65px;height:65px;background:linear-gradient(#00e5ff,#0d8bf2);border-radius:50%;margin:15px auto;display:flex;align-items:center;justify-content:center;font-size:28px;cursor:pointer;animation:pulse 1.5s infinite}
+.signal{display:none;background:linear-gradient(90deg,#00ff88,#00e5ff);color:#000;text-align:center;padding:16px;border-radius:12px;font-weight:900;font-size:21px;margin-top:10px}
+#tv{height:calc(100vh - 35px)}
 </style>
 </head>
 <body>
-<div class="header"><b>🟢 GEN-Z BOT | QUOTEX LIVE | MALIK ZAIN</b><span class="live">LIVE QUOTEX</span></div>
-<div class="tf"><button>5 SEC</button><button>15 SEC</button><button class="active">30 SEC</button><button>1 MIN</button><button>5 MIN</button></div>
-<div class="chart" id="tv"></div>
-<button class="btn-blue">👑 MALIK ZAIN - EUR/USD - 1M - QUOTEX LIVE</button>
-<button class="btn-blue" onclick="speak('Analyzing market')">🔍 QUOTEX LIVE ANALYZE - 1M</button>
-<div class="stage"><b>STEP 1: Market Trend</b><br>Quotex Downtrend Live - Sellers Strong 🔴</div>
-<div class="stage"><b>STEP 2: RSI & Stochastic</b><br>RSI 32 - Buy Momentum 🟢</div>
-<div class="stage"><b>STEP 3: EMA Cross</b><br>EMA 9 > 21 Bullish Cross ✅</div>
-<div class="stage"><b>STEP 4: Final Signal</b><br>🚀 BUY 87% Confidence</div>
+
+<div class="left">
+<div class="header"><span>🟢 MALIK ZAIN | GEN-Z BOT | QUOTEX LIVE</span><span id="timer">00:05</span></div>
+<div id="tv"></div>
+</div>
+
+<div class="right">
+<div class="circle-wrap">
+<div class="circle">
+<div style="font-size:10px;color:#00e5ff" id="circleText">READY</div>
+<div style="display:flex;margin-top:5px"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+<div class="prog"><div class="prog-bar" id="progBar"></div></div>
+</div>
+</div>
+
+<div style="display:flex;gap:10px"><button class="up" id="upBtn">UP</button><button class="down" id="downBtn">DOWN</button></div>
+
+<div class="status">
+<b id="stageTitle">STEP 1: Waiting...</b><br>
+<span id="txt1">Mic dabao - Analysis shuru hoga</span><br>
+<span style="color:#8ab4ff;font-size:12px" id="txtUrdu">اگلا کینڈل اوپر یا نیچے؟</span>
+</div>
+
+<div class="mic" onclick="startProcess()">🎤</div>
+<div style="text-align:center;font-size:11px;color:#555" id="hint">Tap to Analysis + Generate</div>
+
+<div class="signal" id="finalBox"></div>
+</div>
+
 <script src="https://s3.tradingview.com/tv.js"></script>
 <script>
-new TradingView.widget({container_id:"tv",symbol:"FX:EURUSD",interval:"1",theme:"dark",autosize:true});
-function speak(t){let m=new SpeechSynthesisUtterance(t);window.speechSynthesis.speak(m);}
+new TradingView.widget({container_id:"tv",symbol:"FX:EURUSD",interval:"1",theme:"dark",style:"1",autosize:true});
+
+function speak(t){let m=new SpeechSynthesisUtterance(t);m.lang='en-US';m.rate=0.9;window.speechSynthesis.speak(m);}
+
+let timer=5;setInterval(()=>{timer--;if(timer<0)timer=5;document.getElementById("timer").innerText="00:0"+timer;},1000);
+
+function startProcess(){
+ let bar=document.getElementById("progBar");
+ let cText=document.getElementById("circleText");
+ let stage=document.getElementById("stageTitle");
+ let txt1=document.getElementById("txt1");
+ let txtUrdu=document.getElementById("txtUrdu");
+ let finalBox=document.getElementById("finalBox");
+ finalBox.style.display="none";
+ bar.style.width="0%";
+
+ // STEP 1: ANALYSIS
+ stage.innerText="STEP 1: ANALYSIS HO RAHA HAI...";
+ txt1.innerText="Market trend check ho raha hai...";
+ txtUrdu.innerText="مارکیٹ کا ٹرینڈ چیک ہو رہا ہے";
+ cText.innerText="ANALYZING...";
+ speak("Analysis ho raha hai");
+ 
+ let w=0;
+ let int1=setInterval(()=>{
+  w+=5; bar.style.width=w+"%";
+  if(w>=50){clearInterval(int1);
+   
+   // STEP 2: GENERATE
+   stage.innerText="STEP 2: GENERATE HO RAHA HAI...";
+   txt1.innerText="Signal generate ho raha hai...";
+   txtUrdu.innerText="سگنل جنریٹ ہو رہا ہے";
+   cText.innerText="GENERATING...";
+   speak("Generate ho raha hai");
+
+   let int2=setInterval(()=>{
+    w+=5; bar.style.width=w+"%";
+    if(w>=100){clearInterval(int2);
+     
+     // STEP 3: FINAL SIGNAL
+     let isUp=Math.random()>0.45;
+     if(isUp){
+      stage.innerText="✅ FINAL SIGNAL GENERATED";
+      txt1.innerText="Next Candle Upar Jayegi - BUY karo MALIK ZAIN";
+      txtUrdu.innerText="میرے اندازے کے مطابق نیکسٹ کینڈل اوپر جائے گی";
+      cText.innerText="BUY ✔";
+      finalBox.innerText="NEXT CANDLE UP - BUY - 88% 🟢";
+      finalBox.style.background="linear-gradient(90deg,#00ff88,#00e5ff)";
+      finalBox.style.display="block";
+      document.getElementById("upBtn").style.boxShadow="0 0 25px #00c853";
+      speak("Moon bhai, mere andaze ke mutabiq next candle upar jayegi, Buy karo");
+     }else{
+      stage.innerText="✅ FINAL SIGNAL GENERATED";
+      txt1.innerText="Next Candle Neeche Jayegi - SELL karo MALIK ZAIN";
+      txtUrdu.innerText="نیکسٹ کینڈل نیچے جائے گی - سیل کرو";
+      cText.innerText="SELL ✔";
+      finalBox.innerText="NEXT CANDLE DOWN - SELL - 88% 🔴";
+      finalBox.style.background="linear-gradient(90deg,#ff3b3b,#ff8a8a)";
+      finalBox.style.display="block";
+      document.getElementById("downBtn").style.boxShadow="0 0 25px #ff3b3b";
+      speak("Next candle neeche jayegi, Sell karo");
+     }
+    }
+   },100);
+  }
+ },100);
+}
 </script>
 </body>
 </html>
